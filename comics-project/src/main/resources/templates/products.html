@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<title>Comics Store</title>
+
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css?family=Hind:400,700"
+	rel="stylesheet">
+
+<!-- Bootstrap -->
+<link type="text/css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+
+<!-- Slick -->
+<link type="text/css" rel="stylesheet" th:href="@{/css/slick.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/slick-theme.css}" />
+
+<!-- nouislider -->
+<link type="text/css" rel="stylesheet"
+	th:href="@{/css/nouislider.min.css}" />
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+
+<body>
+	<div th:insert="common/header.html :: header"></div>
+	<!-- <div th:insert="common/navigation.html :: navigation"></div> -->
+
+	
+	<div id="breadcrumb">
+		<div class="container">
+			<ul class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active" th:text=${tenTheLoai}></li>
+			</ul>
+		</div>
+	</div>
+	<!-- /BREADCRUMB -->
+
+	<!-- section -->
+	<div class="section">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+				<!-- ASIDE -->
+				<div id="aside" class="col-md-3"
+					th:replace="common/product/product-header.html :: product-header">
+
+				</div>
+				<!-- /ASIDE -->
+
+				<!-- MAIN -->
+				<div id="main" class="col-md-9">
+					<!-- store top filter -->
+					<!-- <div class="store-filter clearfix header-product"> -->
+					<div class="store-filter clearfix">
+						<div class="pull-left">
+							<div class="header-search">
+								<form>
+									<input class="input search-input" type="text"
+										placeholder="Enter your keyword"> <select
+										class="input search-categories">
+										<option value="0">All Categories</option>
+										<option value="1">Category 01</option>
+										<option value="1">Category 02</option>
+									</select>
+									<button class="search-btn">
+										<i class="fa fa-search"></i>
+									</button>
+								</form>
+							</div>
+						</div>
+
+						<div class="pull-right sort-by">
+							<div class="sort-filter">
+								<span class="text-uppercase">Sort By:</span> <select
+									class="input">
+									<option value="0">Position</option>
+									<option value="0">Price</option>
+									<option value="0">Rating</option>
+								</select> <a href="#" class="main-btn icon-btn"><i
+									class="fa fa-arrow-down"></i></a>
+							</div>
+						</div>
+
+					</div>
+					<!-- /store top filter -->
+
+					<!-- STORE -->
+					<div id="store">
+						<!-- row -->
+						<div class="row" id="page-index">
+							<div class="clearfix visible-sm visible-xs"></div>
+						</div>
+						<!-- /row -->
+					</div>
+					<!-- /STORE -->
+
+					<!-- store bottom filter -->
+					<div id="pagination-here" style="text-align: center;"></div>
+					<!-- /store bottom filter -->
+				</div>
+				<!-- /MAIN -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /section -->
+
+	<div th:insert="common/footer.html :: footer"></div>
+
+	<!-- jQuery Plugins -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/nouislider.min.js}"></script>
+	<script th:src="@{/js/jquery.zoom.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/products.js}"></script>
+	<script th:src="@{/js/pagination.js}"></script>
+	<script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+	<script th:src="@{/js/bootpag-pagination.js}"></script>
+	<script th:src="@{/js/jquery.mycart.js}"></script>
+	<script th:src="@{/js/jquery.mycart.min.js}"></script>
+	
+	
+	<script type="text/javascript">
+	  $(function () {
+	
+	    var goToCartIcon = function($addTocartBtn){
+	      var $cartIcon = $(".my-cart-icon");
+	      var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+	      $addTocartBtn.prepend($image);
+	      var position = $cartIcon.position();
+	      $image.animate({
+	        top: position.top,
+	        left: position.left
+	      }, 500 , "linear", function() {
+	        $image.remove();
+	      });
+	    }
+	
+	    $('.my-cart-btn').myCart({
+	      currencySymbol: '$',
+	      classCartIcon: 'my-cart-icon',
+	      classCartBadge: 'my-cart-badge',
+	      classProductQuantity: 'my-product-quantity',
+	      classProductRemove: 'my-product-remove',
+	      classCheckoutCart: 'my-cart-checkout',
+	      affixCartIcon: true,
+	      showCheckoutModal: true,
+	      numberOfDecimals: 2,
+	      cartItems: [],
+	      clickOnAddToCart: function($addTocart){
+	        goToCartIcon($addTocart);
+	      },
+	      afterAddOnCart: function(products, totalPrice, totalQuantity) {
+	        console.log("afterAddOnCart", products, totalPrice, totalQuantity);
+	      },
+	      clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+	        console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+	      },
+	      checkoutCart: function(products, totalPrice, totalQuantity) {
+	        var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;
+	        checkoutString += "\n\n id \t name \t summary \t price \t quantity \t image path";
+	        $.each(products, function(){
+	          checkoutString += ("\n " + this.id + " \t " + this.name + " \t " + this.summary + " \t " + this.price + " \t " + this.quantity + " \t " + this.image);
+	        });
+	        alert(checkoutString)
+	        console.log("checking out", products, totalPrice, totalQuantity);
+	      },
+	      getDiscountPrice: function(products, totalPrice, totalQuantity) {
+	        console.log("calculating discount", products, totalPrice, totalQuantity);
+	        return totalPrice * 0.5;
+	      }
+	    });
+	
+	    $("#addNewProduct").click(function(event) {
+	      var currentElementNo = $(".row").children().length + 1;
+	      $(".row").append('<div class="col-md-3 text-center"><img src="images/img_empty.png" width="150px" height="150px"><br>product ' + currentElementNo + ' - <strong>$' + currentElementNo + '</strong><br><button class="btn btn-danger my-cart-btn" data-id="' + currentElementNo + '" data-name="product ' + currentElementNo + '" data-summary="summary ' + currentElementNo + '" data-price="' + currentElementNo + '" data-quantity="1" data-image="images/img_empty.png">Add to Cart</button><a href="#" class="btn btn-info">Details</a></div>')
+	    });
+	  });
+  </script>
+</body>
+
+</html>
