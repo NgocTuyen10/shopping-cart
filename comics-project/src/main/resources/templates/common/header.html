@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<header>
+<header >
+<nav class="fixed-top">
 	<!-- top Header -->
 	<div id="top-header" th:fragment="header">
 		<div class="container">
@@ -58,11 +59,17 @@
 
 					<!-- Cart -->
 					<li class="header-cart dropdown default-dropdown">
-						
-								<div class="header-btns-icon">
-									<!-- <i class="fa fa-shopping-cart"></i> <span class="qty">0</span> -->
+						<nav class="navbar bg-inverse fixed-top bg-faded">
+									    <div class="row">
+									        <div class="col">
+									          <button type="button" style="margin-right: 5px;" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button></div>
+									    </div>
+									</nav>
+								<!-- <div class="header-btns-icon">
+									<i class="fa fa-shopping-cart"></i> <span class="qty">0</span>
 									<span class="fa fa-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
-								</div> <strong class="text-uppercase">My Cart:</strong> <br> <span></span>
+									
+								</div> <strong class="text-uppercase">My Cart:</strong> <br> <span></span> -->
 						
 						<div class="custom-menu">
 							<div id="shopping-cart">
@@ -518,6 +525,7 @@
 		</div>
 	</div>
 	<!-- container -->
+	</nav>
 </header>
 <!-- /HEADER -->
 </html>
