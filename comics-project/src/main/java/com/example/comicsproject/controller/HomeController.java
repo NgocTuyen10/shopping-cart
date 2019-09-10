@@ -24,4 +24,9 @@ public class HomeController extends BaseController{
 //		model.addAttribute("theloais", theLoaiService.findAll());
 		return "product-page";
 	}
+	
+	@GetMapping(value="/checkout")
+	public String showCart(Model model) {
+		return "checkout";
+	}
 }

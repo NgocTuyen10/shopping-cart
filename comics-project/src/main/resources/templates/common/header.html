@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <header >
-<nav class="fixed-top">
+<nav>
 	<!-- top Header -->
 	<div id="top-header" th:fragment="header">
 		<div class="container">
@@ -62,7 +62,7 @@
 						<nav class="navbar bg-inverse fixed-top bg-faded">
 									    <div class="row">
 									        <div class="col">
-									          <button type="button" style="margin-right: 5px;" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button></div>
+									          <button type="button" id="showCart" style="margin-right: 5px;" class="btn btn-primary" data-target="#cart">Cart (<span class="total-count"></span>)</button><button class="clear-cart btn btn-danger">Clear Cart</button></div>
 									    </div>
 									</nav>
 								<!-- <div class="header-btns-icon">

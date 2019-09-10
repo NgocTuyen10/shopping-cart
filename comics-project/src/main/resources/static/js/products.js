@@ -140,7 +140,7 @@ $(document)
 						var maTruyen = $(this).val();
 //						window.location.href = '/comics/'+ maTruyen;
 						window.location.href = '/comics/truyen/' + maTruyen;
-						$.ajax({
+						/*$.ajax({
 							url : url_get,
 							type : "GET",
 							contentType : "application/json",
@@ -148,8 +148,12 @@ $(document)
 							success : function(data) {
 								console.log("Success");
 							}
-						});
+						});*/
 
+					});
+					
+					$('#showCart').click(function(){
+						window.location.href = '/comics/checkout';
 					});
 					
 
