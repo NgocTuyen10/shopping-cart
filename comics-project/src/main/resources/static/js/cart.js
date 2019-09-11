@@ -154,7 +154,7 @@ $('#page-index').on('click', '.add-to-cart', function() {
 // Clear items
 $('.clear-cart').click(function() {
 	shoppingCart.clearCart();
-	// displayCart();
+	displayCart();
 });
 
 function displayCart() {
@@ -162,21 +162,6 @@ function displayCart() {
 	var output = "";
 	for ( var i in cartArray) {
 
-		/**
-		 * output += "
-		 * <tr>" + "
-		 * <td>" + cartArray[i].name + "</td>" + "
-		 * <td>(" + cartArray[i].price + ")</td>" + "
-		 * <td><div class='input-group'><button class='minus-item
-		 * input-group-addon btn btn-primary' data-name=" + cartArray[i].name +
-		 * ">-</button>" + "<input type='number' class='item-count
-		 * form-control' data-name='" + cartArray[i].name + "' value='" +
-		 * cartArray[i].count + "'>" + "<button class='plus-item btn
-		 * btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>" + "
-		 * <td><button class='delete-item btn btn-danger' data-name=" +
-		 * cartArray[i].name + ">X</button></td>" + " = " + "
-		 * <td>" + cartArray[i].total + "</td>" + "</tr>";
-		 */
 
 		output += "<tr>"
 				+ "<td class='thumb'><img src='' alt=''></td>"
@@ -184,7 +169,6 @@ function displayCart() {
 				+ "<a href='#'>"
 				+ cartArray[i].name
 				+ "</a>"
-
 				+ "</td>"
 				+ "<td class='price text-center'><strong>"
 				+ cartArray[i].price
@@ -195,7 +179,7 @@ function displayCart() {
 				+ "<td class='total text-center'><strong class='primary-color'>"
 				+ cartArray[i].total
 				+ "</strong></td>"
-				+ "<td class='text-right'><button class='main-btn icon-btn'><i class='fa fa-close'></i></button></td>"
+				+ "<td class='text-right'><button class='delete-item main-btn icon-btn'+ data-name='" + cartArray[i].truyenid +"'><i class='fa fa-close'></i></button></td>"
 				+ "</tr>";
 	}
 	$('.show-cart').html(output);
@@ -205,28 +189,29 @@ function displayCart() {
 
 // Delete item button
 
-$('.show-cart').on("click", ".delete-item", function(event) {
-	var truyenid = $(this).data('truyenid')
+$(document).on('click', '.delete-item', function(e) {
+/*$('.show-cart').on("click", ".delete-item", function(event) {*/
+	var truyenid = $(this).data('name')
 	shoppingCart.removeItemFromCartAll(truyenid);
-	// displayCart();
+	displayCart();
 })
 
 // -1
 $('.show-cart').on("click", ".minus-item", function(event) {
-	var truyenid = $(this).data('truyenid')
+	var truyenid = $(this).data('name')
 	shoppingCart.removeItemFromCart(truyenid);
 	displayCart();
 })
 // +1
 $('.show-cart').on("click", ".plus-item", function(event) {
-	var truyenid = $(this).data('truyenid')
+	var truyenid = $(this).data('name')
 	shoppingCart.addItemToCart(truyenid);
 	displayCart();
 })
 
 // Item count input
 $('.show-cart').on("change", ".item-count", function(event) {
-	var truyenid = $(this).data('truyenid');
+	var truyenid = $(this).data('name');
 	var count = Number($(this).val());
 	shoppingCart.setCountForItem(truyenid, count);
 	displayCart();
