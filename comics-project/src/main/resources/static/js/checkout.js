@@ -1,3 +1,12 @@
+function getFormData($form) {
+  var unindexed_array = $form.serializeArray();
+  var indexed_array = {};
+  $.map(unindexed_array, function (n, i) {
+    indexed_array[n['name']] = n['value'];
+  });
+  return indexed_array;
+}
+
 $(document).ready(function() {
 
 	$("#submit").on('click', function() {
@@ -6,7 +15,7 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('#form').on('status.field.bv', function(e, data) {
+	/*$('#form').on('status.field.bv', function(e, data) {
 		formIsValid = true;
 		$('.form-group', $(this)).each(function() {
 
@@ -19,7 +28,7 @@ $(document).ready(function() {
 		} else {
 			$('#submit', $(this)).attr('disabled', true);
 		}
-	});
+	});*/
 	
 	$('#form').bootstrapValidator({
 	    // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -107,19 +116,33 @@ $(document).ready(function() {
 	      }
 	  }).on('success.form.bv', function (e) {
 	      // // Prevent form submission
-	      // e.preventDefault();
+	      e.preventDefault();
 	      // send ajax
+	      console.log("This is shopping cart");
 	      var data = getFormData($("form"));
-	      /*data.trangThai = true;*/
-	      console.log(data);
-	      /*data.grade = { id: data.grade };*/
 	      $.ajax({
-	        url: '/khach-hang/', // url where to submit the request
+	        url: '/comics/khach-hang', // url where to submit the request
 	        type: "POST", // type of action POST || GET
 	        contentType: "application/json", // data type
 	        data: JSON.stringify(data), // post data || get data
 	        success: function (result) {
-	          
+	          var cartData = cart;
+	          var total = shoppingCart.totalCart();
+	          $.ajax({
+	  	        url: '/comics/hoa-don-xuat', // url where to submit the request
+	  	        type: "POST", // type of action POST || GET
+	  	        contentType: "application/json", // data type
+	  	        data: {
+	  	        	cartData: cart,
+	  	        	total: total
+	  	        }, // post data || get data
+	  	        success: function (result) {
+	  	         console.log("Success");
+	  	        },
+	  	        error: function (xhr, resp, text) {
+	  	          
+	  	        }
+	  	      });
 	        },
 	        error: function (xhr, resp, text) {
 	          
