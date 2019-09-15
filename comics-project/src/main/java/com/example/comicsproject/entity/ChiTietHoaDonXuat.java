@@ -14,7 +14,7 @@ public class ChiTietHoaDonXuat {
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "truyen_id")
-	private Truyen truyenId;
+	private Truyen truyen;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hoa_don_xuat_id")

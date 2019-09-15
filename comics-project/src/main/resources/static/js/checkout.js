@@ -120,39 +120,31 @@ $(document).ready(function() {
 	      // send ajax
 	      console.log("This is shopping cart");
 	      var data = getFormData($("form"));
+	      var khachHang =data;
+	      var truyens = [];
+          
+          var i = 0;
+          for(i; i <cart.length; i ++ ) {
+        	  var item = {
+        		truyenId: cart[i].truyenid,
+        		soLuong: cart[i].count
+        	  };
+        	  truyens.push(item);
+          }
+          var total = shoppingCart.totalCart();
+          var cartData = {
+        	  "truyens" : truyens,
+        	  "khachHang": khachHang,
+        	  "total" : total
+          }
 	      $.ajax({
-	        url: '/comics/khach-hang', // url where to submit the request
+	        url: '/comics/hoa-don-xuat', // url where to submit the request
 	        type: "POST", // type of action POST || GET
 	        contentType: "application/json", // data type
-	        data: JSON.stringify(data), // post data || get data
+	        data: JSON.stringify(cartData), // post data || get data
 	        success: function (result) {
-	          var truyens = [];
+	          console.log("AAAA");
 	          
-	          var i = 0;
-	          for(i; i <cart.length; i ++ ) {
-	        	  var item = {
-	        		truyenId: cart[i].truyenid,
-	        		soLuong: cart[i].count
-	        	  };
-	        	  truyens.push(item);
-	          }
-	          var total = shoppingCart.totalCart();
-	          var cartData = {
-	        	  "truyens" : truyens,
-	        	  "total" : total
-	          }
-	          $.ajax({
-	  	        url: '/comics/hoa-don-xuat', // url where to submit the request
-	  	        type: "POST", // type of action POST || GET
-	  	        contentType: "application/json", // data type
-	  	        data: JSON.stringify(cartData),
-	  	        success: function (result) {
-	  	         console.log("Success");
-	  	        },
-	  	        error: function (xhr, resp, text) {
-	  	          
-	  	        }
-	  	      });
 	        },
 	        error: function (xhr, resp, text) {
 	          

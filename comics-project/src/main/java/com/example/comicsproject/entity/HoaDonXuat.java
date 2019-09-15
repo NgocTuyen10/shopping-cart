@@ -23,7 +23,6 @@ import lombok.Data;
 public class HoaDonXuat {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int hoaDonXuatId;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")

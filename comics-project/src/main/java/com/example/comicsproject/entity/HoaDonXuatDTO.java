@@ -8,4 +8,5 @@ import lombok.Data;
 public class HoaDonXuatDTO {
 	private List<TruyenDTO> truyens;
 	private int total;
+	private KhachHang khachHang;
 }

@@ -21,8 +21,8 @@ public class HoaDonXuatService {
 		return this.hoaDonXuatRepository.getNextId();
 	}
 
-	public void addToChiTietHoaDonXuat(int chiTietHoaDonXuatId, int truyenId, int soLuong) {
-		this.hoaDonXuatRepository.addToChiTietHoaDonXuat(chiTietHoaDonXuatId, truyenId, soLuong);
+	public void addToChiTietHoaDonXuat(int hoaDonXuatId, int truyenId, int soLuong) {
+		this.hoaDonXuatRepository.addToChiTietHoaDonXuat(hoaDonXuatId, truyenId, soLuong);
 	}
 
 	public void addHoaDonXuat(int hoaDonXuatId, Date ngayGhi, float tongTien, boolean trangThai) {

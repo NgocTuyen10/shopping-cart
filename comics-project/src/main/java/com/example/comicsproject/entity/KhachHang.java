@@ -19,7 +19,6 @@ import lombok.Data;
 @Data
 public class KhachHang {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int khachHangId;
 
 	@Column(name = "ten")

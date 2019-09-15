@@ -14,4 +14,8 @@ public class KhachHangService {
 	public void create(KhachHang khachHang) {
 		this.khachHangRepository.save(khachHang);
 	}
+
+	public int getNextKhachHangId() {
+		return this.khachHangRepository.getNextKhachHangId();
+	}
 }
