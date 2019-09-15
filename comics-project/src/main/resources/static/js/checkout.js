@@ -126,16 +126,26 @@ $(document).ready(function() {
 	        contentType: "application/json", // data type
 	        data: JSON.stringify(data), // post data || get data
 	        success: function (result) {
-	          var cartData = cart;
+	          var truyens = [];
+	          
+	          var i = 0;
+	          for(i; i <cart.length; i ++ ) {
+	        	  var item = {
+	        		truyenId: cart[i].truyenid,
+	        		soLuong: cart[i].count
+	        	  };
+	        	  truyens.push(item);
+	          }
 	          var total = shoppingCart.totalCart();
+	          var cartData = {
+	        	  "truyens" : truyens,
+	        	  "total" : total
+	          }
 	          $.ajax({
 	  	        url: '/comics/hoa-don-xuat', // url where to submit the request
 	  	        type: "POST", // type of action POST || GET
 	  	        contentType: "application/json", // data type
-	  	        data: {
-	  	        	cartData: cart,
-	  	        	total: total
-	  	        }, // post data || get data
+	  	        data: JSON.stringify(cartData),
 	  	        success: function (result) {
 	  	         console.log("Success");
 	  	        },
