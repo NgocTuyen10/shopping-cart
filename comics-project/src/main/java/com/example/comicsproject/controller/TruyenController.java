@@ -38,12 +38,12 @@ public class TruyenController extends BaseController {
 	@GetMapping("/theloai/{maTheLoai}")
 //	@ResponseBody
 	public String showTruyenByMaTheLoai(@PathVariable("maTheLoai") String maTheLoai, Model model) {
-		// String tenTheLoai = this.theLoaiService.findTenTheLoaiByMaTheLoai(maTheLoai);
-		// model.addAttribute("tenTheLoai", tenTheLoai);
+		
+		String tenTheLoai = this.theLoaiService.findTenTheLoaiByMaTheLoai(maTheLoai);
+		model.addAttribute("tenTheLoai", tenTheLoai);
 
-		List<Truyen> truyens = this.truyenService.findByMaTheLoai(maTheLoai);
 //		model.addAttribute("truyens", truyens);
-
+		List<Truyen> truyens = this.truyenService.findByMaTheLoai(maTheLoai);
 		model.addAttribute("theloais", theLoaiService.findAll());
 
 		return "products";

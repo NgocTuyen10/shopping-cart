@@ -136,10 +136,10 @@
 	// PRODUCT ZOOM
 	$('#product-main-view .product-view').zoom();
 
-	$('.menu-click').on('click', function() {
+	/*$('.menu-click').on('click', function() {
 		$('.menu-click').removeClass('catagory-active');
 		$(this).addClass('catagory-active');
-	});
+	});*/
 
 	// PRICE SLIDER
 	var slider = document.getElementById('price-slider');
