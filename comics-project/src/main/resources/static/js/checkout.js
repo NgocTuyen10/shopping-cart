@@ -143,8 +143,8 @@ $(document).ready(function() {
 	        contentType: "application/json", // data type
 	        data: JSON.stringify(cartData), // post data || get data
 	        success: function (result) {
-	          console.log("AAAA");
-	          
+	        	shoppingCart.clearCart();
+	        	displayCart();
 	        },
 	        error: function (xhr, resp, text) {
 	          
