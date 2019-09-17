@@ -207,7 +207,7 @@ $(document).on('click', '.delete-item', function(e) {
 	displayCart();
 })
 
-// -1
+/*// -1
 $('.show-cart').on("click", ".minus-item", function(event) {
 	var truyenid = $(this).data('name')
 	shoppingCart.removeItemFromCart(truyenid);
@@ -226,14 +226,11 @@ $('.show-cart').on("change", ".item-count", function(event) {
 	var count = Number($(this).val());
 	shoppingCart.setCountForItem(truyenid, count);
 	displayCart();
-});
+});*/
+
 displayCart();
 
-// Add and delete product
-
-
-
-
+// Increase and decrease product count
 $(document).on('change', '.number-input', function(e) {
 	var truyenid = $(this).attr('id');
 	var count = Number($(this).val());
