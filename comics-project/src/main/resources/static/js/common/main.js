@@ -6,8 +6,8 @@ $(document).ready(function() {
 		}
 	})
 
-	$(document).on('click', '.add-to-cart', function() {
-		/* $('.add-to-cart').click(function(event) { */
+	$(document).on('click', '.add-to-cart-detail', function() {
+//		 $('.add-to-cart').click(function(event) { 
 		event.preventDefault();
 		var truyenid = $(this).data('truyenid');
 		var name = $(this).data('name');

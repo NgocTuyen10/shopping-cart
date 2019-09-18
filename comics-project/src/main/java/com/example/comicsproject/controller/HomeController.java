@@ -29,4 +29,13 @@ public class HomeController extends BaseController{
 	public String showCart(Model model) {
 		return "checkout";
 	}
+	
+	@GetMapping(value="/login")
+	public String showLoginPage(Model model) {
+		return "login";
+	}
+	@GetMapping(value="/register")
+	public String showRegisterPage(Model model) {
+		return "register";
+	}
 }
