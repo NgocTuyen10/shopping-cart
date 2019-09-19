@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.comicsproject.dto.HoaDonXuatDTO;
+import com.example.comicsproject.dto.TruyenDTO;
 import com.example.comicsproject.entity.HoaDonXuat;
-import com.example.comicsproject.entity.HoaDonXuatDTO;
 import com.example.comicsproject.entity.KhachHang;
-import com.example.comicsproject.entity.TruyenDTO;
 import com.example.comicsproject.repository.HoaDonXuatRepository;
 import com.example.comicsproject.repository.KhachHangRepository;
 
