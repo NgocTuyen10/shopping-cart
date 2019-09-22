@@ -41,7 +41,7 @@
 								<i class="fa fa-user-o"></i>
 							</div>
 							<strong class="text-uppercase">My Account</strong>
-						</div> <a href="/comics/login" class="text-uppercase">Login</a> 
+						</div> <a href="/comics/login" class="text-uppercase" th:text="${session.username}" th:unless="${session == null}">Login</a> 
 						<ul class="custom-menu">
 							<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
 							<li><a href="/comics/checkout"><i class="fa fa-check"></i> Checkout</a></li>

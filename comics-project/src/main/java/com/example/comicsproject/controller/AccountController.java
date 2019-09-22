@@ -1,5 +1,7 @@
 package com.example.comicsproject.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,11 +28,13 @@ public class AccountController extends BaseController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/find-account", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> findAccount(@RequestBody AccountDTO accountDTO) {
+	@RequestMapping(value = "/find-account", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> findAccount(@RequestBody AccountDTO accountDTO,HttpSession session) {
 		Account account = this.accountService.findAccount(accountDTO);
-		if (account != null)
-			return new ResponseEntity<>(account, HttpStatus.CREATED);
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		if (account != null) {
+			session.setAttribute("username", accountDTO.getUsername());
+			return new ResponseEntity<>(accountDTO, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(accountDTO, HttpStatus.NOT_FOUND);
 	}
 }
