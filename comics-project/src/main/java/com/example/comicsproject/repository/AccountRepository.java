@@ -15,4 +15,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 	@Query(value = "select * from account where username = :username and password = :password", nativeQuery = true)
 	public Account findAccount(@Param("username") String username, @Param("password") String password);
+
+	@Query(value = "insert into account(username,password) values (:p1,:p2)", nativeQuery = true)
+	public void createAccount(@Param("p1") String username, @Param("p2") String password);
 }
