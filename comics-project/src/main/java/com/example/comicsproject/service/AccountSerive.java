@@ -37,9 +37,11 @@ public class AccountSerive {
 	public void createAccount(AccountRegisterDTO registerDTO) {
 
 		// Insert into account table
+
+		int accountId = accountRepository.getNextAccountId();
 		String username = registerDTO.getUsername();
 		String password = registerDTO.getPassword();
-		this.accountRepository.createAccount(username, password);
+		this.accountRepository.createAccount(username, password, accountId);
 
 		// insert into khach_hang table
 		int khachHangId = khachHangRepository.getNextKhachHangId();
@@ -50,7 +52,7 @@ public class AccountSerive {
 		khachHang.setNgaySinh(registerDTO.getNgaySinh());
 		khachHang.setSoDienThoai(registerDTO.getSoDienThoai());
 		khachHang.setTen(registerDTO.getTen());
-
+		khachHang.setAccount(new Account(accountId));
 		this.khachHangRepository.save(khachHang);
 	}
 

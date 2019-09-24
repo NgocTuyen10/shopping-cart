@@ -18,6 +18,9 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 	public Account findAccount(@Param("username") String username, @Param("password") String password);
 
 	@Modifying
-	@Query(value = "insert into account(username,password) values (:p1,:p2)", nativeQuery = true)
-	public void createAccount(@Param("p1") String username, @Param("p2") String password);
+	@Query(value = "insert into account(username,password,account_id) values (:p1,:p2,:p3)", nativeQuery = true)
+	public void createAccount(@Param("p1") String username, @Param("p2") String password,@Param("p3") int accountId);
+	
+	@Query(value = "SELECT nextval('account_sequence');", nativeQuery = true)
+	public int getNextAccountId();
 }

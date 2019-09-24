@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class AccountRegisterDTO {
-
+	
 	private String ten;
 	private String soDienThoai;
 	private Date ngaySinh;

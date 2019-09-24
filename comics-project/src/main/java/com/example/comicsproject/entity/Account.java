@@ -25,7 +25,7 @@ import lombok.Setter;
 public class Account {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int accountId;
 
 	@Column(name = "username")
@@ -50,5 +50,9 @@ public class Account {
 		this.username = username;
 		this.password = password;
 		this.remark = remark;
+	}
+
+	public Account(int accountId) {
+		this.accountId = accountId;
 	}
 }
