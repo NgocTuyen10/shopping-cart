@@ -17,7 +17,24 @@ public class TheLoaiService {
 	public List<TheLoai> findAll() {
 		return this.theLoaiRepository.findAll();
 	}
+	public void addTheLoai(TheLoai theLoai) {
+		try {
+			theLoaiRepository.save(theLoai);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
+	public TheLoai findTheLoaiByID(int id) {
+		return theLoaiRepository.getOne(id);
+	}
+
+	public void updateTheLoai(int id, TheLoai theLoai) {
+		if (findTheLoaiByID(id) != null)
+			theLoaiRepository.save(theLoai);
+	}
+	
 	public void deleteTheLoai(int id) {
 		this.theLoaiRepository.inactiveTheLoai(id);
 	}

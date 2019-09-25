@@ -21,7 +21,10 @@ public class AccountSerive {
 
 	@Autowired
 	private KhachHangRepository khachHangRepository;
-
+	
+	public Account findById(int id) {
+		return this.accountRepository.getOne(id);
+	}
 	public Account findAccount(AccountDTO accountDTO) {
 		return this.accountRepository.findAccount(accountDTO.getUsername(), accountDTO.getPassword());
 	}
