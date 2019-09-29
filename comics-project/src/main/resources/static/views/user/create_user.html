@@ -1,0 +1,95 @@
+<div class="container text-center">
+    <h3>Add User</h3>
+    <hr>
+    <form id="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-3">User Name</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="1000" class="form-control" name="userName" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Employee</label>
+            <div class="col-md-7" id="employee">
+                <select class="form-control input-sm" name="employee">
+                    <option value="">Please select ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Password</label>
+            <div class="col-md-7">
+                <input class="form-control" name="password" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Language</label>
+            <div class="col-md-7" id="language">
+                <select class="form-control input-sm" name="language">
+                    <option value="">Please select...</option>
+                    <option value="1">English</option>
+                    <option value="2">Japanese</option>
+                    <option value="3">Vietnamese</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Role</label>
+            <div class="col-sm-7">
+                <select class="form-control" name="roles" id="roles" multiple>
+                    <option value="1">ADMIN</option>
+                    <option value="2">MEMBER</option>
+                    <option value="3">GROUP-LEADER</option>
+                    <option value="4">PROJECT-LEADER</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group skip-validate">
+            <label class="control-label col-md-3">Description</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="1000" class="form-control" name="description" value="" />
+            </div>
+        </div>
+        <div>
+            <input id="submit" type="submit" class="btn btn-primary" value="Save" disabled />
+            <input id="cancel" type="button" class="btn btn-default" value="Cancel" />
+        </div>
+    </form>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="create-user-success" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="closeModalSuccess()">&times;</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body">
+                <p>Create user success.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalSuccess()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="create-user-error" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="closeModalError()">&times;</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body">
+                <p>Create user error.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalError()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/user/create-user.js"></script>

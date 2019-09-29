@@ -38,4 +38,14 @@ public class HomeController extends BaseController{
 	public String showRegisterPage(Model model) {
 		return "register";
 	}
+	
+	@GetMapping(value="/management-login")
+	public String showManagementLoginPage(Model model) {
+		return "management-login";
+	}
+	
+	@GetMapping(value="/management")
+	public String showManagementPage(Model model) {
+		return "management";
+	}
 }

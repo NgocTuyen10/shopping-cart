@@ -1,0 +1,161 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow-y: hidden;
+	-ms-overflow-style: scrollbar;
+}
+
+body, ul, ol {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background-color: #F8F8F8;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto !important;
+	-ms-overflow-style: scrollbar;
+}
+
+header {
+	min-height: 80px;
+	z-index: 999;
+	background-color: #353434;
+	overflow: visible;
+}
+
+.content {
+	background-color: #F8F8F8;
+}
+
+.logo {
+	margin: 5px;
+	height: 70px
+}
+
+.dt-body-center {
+	text-align: center;
+}
+
+.table-dashboard {
+	margin-top: 10px;
+	border: 2px solid gray;
+	border-radius: 8px;
+}
+
+#terms {
+	margin-left: 13px;
+}
+
+.subItemBorderHeader {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+.subItemBorderBody {
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
+
+.form-horizontal .control-label{
+    text-align: left;
+}
+
+.collapseOpenCloseIcon >a {
+	float: left !important;
+	padding-right: 5px;
+    /* font-family: FontAwesome; */
+    content:"\e259";
+}
+
+.collapseOpenCloseIcon >a.collapsed {
+	float: left !important;
+    content:"\e260";
+}
+
+/* Search box in management screen */
+#mySearchText{
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+/* Padding data table */
+table.dataTable thead th, table.dataTable thead td {
+	padding: 10px 10px;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 10px 10px;
+}
+
+.float-right {
+  float: right !important;
+}
+/* Error message should be align left left */
+.help-block{
+	float: left;
+}
+
+/* Center the input date */
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+input[type=date] {
+	padding: 0px 12px;
+}
+
+/* Center the loader */
+#loader-container {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: rgba(204, 204, 204, 0.7);
+	z-index: 100;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* multiselect bootstrapvalidate */
+.multiselect-native-select{
+	float: left;
+}
+/*end multiselect bootstrapvalidate */

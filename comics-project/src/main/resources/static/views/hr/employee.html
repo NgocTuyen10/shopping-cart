@@ -1,0 +1,87 @@
+<div class="container">
+	<div class="button" style="float: left;">
+		<div class="form-group">
+			<input id="create" type="button" class="btn btn-primary" value="Create" /> <input id="edit" type="button" class="btn btn-primary"
+			 value="Edit" /> <input id="delete" type="button" class="btn btn-primary" value="Delete" /> <input id="importEmpl"
+			 type="button" class="btn btn-primary" value="Import Data" />
+		</div>
+	</div>
+	<div style="float: right;">
+		<p>
+			<input type="text" id="mySearchText" placeholder="Search...">
+			<button id="mySearchButton" class="btn btn-primary">Search</button>
+		</p>
+	</div>
+	<div class="profile">
+		<!-- <table id="datatable" class="table table-bordered" style="width: 100%"></table> -->
+		<table id="datatable" class="display"></table>
+	</div>
+
+</div>
+
+<div class="modal fade" id="employeeModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">Select file</div>
+			<div class="modal-body">
+				<input type="file" class="form-control" id="fileField" multiple="multiple" required="required" name="excelfileEmpl"
+				 accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				<button type="button" id="importExcelEmployee" class="btn btn-primary">Import</button>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+<!-- Modal -->
+<div class="modal fade" id="delete-employee-success" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Delete employee success.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="delete-employee-error" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Delete employee error.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<dialog class="dialog" id="del">
+	<div id="del-popup" style="height: auto; display: block;">
+		<div>Do you want to delete this employees?</div>
+		<div style="margin-top:10px;">
+			<input id="del-ok" type="submit" class="btn btn-primary" value="OK" />
+			<input id="del-close" type="button" class="btn btn-primary" value="Cancel" />
+		</div>
+	</div>
+</dialog>
+<script type="text/javascript" src="/js/hr/employee.js"></script>
+<script type="text/javascript" src="/js/change/importEmployee.js"></script>

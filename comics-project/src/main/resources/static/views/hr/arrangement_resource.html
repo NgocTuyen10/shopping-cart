@@ -1,0 +1,220 @@
+<link rel="stylesheet" href="css/arrangement-resource.css">
+<div class="resource col-md-4">
+    <div>
+        <label>Find option</label>
+        <select class="form-control input-sm" id="find-select">
+            <option value="by-name">Find by name</option>
+            <option value="by-term">Find by term</option>
+            <option value="by-month">Find by month</option>
+            <option value="by-date">Find by date</option>
+        </select>
+    </div>
+    <div id="by-name" class="find-option" style="padding-top: 10px;">
+        <input id="filter_text" type="text" placeholder="Filter text .." value="">
+    </div>
+    <div id="by-term" class="find-option" style="display:none">
+        <div>
+            <label>Term</label>
+            <select class="form-control input-sm" id="term-select">
+            </select>
+        </div>
+    </div>
+    <div id="by-month" class="find-option" style="display:none">
+        <div>
+            <label>Month</label>
+            <div>
+                <input type="month" id="month-select">
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="by-date" class="find-option" style="display:none">
+        <div class="col-md-6" style="padding-left: 0px;">
+            <label>Start Date</label>
+            <div>
+                <input type="date" class="form-control" name="startDate" value="" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label>End Date</label>
+            <div>
+                <input type="date" class="form-control" name="endDate" value="" />
+            </div>
+        </div>
+    </div>
+    <input id="filter" type="button" class="btn btn-primary" value="Filter" style="margin-top: 10px;margin-bottom: 10px;" />
+    <div class="profile">
+        <label>Available Resource</label>
+        <table id="datatable" class="table table-bordered bitacoratable">
+            <thead>
+                <th style="display:none;">ID</th>
+                <th width="10%">Employee Code</th>
+                <th width="10%">Employee Name</th>
+                <th width="10%">Resource Type</th>
+                <th width="24%">Effort Avaiable</th>
+            </thead>
+            <tbody id="tb">
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-md-8 parent-tree-div">
+    <div class="tree">
+        <ul>
+            <li>
+                <a>TSDV</a>
+                <ul id="root">
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
+<dialog class="dialog" id="modal">
+    <div id="add_popup" style="height: auto; display: block;">
+        <form id="form" class="form-horizontal">
+            <div class="form-group">
+                <label>Employee Code: </label><a id="employee-code"></a></br>
+            </div>
+            <div class="form-group">
+                <label>Project: </label><a id="project-id"></a></br>
+            </div>
+
+            <div class="form-group">
+                <label>Start Date</label>
+                <div>
+                    <input type="date" class="form-control" name="startDate_modal" id="startDate_modal" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <div>
+                    <input type="date" class="form-control" name="endDate_modal" id="endDate_modal" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Effort: </label>
+                <div>
+                    <input type="text" class="form-control" id="effort" name="effort" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Effort type</label>
+                <select class="form-control input-sm" id="effort-type" value="">
+                    <option value="direct">Direct</option>
+                    <option value="indirect">Indirect</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>List assigned effort of employee: </label>
+                <table id="assigned-effort">
+                    <thead>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Effort</th>
+                        <th>Effort Type</th>
+                        <th>Project Name</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top:10px;">
+                <input id="modal-ok" type="submit" class="btn btn-primary" value="OK" disabled="disabled"/>
+                <input id="modal-close" type="button" class="btn btn-primary" value="Cancel" />
+            </div>
+        </form>
+    </div>
+</dialog>
+<!-- Modal -->
+<div class="modal fade" id="create-task-error" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="closeModalCreateError()">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Create Task error. This task contain assigned date.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalCreateError()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="edit-task-error" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="closeModalEditError()">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Edit Task error. This task contain assigned date.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalEditError()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="assign-task-error" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="closeModalAssignError()">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Assign not Success.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalAssignError()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="cannot-load-data-error" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="closeModalLoadDataError()">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Cannot load availble resource data.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalLoadDataError()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="load-employee-task-error" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="closeLoadEmployeeTaskError()">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Load employee task not success.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeLoadEmployeeTaskError()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/hr/arrangement-resource.js"></script>

@@ -1,0 +1,103 @@
+<div>
+
+	<nav class="navbar navbar-inverse">
+
+		<div class="container-fluid">
+
+			<ul class="nav navbar-nav" id="menu-nav-bar">
+
+				<li class="active"><a href="#" onclick="openPage('dashboard.html')"><span class="glyphicon glyphicon-home"></span>&ensp;Home</a></li>
+
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-folder-open"></span>&ensp;Data<span
+						 class="caret"></span></a>
+
+					<ul class="dropdown-menu">
+
+						<li><a href="#" onclick="openPage('change/importData.html')"><span class="glyphicon glyphicon-upload"></span>&ensp;Import
+								Data</a></li>
+
+						<li><a href="#" id="download-excel"><span class="glyphicon glyphicon-download"></span>&ensp;Export Data</a></li>
+
+					</ul>
+				</li>
+
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-folder-open"></span>&ensp;Manage<span
+						 class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" onclick="openPage('hr/employee.html')"><span class="glyphicon glyphicon-folder-open"></span>&ensp;Employee</a></li>
+						<li><a href="#" onclick="openPage('user/user.html')"><span class="glyphicon glyphicon-folder-open"></span>&ensp;User</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-folder-open"></span>&ensp;Export
+						Data<span class="caret"></span></a>
+
+					<ul class="dropdown-menu">
+
+						<li><a href="#" id="resource-pool"><span class="glyphicon glyphicon-upload"></span>&ensp;Current resource
+								pool</a></li>
+
+						<li><a href="#" id="arrangement-resource"><span class="glyphicon glyphicon-download"></span>&ensp;Current
+								arrangement resource</a></li>
+
+						<li id="attempLi"><a href="#" onclick="openPage('change/exportDataToExcel.html')"><span class="glyphicon glyphicon-download"></span>&ensp;Export
+								to
+								excel</a></li>
+
+					</ul>
+				</li>
+
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+
+				<li><a href="#" id="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+
+			</ul>
+
+		</div>
+
+	</nav>
+
+</div>
+
+<div class="modal" id="Authorization">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-body">Authorization error</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function menuItem(parent, menu) {
+
+		var menuItem = '<li><a href="#" ';
+
+		if (menu.template && menu.template !== '') {
+
+			menuItem += 'onclick="openPage(\'' + menu.template + '\')"';
+
+		}
+
+		menuItem += '><span class="glyphicon ' + menu.class + '"></span>&ensp;'
+			+ menu.name + '</a></li>'
+
+		$(parent).append(menuItem);
+
+	}
+
+	function menuParent() {
+
+
+	}
+
+	$(document).ready(function () {
+
+	});
+</script>
+
+<script type="text/javascript" src="/js/common/menu.js"></script>

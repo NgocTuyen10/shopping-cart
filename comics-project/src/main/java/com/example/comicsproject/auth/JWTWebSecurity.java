@@ -30,8 +30,8 @@ public class JWTWebSecurity extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
-        .antMatchers("/register", "/imgs/**","/img/**","/fonts/**","/css/**", "/js/**", "/lib/**", "/webjars/**","/login/**","/register/**", "/error.html",
-            "/views/**", "**.xlsm", "**.docx", "**.pdf", "**.xlsx", "/upload/**")
+        .antMatchers("/register", "/img/**","/fonts/**","/css/**", "/js/**", "/lib/**", "/webjars/**","/login/**","/register/**", "/error.html",
+            "/views/**","/auth/**", "**.xlsm", "**.docx", "**.pdf", "**.xlsx", "/upload/**")
         .permitAll()
         .antMatchers("/main", "/index","/comics/**", "/searchresult", "/favicon.ico",
             "/lastmonthdashboard", "/logout")
