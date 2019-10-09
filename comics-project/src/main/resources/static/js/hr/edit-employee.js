@@ -22,7 +22,7 @@ function getFormData($form) {
 }
 $(document).ready(function () {
 	$(function () {
-	        var url = "/management/bophan";
+	        var url = "/comics/bophan";
 	        $.ajax({
 	          url: url, // url where to submit the request
 	          type: "GET", // type of action POST || GET

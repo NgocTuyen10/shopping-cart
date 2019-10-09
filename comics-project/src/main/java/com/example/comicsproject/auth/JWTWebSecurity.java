@@ -30,11 +30,11 @@ public class JWTWebSecurity extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, jwtConfig.getUri()).permitAll()
-        .antMatchers("/register", "/img/**","/css/fonts/**","/css/**", "/js/**", "/lib/**", "/webjars/**","/login/**","/register/**", "/error.html",
+        .antMatchers("/register", "/img/**","/css/**", "/js/**", "/lib/**", "/webjars/**","/login/**","/register/**", "/error.html",
             "/views/**","/auth/**", "**.xlsm", "**.docx", "**.pdf", "**.xlsx", "/upload/**")
         .permitAll()
         .antMatchers("/main", "/index","/comics/**", "/searchresult", "/favicon.ico",
-            "/lastmonthdashboard","/fonts/**", "/logout")
+            "/lastmonthdashboard", "/logout")
         .permitAll().antMatchers("/").permitAll().anyRequest().authenticated().and()
         .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtConfig))
         .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtConfig))

@@ -1,4 +1,4 @@
-window.employee = null;
+window.nhanvien = null;
 var idList = [];
 $(document).ready(function () {
   
@@ -21,7 +21,7 @@ $(document).ready(function () {
   });
   loadDataTable();
   function loadDataTable() {
-    var url = "/management/nhanvien";
+    var url = "/comics/management/nhanvien";
     disableButton();
     $.getJSON(url, function (data) {
     	for(x of data){
@@ -44,7 +44,7 @@ $(document).ready(function () {
     openPage('hr/edit_employee.html');
     var id = idList[0];
     // Load employee information
-    var projectUrl = "/management/nhanvien/" + id;
+    var projectUrl = "/comics/management/nhanvien/" + id;
     $.getJSON(projectUrl, function (data) {
       window.nhanVien = data;
       console.log(window.nhanVien);
@@ -71,7 +71,7 @@ $(document).ready(function () {
       var idJson = "{\"id\": [" + idList + "]}";
       console.log(idJson);
       $.ajax({
-        url: '/management/nhanvien/delete', // url where to submit the request
+        url: '/comics/management/nhanvien/delete', // url where to submit the request
         type: "PUT", // type of action POST || GET
         contentType: "application/json", // data type
         data: idJson, // post data || get data
