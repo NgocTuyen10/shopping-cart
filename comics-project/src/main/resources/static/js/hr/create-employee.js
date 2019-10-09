@@ -8,7 +8,7 @@ function getFormData($form) {
 }
 $(document).ready(function () {
   $(function () {
-    var url = "/management/bophan";
+	var url = "/comics/bophan";
     $.getJSON(url, function (data) {
     	console.log("AAAA");
       data.forEach(function (f) {
@@ -153,7 +153,7 @@ $(document).ready(function () {
       console.log(data);
       /*data.grade = { id: data.grade };*/
       $.ajax({
-        url: '/management/nhanvien', // url where to submit the request
+        url: '/comics/management/nhanvien', // url where to submit the request
         type: "POST", // type of action POST || GET
         contentType: "application/json", // data type
         data: JSON.stringify(data), // post data || get data

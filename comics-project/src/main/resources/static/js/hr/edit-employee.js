@@ -158,7 +158,7 @@ $(document).ready(function () {
       // // Prevent form submission
       // e.preventDefault();
       var id = nhanVien.nhanVienId;
-      var editUrl = "/management/nhanvien/edit/" + id;
+      var editUrl = "/comics/management/nhanvien/edit/" + id;
       var data = getFormData($("form"));
       data.boPhan = { boPhanId: data.boPhan };
       // send ajax
