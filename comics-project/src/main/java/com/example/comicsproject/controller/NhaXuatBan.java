@@ -5,16 +5,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.comicsproject.service.TheLoaiService;
+import com.example.comicsproject.service.NhaXuatBanService;
 
 @RestController
-public class TheLoaiController extends BaseManagementController {
+public class NhaXuatBan extends BaseManagementController {
 	@Autowired
-	private TheLoaiService theLoaiSerVice;
+	private NhaXuatBanService nhaXuatBanService;
 
-	@GetMapping(value="/the-loai")
+	@GetMapping(value = "nha-xuat-ban")
 	public ResponseEntity<?> getAllDTO() {
-		return ResponseEntity.ok(this.theLoaiSerVice.getListDTO());
+		return ResponseEntity.ok(this.nhaXuatBanService.getAllDTO());
 	}
 
 }

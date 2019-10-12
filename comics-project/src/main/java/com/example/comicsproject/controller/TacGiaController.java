@@ -5,16 +5,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.comicsproject.service.TheLoaiService;
+import com.example.comicsproject.service.TacGiaService;
 
 @RestController
-public class TheLoaiController extends BaseManagementController {
+public class TacGiaController extends BaseManagementController {
 	@Autowired
-	private TheLoaiService theLoaiSerVice;
+	private TacGiaService tacGiaService;
 
-	@GetMapping(value="/the-loai")
+	@GetMapping(value = "tac-gia")
 	public ResponseEntity<?> getAllDTO() {
-		return ResponseEntity.ok(this.theLoaiSerVice.getListDTO());
+		return ResponseEntity.ok(this.tacGiaService.getListDTO());
 	}
-
 }
