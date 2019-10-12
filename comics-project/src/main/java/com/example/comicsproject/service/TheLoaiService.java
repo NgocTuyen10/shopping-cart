@@ -1,10 +1,12 @@
 package com.example.comicsproject.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.comicsproject.dto.TheLoaiDTO;
 import com.example.comicsproject.entity.TheLoai;
 import com.example.comicsproject.repository.TheLoaiRepository;
 
@@ -41,5 +43,13 @@ public class TheLoaiService {
 
 	public String findTenTheLoaiByMaTheLoai(String maTheLoai) {
 		return this.theLoaiRepository.findTenTheLoaiByMaTheLoai(maTheLoai);
+	}
+	
+	public List<TheLoaiDTO> getListDTO() {
+		List<TheLoaiDTO> dtos = new ArrayList<>();
+		for (TheLoai theLoai : this.theLoaiRepository.findAll()) {
+			dtos.add(new TheLoaiDTO(theLoai.getTheLoaiId(),theLoai.getTen()));
+		}
+		return dtos;
 	}
 }

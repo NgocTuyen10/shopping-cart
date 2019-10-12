@@ -1,4 +1,5 @@
 package com.example.comicsproject.entity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,31 +19,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "role")
+@Table(name = "nha_xuat_ban")
 @Getter
 @Setter
-public class Role {
-
+public class NhaXuatBan {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int roleId;
+	private int nhaXuatBanId;
 
-	@Column(name = "role_name")
-	private String roleName;
+	@Column(name = "ma_nha_xuat_ban")
+	private String maNhaXuatBan;
+	@Column(name = "ten")
+	private String ten;
+	@Column(name = "thong_tin")
+	private String thongTin;
+	@ManyToMany(cascade = { CascadeType.ALL, CascadeType.MERGE })
+	@JoinTable(name = "truyen_nha_xuat_ban", joinColumns = {
+			@JoinColumn(name = "nha_xuat_ban_id") }, inverseJoinColumns = { @JoinColumn(name = "truyen_id") })
+	private List<Truyen> truyens;
 
-	@Column(name = "remark")
-	private String remark;
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "account_role", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "account_id") })
-	private List<Account> accounts;
-
-	public Role() {
-
-	}
-
-	public Role(String roleName, String remark) {
-		this.roleName = roleName;
-		this.remark = remark;
-	}
 }
