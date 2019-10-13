@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Entity
@@ -37,9 +39,10 @@ public class TacGia {
 
 	@Column(name = "ngay_sinh")
 	private Date ngaySinh;
-	@ManyToMany(cascade = { CascadeType.ALL, CascadeType.MERGE })
+	@ManyToMany(fetch = FetchType.LAZY,cascade = { CascadeType.ALL, CascadeType.MERGE })
 	@JoinTable(name = "truyen_tac_gia", joinColumns = { @JoinColumn(name = "tac_gia_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "truyen_id") })
+	@JsonBackReference
 	private List<Truyen> truyens = new ArrayList<Truyen>();;
 
 }

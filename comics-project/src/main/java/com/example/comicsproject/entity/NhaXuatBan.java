@@ -1,6 +1,5 @@
 package com.example.comicsproject.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,9 +34,10 @@ public class NhaXuatBan {
 	private String ten;
 	@Column(name = "thong_tin")
 	private String thongTin;
-	@ManyToMany(cascade = { CascadeType.ALL, CascadeType.MERGE })
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL, CascadeType.MERGE })
 	@JoinTable(name = "truyen_nha_xuat_ban", joinColumns = {
 			@JoinColumn(name = "nha_xuat_ban_id") }, inverseJoinColumns = { @JoinColumn(name = "truyen_id") })
+	@JsonBackReference
 	private List<Truyen> truyens;
 
 }

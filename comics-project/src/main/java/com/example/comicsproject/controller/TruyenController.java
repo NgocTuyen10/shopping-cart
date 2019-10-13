@@ -38,7 +38,7 @@ public class TruyenController extends BaseController {
 	@GetMapping("/theloai/{maTheLoai}")
 //	@ResponseBody
 	public String showTruyenByMaTheLoai(@PathVariable("maTheLoai") String maTheLoai, Model model) {
-		
+
 		String tenTheLoai = this.theLoaiService.findTenTheLoaiByMaTheLoai(maTheLoai);
 		model.addAttribute("tenTheLoai", tenTheLoai);
 
@@ -54,6 +54,12 @@ public class TruyenController extends BaseController {
 		this.truyenService.findAll();
 		return "index";
 
+	}
+
+	@GetMapping("/truyen")
+	@ResponseBody
+	public List<Truyen> getAll() {
+		return this.truyenService.findAll();
 	}
 
 	@RequestMapping(value = "/the-loai-truyen/{maTheLoai}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
