@@ -1,0 +1,140 @@
+<div class="container text-center">
+    <h3>Thêm mới</h3>
+    <hr>
+    <form id="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-3">Tên truyện</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="1000" class="form-control" name="ten" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Mã truyện</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="10" class="form-control" name="soDienThoai" id="soDienThoai" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Đơn giá nhập</label>
+            <div class="col-md-7">
+                <input type="date" class="form-control" name="ngaySinh" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Đơn giá bán</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="1000" class="form-control" name="luongThang" id="lÆ°Æ¡ng" value="" />
+            </div>
+        </div>
+       
+       <div class="form-group">
+            <label class="control-label col-md-3">Thể loại</label>
+            <div class="col-md-7"  id="bo-phan">
+                <select class="form-control input-sm" name="boPhan">
+                    <option value="">Please select ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Số lượng còn</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="1000" class="form-control" name="luongThang" id="lÆ°Æ¡ng" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Số lượng bán</label>
+            <div class="col-md-7">
+                <input type="text" maxlength="1000" class="form-control" name="luongThang" id="lÆ°Æ¡ng" value="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Loại màu</label>
+            <div class="col-md-7"  id="bo-phan">
+                <select class="form-control input-sm" name="boPhan">
+                    <option value="">Please select ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Tác giả</label>
+            <div class="col-md-7"  id="bo-phan">
+                <select class="form-control input-sm" name="boPhan">
+                    <option value="">Please select ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Dịch giả</label>
+            <div class="col-md-7"  id="bo-phan">
+                <select class="form-control input-sm" name="boPhan">
+                    <option value="">Please select ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Nhà xuất bản</label>
+            <div class="col-md-7"  id="bo-phan">
+                <select class="form-control input-sm" name="boPhan">
+                    <option value="">Please select ...</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label class="control-label col-md-3">Nhà xuất bản</label>
+            <div class="col-md-7"  id="bo-phan">
+                <select class="selectpicker" multiple>
+                    <option>Mustard</option>
+                    <option>Ketchup</option>
+                    <option>Relish</option>
+                </select>
+            </div>
+        </div>
+          
+        
+
+        <div>
+            <input id="submit" type="submit" class="btn btn-primary" value="Save" disabled />
+            <input id="cancel" type="button" class="btn btn-default" value="Cancel" />
+        </div>
+    </form>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="create-employee-success" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="closeModalSuccess()">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Create employee success.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalSuccess()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="create-employee-error" role="dialog">
+	<div class="modal-dialog">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" onclick="closeModalError()">&times;</button>
+				<h4 class="modal-title">Message</h4>
+			</div>
+			<div class="modal-body">
+				<p>Create employee error.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalError()">OK</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/hr/create-truyen.js"></script>
+<script type="text/javascript" src="/js/bootstrap-select.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>

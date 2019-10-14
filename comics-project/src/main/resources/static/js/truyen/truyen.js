@@ -1,4 +1,4 @@
-window.nhanvien = null;
+window.truyen = null;
 var idList = [];
 $(document).ready(function () {
   
@@ -76,13 +76,13 @@ $(document).ready(function () {
         contentType: "application/json", // data type
         data: idJson, // post data || get data
         success: function (result) {
-          $('#delete-employee-success').modal('show');
+          $('#delete-truyen-success').modal('show');
           idList = [];
           loadDataTable();
         },
         error: function (xhr, resp, text) {
           console.log(xhr, resp, text);
-          $('#delete-employee-error').modal('show');
+          $('#delete-truyen-error').modal('show');
         }
       });
       // openPage("hr/employee.html");
@@ -154,8 +154,8 @@ function renderData(data) {
     },
     {
       targets: 9,
-      searchable: false,
-      orderable: false,
+      searchable: true,
+      orderable: true,
       render: function(data,type,row) {
         console.log(row);
         var i = 0;
@@ -169,8 +169,8 @@ function renderData(data) {
     },
     {
       targets: 10,
-      searchable: false,
-      orderable: false,
+      searchable: true,
+      orderable: true,
       render: function(data,type,row) {
         var i = 0;
         var dichGias="";
@@ -182,8 +182,8 @@ function renderData(data) {
     },
     {
       targets: 11,
-      searchable: false,
-      orderable: false,
+      searchable: true,
+      orderable: true,
       render: function(data,type,row) {
         var i = 0;
         var nhaXuatBans="";
