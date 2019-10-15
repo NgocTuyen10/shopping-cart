@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -37,6 +38,7 @@ public class TacGia {
 	@Column(name = "dia_chi")
 	private String diaChi;
 
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name = "ngay_sinh")
 	private Date ngaySinh;
 	@ManyToMany(fetch = FetchType.LAZY,cascade = { CascadeType.ALL, CascadeType.MERGE })

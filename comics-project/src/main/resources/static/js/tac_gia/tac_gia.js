@@ -1,4 +1,4 @@
-window.truyen = null;
+window.tacGia = null;
 var idList = [];
 $(document).ready(function () {
   
@@ -21,33 +21,27 @@ $(document).ready(function () {
   });
   loadDataTable();
   function loadDataTable() {
-    var url = "/comics/truyen";
+    var url = "/comics/management/list-tac-gia";
     disableButton();
     $.getJSON(url, function (data) {
-      for(x of data){
-	    	if(x.denTrang == false)
-	    		x.denTrang ="Truyện màu";
-    		else
-    			x.denTrang ="Truyện đen trắng";
-    	}
       renderData(data);
     });
   };
   // click on button create
   $("#create").on('click', function () {
     // window.open("/employee/create", "_self");
-    openPage("truyen/create_truyen.html");
+    openPage("tac_gia/create_tac_gia.html");
   });
   // click on button edit
   $("#edit").on('click', function () {
     // window.open("/employee/edit?id=" + idList[0], "_self");
-    openPage('truyen/edit_truyen.html');
+    openPage('tac_gia/edit_tac_gia.html');
     var id = idList[0];
     // Load employee information
-    var projectUrl = "/comics/truyen/" + id;
+    var projectUrl = "/comics/management/tac-gia/" + id;
     $.getJSON(projectUrl, function (data) {
-      window.nhanVien = data;
-      console.log(window.nhanVien);
+      window.tacGia = data;
+      console.log(window.tacGia);
     });
   });
   $("#delete").on('click', function () {
@@ -71,18 +65,18 @@ $(document).ready(function () {
       var idJson = "{\"id\": [" + idList + "]}";
       console.log(idJson);
       $.ajax({
-        url: '/comics/truyen/delete', // url where to submit the request
+        url: '/comics/management/tac-gia/delete', // url where to submit the request
         type: "PUT", // type of action POST || GET
         contentType: "application/json", // data type
         data: idJson, // post data || get data
         success: function (result) {
-          $('#delete-truyen-success').modal('show');
+          $('#delete-tac-gia-success').modal('show');
           idList = [];
           loadDataTable();
         },
         error: function (xhr, resp, text) {
           console.log(xhr, resp, text);
-          $('#delete-truyen-error').modal('show');
+          $('#delete-tac-gia-error').modal('show');
         }
       });
       // openPage("hr/employee.html");
@@ -130,18 +124,12 @@ function renderData(data) {
 													// show
     "pageLength ": 10,
     columns: [
-      { searchable: false, title: "<input type='checkbox' class='checkbox' name='select_all' id='checkbox-select-all' onClick='checkAll()'>", data: 'truyenId' },
-      { title: "Tên truyện", data: 'ten' },
-      { title: "Mã truyện", data: 'maTruyen' },
-      { title: "Đơn giá nhập", data: 'donGiaNhap' },
-      { title: "Đơn giá bán", data: 'donGiaBan' },
-      { title: "Thể Loại", data: 'theLoai.ten' },
-      { title: "Số lượng còn", data: 'soLuongCon' },
-      { title: "Số lượng bán", data: 'soLuongBan' },
-      { title: "Loại màu", data: 'denTrang' },
-      { title: "Tác giả", data: 'tacGias' },
-      { title: "Dịch giả", data: 'dichGias' },
-      { title: "Nhà xuất bản", data: 'nhaXuatBans' },     
+      { searchable: false, title: "<input type='checkbox' class='checkbox' name='select_all' id='checkbox-select-all' onClick='checkAll()'>", data: 'tacGiaId' },
+      { title: "Họ tên", data: 'ten' },
+      { title: "Mã tác giả", data: 'maTacGia' },
+      { searchable: false, title: "Ngày sinh", data: 'ngaySinh' },
+      { title: "Địa chỉ", data: 'diaChi' },
+     
     ],
     columnDefs: [{
       targets: 0,
@@ -151,49 +139,7 @@ function renderData(data) {
       render: function (data, type, full, meta) {
         return '<input type="checkbox" class="checkbox" name="checkbox-item" onClick="checkRow(this.value)" value="' + $('<div/>').text(data).html() + '">';
       }
-    },
-    {
-      targets: 9,
-      searchable: true,
-      orderable: true,
-      render: function(data,type,row) {
-        console.log(row);
-        var i = 0;
-        var tacGias="";
-        for( i; i <row.tacGias.length; i ++) {
-          tacGias += row.tacGias[i].ten + "<br/>";
-        }
-        // tacGias += row.tacGias[i].ten;  
-        return tacGias;  
-      }
-    },
-    {
-      targets: 10,
-      searchable: true,
-      orderable: true,
-      render: function(data,type,row) {
-        var i = 0;
-        var dichGias="";
-        for( i; i <row.dichGias.length; i ++)
-          dichGias += row.dichGias[i].ten + "<br/>";
-        // dichGias += row.dichGias[row.dichGias.length-1].ten;
-        return dichGias;  
-      }
-    },
-    {
-      targets: 11,
-      searchable: true,
-      orderable: true,
-      render: function(data,type,row) {
-        var i = 0;
-        var nhaXuatBans="";
-        for( i; i <row.nhaXuatBans.length; i ++)
-          nhaXuatBans += row.nhaXuatBans[i].ten + "<br/>";
-        // nhaXuatBans += row.nhaXuatBans[row.nhaXuatBans.length-1].ten;
-      return nhaXuatBans;  
-      }
-    }
-  ],
+    }],
     order: [[1, 'asc']]
   });
   // Search button click
