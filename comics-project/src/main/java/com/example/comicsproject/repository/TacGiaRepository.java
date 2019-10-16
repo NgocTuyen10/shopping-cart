@@ -21,5 +21,10 @@ public interface TacGiaRepository extends JpaRepository<TacGia, Integer> {
 	@Modifying
 	@Query(value = "update tac_gia set trang_thai=false where tac_gia_id=:q", nativeQuery = true)
 	public void inactiveTacGia(@Param("q") int id);
+	
+	@Modifying
+	@Query(value = "update tac_gia set trang_thai=false where tac_gia_id=:q", nativeQuery = true)
+	public void crerate(@Param("q") int id);
+
 
 }
