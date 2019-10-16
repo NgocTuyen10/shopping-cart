@@ -13,8 +13,9 @@ public class TacGiaDTO {
 	private Date ngaySinh;
 
 	public TacGiaDTO() {
-		
+
 	}
+
 	public TacGiaDTO(int tacGiaId, String ten) {
 		this.tacGiaId = tacGiaId;
 		this.ten = ten;

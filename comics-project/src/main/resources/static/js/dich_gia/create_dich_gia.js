@@ -13,7 +13,7 @@ function getFormData($form) {
     
     $("#cancel").on('click', function () {
       // window.open("/employee", "_self");
-      openPage("tac-gia/tac-gia.html");
+      openPage("dich-gia/dich-gia.html");
     });
     
     $("#form").submit(function (event) {
@@ -45,10 +45,10 @@ function getFormData($form) {
             },
             regexp: {
                 regexp: /^[a-zA-Z0-9_.-]+$/i,
-              message: 'Mã tác giả chỉ gồm kỹ tự số và chữ'
+              message: 'Mã dịch giả chỉ gồm kỹ tự số và chữ'
             },
             notEmpty: {
-              message: 'Mã tác giả không được để trống.'
+              message: 'Mã dịch giả không được để trống.'
             }
           }
         },
@@ -58,7 +58,7 @@ function getFormData($form) {
               max: 40
             },
             notEmpty: {
-              message: 'Tên tác giả không được để trống.'
+              message: 'Tên dịch giả không được để trống.'
             },
             regexp: {
               regexp: /^[AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Zaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵa-z ]+$/i,
@@ -114,29 +114,29 @@ function getFormData($form) {
         console.log(data);
         /*data.grade = { id: data.grade };*/
         $.ajax({
-          url: '/comics/management/tac-gia', // url where to submit the request
+          url: '/comics/management/dich-gia', // url where to submit the request
           type: "POST", // type of action POST || GET
           contentType: "application/json", // data type
           data: JSON.stringify(data), // post data || get data
           success: function (result) {
-            $('#create-tac-gia-success').modal('show');
+            $('#create-dich-gia-success').modal('show');
           },
           error: function (xhr, resp, text) {
             console.log(xhr, resp, text);
-            $('#create-tac-gia-error').modal('show');
+            $('#create-dich-gia-error').modal('show');
           }
         });
       })
   });
   
   function closeModalSuccess() {
-    $('#create-employee-success').modal('hide');
+    $('#create-dich-gia-success').modal('hide');
     $(".modal-backdrop").remove();
-    openPage('tac_gia/tac_gia.html');
+    openPage('dich_gia/dich_gia.html');
   }
   
   function closeModalError() {
-    $('#create-employee-error').modal('hide');
+    $('#create-dich-gia-error').modal('hide');
     $(".modal-backdrop").remove();
-    openPage('tac_gia/create_tac_gia.html');
+    openPage('dich_gia/create_dich_gia.html');
   }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.comicsproject.dto.TacGiaDTO;
 import com.example.comicsproject.entity.ListObject;
 import com.example.comicsproject.entity.TacGia;
 import com.example.comicsproject.service.TacGiaService;
@@ -27,11 +28,11 @@ public class TacGiaController extends BaseManagementController {
 	public ResponseEntity<?> getAllDTO() {
 		return ResponseEntity.ok(this.tacGiaService.getListDTO());
 	}
-	
+
 	@RequestMapping(value = "/tac-gia", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> create(@RequestBody TacGia tacGia) {
-		this.tacGiaService.create(tacGia);
-		return new ResponseEntity<>(tacGia, HttpStatus.CREATED);
+	public ResponseEntity<?> create(@RequestBody TacGiaDTO tacGiaDTO) {
+		this.tacGiaService.create(tacGiaDTO);
+		return new ResponseEntity<>(tacGiaDTO, HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/list-tac-gia")
@@ -40,8 +41,8 @@ public class TacGiaController extends BaseManagementController {
 	}
 
 	@RequestMapping(value = "/tac-gia/edit/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody TacGia tacGia) {
-		tacGiaService.update(id, tacGia);
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody TacGiaDTO tacGiaDTO) {
+		tacGiaService.update(id, tacGiaDTO);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

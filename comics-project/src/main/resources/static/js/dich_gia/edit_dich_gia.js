@@ -22,7 +22,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
   }
   $(document).ready(function () {
       $(function () {
-              var url = "/comics/management/tac-gia";
+              var url = "/comics/management/dich-gia";
               $.ajax({
                 url: url, // url where to submit the request
                 type: "GET", // type of action POST || GET
@@ -32,10 +32,10 @@ var getUrlParameter = function getUrlParameter(sParam) {
               });
       });
       //Load employee information
-      document.getElementsByName("ten")[0].value = tacGia.ten;
-      document.getElementsByName("maTacGia")[0].value = tacGia.maTacGia;
-      document.getElementsByName("ngaySinh")[0].value = tacGia.ngaySinh;
-      document.getElementsByName("diaChi")[0].value = tacGia.diaChi;
+      document.getElementsByName("ten")[0].value = dichGia.ten;
+      document.getElementsByName("maDichGia")[0].value = dichGia.maDichGia;
+      document.getElementsByName("ngaySinh")[0].value = dichGia.ngaySinh;
+      document.getElementsByName("diaChi")[0].value = dichGia.diaChi;
     });
     // click on button submit
     $("#submit").on('click', function () {
@@ -43,7 +43,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
     //click cancel button
     $("#cancel").on('click', function () {
       //   window.open("/employee", "_self");
-      openPage("tac_gia/tac_gia.html");
+      openPage("dich_gia/dich_gia.html");
     });
     $('#form').bootstrapValidator({
       // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
@@ -53,17 +53,17 @@ var getUrlParameter = function getUrlParameter(sParam) {
             validating: 'glyphicon glyphicon-refresh'
           },
           fields: {
-            maTacGia: {
+            maDichGia: {
                 validators: {
                   stringLength: {
                     max: 10
                   },
                   regexp: {
                       regexp: /^[a-zA-Z0-9_.-]+$/i,
-                    message: 'Mã tác giả chỉ gồm kỹ tự số và chữ'
+                    message: 'Mã dịch giả chỉ gồm kỹ tự số và chữ'
                   },
                   notEmpty: {
-                    message: 'Mã tác giả không được để trống.'
+                    message: 'Mã dịch giả không được để trống.'
                   }
                 }
               },
@@ -73,7 +73,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
                     max: 40
                   },
                   notEmpty: {
-                    message: 'Tên tác giả không được để trống.'
+                    message: 'Tên dịch giả không được để trống.'
                   },
                   regexp: {
                     regexp: /^[AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Zaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵa-z ]+$/i,
@@ -124,8 +124,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
       .on('success.form.bv', function (e) {
         // // Prevent form submission
         // e.preventDefault();
-        var id = tacGia.tacGiaId;
-        var editUrl = "/comics/management/tac-gia/edit/" + id;
+        var id = dichGia.dichGiaId;
+        var editUrl = "/comics/management/dich-gia/edit/" + id;
         var data = getFormData($("form"));
         // send ajax
         $.ajax({
@@ -134,24 +134,24 @@ var getUrlParameter = function getUrlParameter(sParam) {
           contentType: "application/json", // data type
           data: JSON.stringify(data), // post data || get data
           success: function (result) {
-            $('#edit-tac-gia-success').modal({backdrop: "static"});
+            $('#edit-dich-gia-success').modal({backdrop: "static"});
           },
           error: function (xhr, resp, text) {
             console.log(xhr, resp, text);
-            openPage('tac_gia/edit_tac_gia.html');
+            openPage('dich_gia/edit_dich_gia.html');
           }
         });
       });
   
   
   function closeModalSuccess() {
-    $('#edit-tac-gia-success').modal('hide');
+    $('#edit-dich-gia-success').modal('hide');
     $(".modal-backdrop").remove();
-    openPage('tac_gia/tac_gia.html');
+    openPage('dich_gia/dich_gia.html');
   }
   
   function closeModalError() {
-    $('#edit-tac-gia-error').modal('hide');
+    $('#edit-dich-gia-error').modal('hide');
     $(".modal-backdrop").remove();
-    openPage('tac_gia/tac_gia.html');
+    openPage('dich_gia/dich_gia.html');
   }

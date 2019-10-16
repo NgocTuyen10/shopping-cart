@@ -1,6 +1,7 @@
 package com.example.comicsproject.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,21 +29,26 @@ public class TacGiaService {
 		return dtos;
 	}
 
-	public void create(TacGia tacGia) {
-		this.tacGiaRepository.save(tacGia);
+	public void create(TacGiaDTO tacGiaDTO) {
+		String ten = tacGiaDTO.getTen();
+		String maTacGia = tacGiaDTO.getMaTacGia();
+		Date ngaySinh = tacGiaDTO.getNgaySinh();
+		String diaChi = tacGiaDTO.getDiaChi();
+		this.tacGiaRepository.crerate(ten, maTacGia, ngaySinh, diaChi);
 	}
 
 	public TacGia findById(int id) {
 		return this.tacGiaRepository.getOne(id);
 	}
 
-	public void update(int id, TacGia tacGia) {
+	public void update(int id, TacGiaDTO tacGiaDTO) {
 		TacGia tacGiaInDB = this.tacGiaRepository.getOne(id);
 		if (tacGiaInDB != null) {
-			tacGiaInDB.setTen(tacGia.getTen());
-			tacGiaInDB.setMaTacGia(tacGia.getMaTacGia());
-			tacGiaInDB.setNgaySinh(tacGia.getNgaySinh());
-			tacGiaInDB.setDiaChi(tacGia.getDiaChi());
+			String ten = tacGiaDTO.getTen();
+			String maTacGia = tacGiaDTO.getMaTacGia();
+			Date ngaySinh = tacGiaDTO.getNgaySinh();
+			String diaChi = tacGiaDTO.getDiaChi();
+			this.tacGiaRepository.update(ten, maTacGia, ngaySinh, diaChi,id);
 		}
 	}
 

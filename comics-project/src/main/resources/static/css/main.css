@@ -159,3 +159,10 @@ input[type=date] {
 	float: left;
 }
 /*end multiselect bootstrapvalidate */
+
+
+.dataTables_length {
+	float: left;	
+}
+
+
