@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.comicsproject.dto.NhaXuatBanDTO;
 import com.example.comicsproject.entity.ListObject;
@@ -12,6 +13,7 @@ import com.example.comicsproject.entity.NhaXuatBan;
 import com.example.comicsproject.repository.NhaXuatBanRepository;
 
 @Service
+@Transactional
 public class NhaXuatBanService {
 	@Autowired
 	private NhaXuatBanRepository nhaXuatBanRepository;

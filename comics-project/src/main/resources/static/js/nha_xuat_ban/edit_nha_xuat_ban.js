@@ -59,10 +59,10 @@ var getUrlParameter = function getUrlParameter(sParam) {
                   },
                   regexp: {
                       regexp: /^[a-zA-Z0-9_.-]+$/i,
-                    message: 'Mã tác giả chỉ gồm kỹ tự số và chữ'
+                    message: 'Mã nhà xuất bản chỉ gồm kỹ tự số và chữ'
                   },
                   notEmpty: {
-                    message: 'Mã tác giả không được để trống.'
+                    message: 'Mã nhà xuất bản không được để trống.'
                   }
                 }
               },
@@ -95,7 +95,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
       .on('success.form.bv', function (e) {
         // // Prevent form submission
         // e.preventDefault();
-        var id = tacGia.tacGiaId;
+        var id = nhaXuatBan.nhaXuatBanId;
         var editUrl = "/comics/management/nha-xuat-ban/edit/" + id;
         var data = getFormData($("form"));
         // send ajax
