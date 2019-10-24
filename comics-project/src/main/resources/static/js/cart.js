@@ -238,3 +238,21 @@ $(document).on('change', '.number-input', function(e) {
 	displayCart();
 });
 
+$('.add-to-cart').click(function(event) {
+	event.preventDefault();
+	var truyenid = $(this).data('truyenid');
+	var name = $(this).data('name');
+	var price = Number($(this).data('price'));
+	shoppingCart.addItemToCart(truyenid, name, price, 1);
+	var myToast = $.toast({
+		heading : 'Success',
+		icon : 'success',
+		hideAfter : 1000,
+		stack : 3,
+		position : 'bottom-right',
+		loader : false
+	});
+
+	displayCart();
+});
+

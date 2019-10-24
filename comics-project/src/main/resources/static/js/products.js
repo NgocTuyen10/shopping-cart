@@ -111,7 +111,7 @@ $(document)
 											+ "</button>"*/
 											+"<button class='btn primary-btn add-to-cart'"
 											+ "data-truyenid='"+items[i].truyenId+"' data-name='"+ items[i].ten +"'" 
-											+ "data-price='"+items[i].donGiaNhap+"'>"
+											+ "data-price='"+items[i].donGiaBan+"'>"
 											+ "Add to Cart</button>"
 											+ "</div> </div>	</div>	</div>");
 						}

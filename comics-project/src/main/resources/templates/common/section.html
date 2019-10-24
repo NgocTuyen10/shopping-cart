@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,23 +15,25 @@
 	rel="stylesheet">
 
 <!-- Bootstrap -->
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
 
 <!-- Slick -->
-<link type="text/css" rel="stylesheet" href="css/slick.css" />
-<link type="text/css" rel="stylesheet" href="css/slick-theme.css" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/slick.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/slick-theme.css}" />
 
 <!-- nouislider -->
-<link type="text/css" rel="stylesheet" href="css/nouislider.min.css" />
+<link type="text/css" rel="stylesheet"
+	th:href="@{/css/nouislider.min.css}" />
 
 <!-- Font Awesome Icon -->
-<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 
 <!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" href="css/style.css" />
-
-
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+<link type="text/css" rel="stylesheet" th:href="@{/css/plugin/jquery.toast.css}" />
 </head>
+
 <body>
 	<!-- section -->
 	<div th:fragment="section">
@@ -87,8 +90,7 @@
 										<img th:src="${truyen.anh}" alt="">
 									</div>
 									<div class="product-body">
-										<h3 class="product-price">
-											$32.50	
+										<h3 class="product-price don-gia-ban" th:text="${truyen.donGiaBan}">
 											<!-- <del class="product-old-price">$45.00</del> -->
 										</h3>
 										<div class="product-rating">
@@ -106,8 +108,9 @@
 											<button class="main-btn icon-btn">
 												<i class="fa fa-exchange"></i>
 											</button>
-											<button class="primary-btn add-to-cart">
-												<i class="fa fa-shopping-cart"></i> Add to Cart
+											<button class="btn primary-btn add-to-cart"
+											data-th-attr="data-truyenid=${truyen.truyenId},data-name=${truyen.ten},data-price=${truyen.donGiaBan}">
+												Add to Cart
 											</button>
 										</div>
 									</div>
@@ -203,8 +206,7 @@
 										<img th:src="${truyen.anh}" alt="">
 									</div>
 									<div class="product-body">
-										<h3 class="product-price">
-											$32.50	
+										<h3 class="product-price don-gia-ban" th:text="${truyen.donGiaBan}+' đ'">
 											<!-- <del class="product-old-price">$45.00</del> -->
 										</h3>
 										<div class="product-rating">
@@ -222,8 +224,9 @@
 											<button class="main-btn icon-btn">
 												<i class="fa fa-exchange"></i>
 											</button>
-											<button class="primary-btn add-to-cart">
-												<i class="fa fa-shopping-cart"></i> Add to Cart
+											<button class="btn primary-btn add-to-cart"
+											data-th-attr="data-truyenid=${truyen.truyenId},data-name=${truyen.ten},data-price=${truyen.donGiaBan}">
+												 Add to Cart
 											</button>
 										</div>
 									</div>
@@ -242,5 +245,18 @@
 		</div>
 		<!-- /section -->
 	</div>
+	<!-- jQuery Plugins -->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/slick.min.js}"></script>
+	<script th:src="@{/js/nouislider.min.js}"></script>
+	<script th:src="@{/js/jquery.zoom.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/products.js}"></script>
+	<script th:src="@{/js/pagination.js}"></script>
+	<script th:src="@{/js/bootpag-pagination.js}"></script>
+	<script th:src="@{/js/common/main.js}"></script>
+	<script th:src="@{/js/cart.js}"></script>
+	<script th:src="@{/js/plugin/jquery-toast.js}"></script>
 </body>
 </html>

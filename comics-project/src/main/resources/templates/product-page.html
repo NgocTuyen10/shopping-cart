@@ -126,8 +126,9 @@
 									<span class="text-uppercase">QTY: </span> <input class="input"
 										type="number">
 								</div>
-								<button class="primary-btn add-to-cart-detail">
-									<i class="fa fa-shopping-cart"></i> Add to Cart
+								<button class="primary-btn add-to-cart"
+								data-th-attr="data-truyenid=${truyen.truyenId},data-name=${truyen.ten},data-price=${truyen.donGiaBan}">
+									 Add to Cart
 								</button>
 								<div class="pull-right">
 									<button class="main-btn icon-btn">
