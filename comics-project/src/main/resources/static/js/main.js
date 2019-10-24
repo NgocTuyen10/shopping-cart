@@ -162,5 +162,21 @@
 			}
 		});
 	}
-
+	
+	
+	// Format money
+	var priceEls = document.getElementsByClassName("don-gia-ban");
+	for (var i = 0; i < priceEls.length; i++) {
+	  var price = parseInt(priceEls[i].innerText);
+	  price = Number(price.toFixed(1)).toLocaleString();
+	  priceEls[i].innerHTML = price + " đ";
+	}
+	
+	
+	// Format for Total Money
+	var totalPrice = document.getElementById("total-price");
+	var intTotalPrice = parseInt(totalPrice);
+	intTotalPrice = Number(price.toFixed(1)).toLocaleString();
+	totalPrice.innerHTML = intTotalPrice + " đ";
+	
 })(jQuery);

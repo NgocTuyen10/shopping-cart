@@ -73,7 +73,7 @@ $(document)
 					function showProducts(items) {
 						let products = [];
 						for (var i = 0; i < items.length; i++) {
-							items[i].donGiaBan = Number(items[i].donGiaBan.toFixed(1)).toLocaleString();
+							var donGiaBan = Number(items[i].donGiaBan.toFixed(1)).toLocaleString() +" đ";
 							products
 									.push("<div class='col-md-4 col-sm-6 col-xs-6' >"
 											+ "<div class='product product-single'>"
@@ -96,7 +96,7 @@ $(document)
 											+ " alt='' class='size-image'>"
 											+ "</div>	<div class='product-body'>"
 											+ "<h3 class='product-price'>"
-											+ items[i].donGiaBan
+											+ donGiaBan
 											+ "</h3>"
 											+ "<div class='product-rating'><i class='fa fa-star'></i> <i class='fa fa-star'></i> <i 	class='fa fa-star-o empty'></i>		</div> "
 											+ "<h2 class='product-name'>"

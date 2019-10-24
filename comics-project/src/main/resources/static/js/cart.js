@@ -171,7 +171,10 @@ function displayCart() {
 	var cartArray = shoppingCart.listCart();
 	var output = "";
 	for ( var i in cartArray) {
-
+//		var price = parseInt(artArray[i].price);
+//		price = Number(price.toFixed(1)).toLocaleString() +" đ";
+//		var total = parseInt(artArray[i].total);
+//		total = Number(total.toFixed(1)).toLocaleString() +" đ";
 		output += "<tr>"
 				+ "<td class='thumb'><img src='' alt=''></td>"
 				+ "<td class='details'>"
