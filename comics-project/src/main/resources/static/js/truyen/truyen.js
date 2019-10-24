@@ -25,6 +25,8 @@ $(document).ready(function () {
     disableButton();
     $.getJSON(url, function (data) {
       for(x of data){
+    	  	x.donGiaNhap = Number(x.donGiaNhap.toFixed(1)).toLocaleString();
+    	  	x.donGiaBan = Number(x.donGiaBan.toFixed(1)).toLocaleString();
 	    	if(x.denTrang == false)
 	    		x.denTrang ="Truyện màu";
     		else

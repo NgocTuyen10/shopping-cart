@@ -35,10 +35,16 @@ public class TruyenService {
 	public Page<Truyen> findPaginated(int page, int size) {
 		return truyenRepository.findAll(PageRequest.of(page, size));
 	}
-	
-	public Page<Truyen> findPaginatedByMaTheLoai(String maTheLoai,int page, int size) {
+
+	public Page<Truyen> findPaginatedByMaTheLoai(String maTheLoai, int page, int size) {
 		return truyenRepository.findByMaTheLoaiPaging(maTheLoai, PageRequest.of(page, size));
 	}
-	
 
+	public List<Truyen> getTopSaleProduct() {
+		return truyenRepository.getTopSaleProduct();
+	}
+
+	public List<Truyen> getTopLastProduct() {
+		return truyenRepository.getTopLastProduct();
+	}
 }

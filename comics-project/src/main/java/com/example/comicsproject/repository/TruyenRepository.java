@@ -30,4 +30,10 @@ public interface TruyenRepository extends JpaRepository<Truyen, Integer> {
 	@Query(value = "select * from truyen t join the_loai tl on t.the_loai_id = tl.the_loai_id\r\n"
 			+ "where t.trang_thai = true and tl.ma_the_loai=:q", nativeQuery = true)
 	public Page<Truyen> findByMaTheLoaiPaging(@Param("q") String maTheLoai, Pageable pageable);
+	
+	@Query(value="select * from truyen order by truyen.so_luong_ban desc limit 4;",nativeQuery=true) 
+	public List<Truyen> getTopSaleProduct();
+	
+	@Query(value="select * from truyen order by truyen.ngay_nhap desc limit 4;",nativeQuery=true) 
+	public List<Truyen> getTopLastProduct();
 }

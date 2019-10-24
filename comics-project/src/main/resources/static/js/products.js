@@ -73,6 +73,7 @@ $(document)
 					function showProducts(items) {
 						let products = [];
 						for (var i = 0; i < items.length; i++) {
+							items[i].donGiaBan = Number(items[i].donGiaBan.toFixed(1)).toLocaleString();
 							products
 									.push("<div class='col-md-4 col-sm-6 col-xs-6' >"
 											+ "<div class='product product-single'>"

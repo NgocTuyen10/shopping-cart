@@ -6,45 +6,52 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.comicsproject.service.TheLoaiService;
+import com.example.comicsproject.service.TruyenService;
 
 @Controller
-public class HomeController extends BaseController{
+public class HomeController extends BaseController {
 
 	@Autowired
 	private TheLoaiService theLoaiService;
 
+	@Autowired
+	private TruyenService truyenService;
+
 	@GetMapping()
 	public String home(Model model) {
 		model.addAttribute("theloais", theLoaiService.findAll());
+		model.addAttribute("topSale", truyenService.getTopSaleProduct());
+		model.addAttribute("topLast", truyenService.getTopLastProduct());
 		return "index";
 	}
-	
-	@GetMapping(value="/detail")
+
+	@GetMapping(value = "/detail")
 	public String productDetail(Model model) {
 //		model.addAttribute("theloais", theLoaiService.findAll());
 		return "product-page";
 	}
-	
-	@GetMapping(value="/checkout")
+
+	@GetMapping(value = "/checkout")
 	public String showCart(Model model) {
 		return "checkout";
 	}
-	
-	@GetMapping(value="/login")
+
+	@GetMapping(value = "/login")
 	public String showLoginPage(Model model) {
 		return "login";
 	}
-	@GetMapping(value="/register")
+
+	@GetMapping(value = "/register")
 	public String showRegisterPage(Model model) {
 		return "register";
 	}
-	
-	@GetMapping(value="/management-login")
+
+	@GetMapping(value = "/management-login")
 	public String showManagementLoginPage(Model model) {
 		return "management-login";
 	}
-	
-	@GetMapping(value="/management")
+
+	@GetMapping(value = "/management")
 	public String showManagementPage(Model model) {
 		return "management";
 	}

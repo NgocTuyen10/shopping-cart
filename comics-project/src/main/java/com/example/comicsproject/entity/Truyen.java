@@ -34,7 +34,7 @@ public class Truyen {
 	private float donGiaNhap;
 
 	@Column(name = "don_gia_ban")
-	private String donGiaBan;
+	private float donGiaBan;
 
 	@Column(name = "ghi_chu")
 	private String ghiChu;
