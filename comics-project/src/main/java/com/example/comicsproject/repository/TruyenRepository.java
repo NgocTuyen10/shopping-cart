@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -36,4 +37,8 @@ public interface TruyenRepository extends JpaRepository<Truyen, Integer> {
 	
 	@Query(value="select * from truyen order by truyen.ngay_nhap desc limit 4;",nativeQuery=true) 
 	public List<Truyen> getTopLastProduct();
+	
+	@Modifying
+	@Query(value = "update truyen set trang_thai=false where truyen_id=:q", nativeQuery = true)
+	public void inactiveTruyen(@Param("q") int id);
 }

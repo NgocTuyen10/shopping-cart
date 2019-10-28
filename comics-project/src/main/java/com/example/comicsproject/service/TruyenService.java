@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import com.example.comicsproject.entity.ListObject;
 import com.example.comicsproject.entity.Truyen;
 import com.example.comicsproject.repository.TruyenRepository;
 
@@ -46,5 +47,15 @@ public class TruyenService {
 
 	public List<Truyen> getTopLastProduct() {
 		return truyenRepository.getTopLastProduct();
+	}
+
+	public void delete(int id) {
+		this.truyenRepository.inactiveTruyen(id);
+	}
+
+	public void deleteByIds(ListObject list) {
+		for (int id : list.getId()) {
+			truyenRepository.inactiveTruyen(id);
+		}
 	}
 }

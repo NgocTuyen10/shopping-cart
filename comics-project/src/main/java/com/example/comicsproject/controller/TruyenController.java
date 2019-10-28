@@ -2,21 +2,27 @@ package com.example.comicsproject.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.comicsproject.entity.ListObject;
 import com.example.comicsproject.entity.Truyen;
 import com.example.comicsproject.repository.TruyenRepository;
 import com.example.comicsproject.service.TheLoaiService;
@@ -93,5 +99,14 @@ public class TruyenController extends BaseController {
 
 		return resultPage;
 	}
+	
+	@Transactional
+	@RequestMapping(value = "/truyen/delete", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public ResponseEntity<?> delete(@RequestBody ListObject listRequest) {
+		truyenService.deleteByIds(listRequest);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 
 }
