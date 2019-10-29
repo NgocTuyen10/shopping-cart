@@ -107,6 +107,6 @@ public class TruyenController extends BaseController {
 		truyenService.deleteByIds(listRequest);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 
 }

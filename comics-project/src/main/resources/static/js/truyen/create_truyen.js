@@ -12,16 +12,63 @@ function getFormData($form) {
       includeSelectAllOption: true,
       selectAllValue: 'select-all-value'
     });
-
-
+    // The loai
     $(function () {
-      var url = "/comics/bophan";
+      var url = "/comics/management/the-loai";
       $.getJSON(url, function (data) {
           console.log("AAAA");
         data.forEach(function (f) {
-          var tblRow = "<option value=\"" + f.boPhanId + "\">" + f.ten + "</option>";
-          $(tblRow).appendTo("#bo-phan select");
+          var tblRow = "<option value=\"" + f.theLoaiId + "\">" + f.ten + "</option>";
+          $(tblRow).appendTo("#the-loai select");
         });
+      });
+    });
+    // Tac gia
+    $(function () {
+      var url = "/comics/management/tac-gia";
+      $.getJSON(url, function (data) {
+          console.log("AAAA");
+        data.forEach(function (f) {
+          var tblRow = "<option value=\"" + f.tacGiaId + "\">" + f.ten + "</option>";
+          $(tblRow).appendTo("#tac-gia select");
+        });
+        $('#select-tac-gia').multiselect({
+          includeSelectAllOption: true,
+          selectAllValue: 'select-all-value'
+        });
+      });
+    });
+    
+    //Dich gia
+    $(function () {
+      var url = "/comics/management/dich-gia";
+      $.getJSON(url, function (data) {
+          console.log("AAAA");
+        data.forEach(function (f) {
+          var tblRow = "<option value=\"" + f.dichGiaId + "\">" + f.ten + "</option>";
+          $(tblRow).appendTo("#dich-gia select");
+        });
+        $('#select-dich-gia').multiselect({
+          includeSelectAllOption: true,
+          selectAllValue: 'select-all-value'
+        });
+      });
+    });
+   
+    //Nha xuat ban
+    $(function () {
+      var url = "/comics/management/nha-xuat-ban";
+      $.getJSON(url, function (data) {
+          console.log("AAAA");
+        data.forEach(function (f) {
+          var tblRow = "<option value=\"" + f.nhaXuatBanId + "\">" + f.ten + "</option>";
+          $(tblRow).appendTo("#nha-xuat-ban select");
+        });
+        $('#select-nha-xuat-ban').multiselect({
+          includeSelectAllOption: true,
+          selectAllValue: 'select-all-value'
+        });
+    
       });
     });
     
@@ -165,24 +212,24 @@ function getFormData($form) {
           contentType: "application/json", // data type
           data: JSON.stringify(data), // post data || get data
           success: function (result) {
-            $('#create-employee-success').modal('show');
+            $('#create-truyen-success').modal('show');
           },
           error: function (xhr, resp, text) {
             console.log(xhr, resp, text);
-            $('#create-employee-error').modal('show');
+            $('#create-truyen-error').modal('show');
           }
         });
       })
   });
   
   function closeModalSuccess() {
-    $('#create-employee-success').modal('hide');
+    $('#create-truyen-success').modal('hide');
     $(".modal-backdrop").remove();
     openPage('hr/employee.html');
   }
   
   function closeModalError() {
-    $('#create-employee-error').modal('hide');
+    $('#create-truyen-error').modal('hide');
     $(".modal-backdrop").remove();
     openPage('hr/create_employee.html');
   }
