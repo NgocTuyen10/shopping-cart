@@ -102,19 +102,47 @@ function getFormData($form) {
         validating: 'glyphicon glyphicon-refresh'
       },
       fields: {
-        soDienThoai: {
+        donGiaBan: {
           validators: {
-            stringLength: {
-              min:10,
-              max: 10,
-              message: 'Số điện thoại gồm 10 chữ số'
-            },
             regexp: {
               regexp: /^[0-9]+$/i,
-              message: 'The phone number can consist of number only'
+              message: 'Trường này chỉ gồm chữ số.'
             },
             notEmpty: {
-              message: 'Phone number code is required.'
+              message: 'Trường này bắt buộc.'
+            }
+          }
+        },
+        donGiaNhap: {
+          validators: {
+            regexp: {
+              regexp: /^[0-9]+$/i,
+              message: 'Trường này chỉ gồm chữ số.'
+            },
+            notEmpty: {
+              message: 'Trường này bắt buộc.'
+            }
+          }
+        },
+        soLuongCon: {
+          validators: {
+            regexp: {
+              regexp: /^[0-9]+$/i,
+              message: 'Trường này chỉ gồm chữ số.'
+            },
+            notEmpty: {
+              message: 'Trường này bắt buộc.'
+            }
+          }
+        },
+        soLuongBan: {
+          validators: {
+            regexp: {
+              regexp: /^[0-9]+$/i,
+              message: 'Trường này chỉ gồm chữ số.'
+            },
+            notEmpty: {
+              message: 'Trường này bắt buộc.'
             }
           }
         },
@@ -124,7 +152,7 @@ function getFormData($form) {
               max: 40
             },
             notEmpty: {
-              message: 'Employee name is required.'
+              message: 'Trường này bắt buộc.'
             },
             regexp: {
               regexp: /^[AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Zaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵa-z ]+$/i,
@@ -132,65 +160,52 @@ function getFormData($form) {
             }
           }
         },
-        ngaySinh: {
+        maTruyen: {
           validators: {
-            date: {
-              message: 'The date is not valid format',
-              format: 'YYYY/MM/DD'
+            stringLength: {
+              max: 40
             },
             notEmpty: {
-              message: 'Date of birth is required.'
+              message: 'Trường này bắt buộc.'
             },
-            callback: {
-              message: 'The date is not in the range: 18 year old to 60 year old',
-              callback: function (value, validator) {
-                var m = new moment(value, 'YYYY-MM-DD', true);
-                var currentMoment = moment();
-                var stopWorkTime = moment(new Date());
-                var startWorkTime = moment(new Date());
-                stopWorkTime.set({ 'year': currentMoment.year() - 60, 'month': currentMoment.month() + 1, 'date': currentMoment.date() });
-                stopWorkTime = stopWorkTime.format('YYYY-MM-DD');
-                startWorkTime.set({ 'year': currentMoment.year() - 18, 'month': currentMoment.month() + 1, 'date': currentMoment.date() });
-                startWorkTime = startWorkTime.format('YYYY-MM-DD');
-                if (!m.isValid()) {
-                  return false;
-                }
-                return m.isAfter(stopWorkTime) && m.isBefore(startWorkTime);
-              }
+            regexp: {
+              regexp: /^[AĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴAĂÂÁẮẤÀẰẦẢẲẨÃẴẪẠẶẬĐEÊÉẾÈỀẺỂẼỄẸỆIÍÌỈĨỊOÔƠÓỐỚÒỒỜỎỔỞÕỖỠỌỘỢUƯÚỨÙỪỦỬŨỮỤỰYÝỲỶỸỴA-Zaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵaăâáắấàằầảẳẩãẵẫạặậđeêéếèềẻểẽễẹệiíìỉĩịoôơóốớòồờỏổởõỗỡọộợuưúứùừủửũữụựyýỳỷỹỵa-z ]+$/i,
+              message: 'The name can consist of alphabetical, Vietnamese characters and spaces only'
             }
           }
         },
-        /*
-           * email: { validators: { notEmpty: { message: 'Email is required.' },
-           * regexp: { regexp:
-           * /^[_A-Za-z0-9-\.]+@[_A-Za-z0-9-\-]+(\.[_A-Za-z0-9-\\]+){1,2}/i,
-           * message: 'Please supply a valid email address' } } },
-           */
-        luong: {
-          validators: {
-          stringLength: {
-                   max :40
-                  },
-                  regexp: {
-                    regexp: /^[0-9]+$/i,
-                    message: 'Bonus can consist of number only'
-                  },
-                  notEmpty: {
-                    message: 'Bonus is required.'
-                  }
-            }
-        },
-        boPhan: {
+        theLoai: {
           validators: {
             notEmpty: {
-              message: 'Group is required.'
+              message: 'Trường này bắt buộc.'
             }
           }
         },
-        gioiTinh: {
+        loaiMau: {
           validators: {
             notEmpty: {
-              message: 'Sex is required.'
+              message: 'Trường này bắt buộc.'
+            }
+          }
+        },
+        tacGia: {
+          validators: {
+            notEmpty: {
+              message: 'Trường này bắt buộc.'
+            }
+          }
+        },
+        dichGia: {
+          validators: {
+            notEmpty: {
+              message: 'Trường này bắt buộc.'
+            }
+          }
+        },
+        nhaXuatBan: {
+          validators: {
+            notEmpty: {
+              message: 'Trường này bắt buộc.'
             }
           }
         }
