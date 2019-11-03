@@ -79,7 +79,7 @@ public class Truyen {
 //			@JoinColumn(name = "nha_xuat_ban_id") })
 //	@JsonManagedReference
 	@ManyToOne
-	@JoinColumn(name = "nha_xuat_ban_id", nullable = false)
+	@JsonManagedReference
 	private NhaXuatBan nhaXuatBan;
 
 }

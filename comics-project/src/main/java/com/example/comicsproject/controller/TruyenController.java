@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.comicsproject.dto.TacGiaDTO;
+import com.example.comicsproject.dto.TruyenCRUDDTO;
 import com.example.comicsproject.entity.ListObject;
 import com.example.comicsproject.entity.Truyen;
 import com.example.comicsproject.repository.TruyenRepository;
@@ -107,6 +109,11 @@ public class TruyenController extends BaseController {
 		truyenService.deleteByIds(listRequest);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value = "/truyen", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> create(@RequestBody TruyenCRUDDTO truyenCRUDDTO) {
+		this.truyenService.createTruyen(truyenCRUDDTO);
+		return new ResponseEntity<>(truyenCRUDDTO, HttpStatus.CREATED);
+	}
 
 }
