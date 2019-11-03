@@ -143,7 +143,7 @@ function renderData(data) {
       { title: "Loại màu", data: 'denTrang' },
       { title: "Tác giả", data: 'tacGias' },
       { title: "Dịch giả", data: 'dichGias' },
-      { title: "Nhà xuất bản", data: 'nhaXuatBans' },     
+      { title: "Nhà xuất bản", data: 'nhaXuatBan.ten' },     
     ],
     columnDefs: [{
       targets: 0,
@@ -181,20 +181,21 @@ function renderData(data) {
         // dichGias += row.dichGias[row.dichGias.length-1].ten;
         return dichGias;  
       }
-    },
-    {
-      targets: 11,
-      searchable: true,
-      orderable: true,
-      render: function(data,type,row) {
-        var i = 0;
-        var nhaXuatBans="";
-        for( i; i <row.nhaXuatBans.length; i ++)
-          nhaXuatBans += row.nhaXuatBans[i].ten + "<br/>";
-        // nhaXuatBans += row.nhaXuatBans[row.nhaXuatBans.length-1].ten;
-      return nhaXuatBans;  
-      }
     }
+    // ,
+    // {
+    //   targets: 11,
+    //   searchable: true,
+    //   orderable: true,
+    //   render: function(data,type,row) {
+    //     var i = 0;
+    //     var nhaXuatBans="";
+    //     for( i; i <row.nhaXuatBans.length; i ++)
+    //       nhaXuatBans += row.nhaXuatBans[i].ten + "<br/>";
+    //     // nhaXuatBans += row.nhaXuatBans[row.nhaXuatBans.length-1].ten;
+    //   return nhaXuatBans;  
+    //   }
+    // }
   ],
     order: [[1, 'asc']]
   });

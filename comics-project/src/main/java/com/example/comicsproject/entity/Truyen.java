@@ -74,10 +74,12 @@ public class Truyen {
 	@JsonManagedReference
 	private List<DichGia> dichGias;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL, CascadeType.MERGE })
-	@JoinTable(name = "truyen_nha_xuat_ban", joinColumns = { @JoinColumn(name = "truyen_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "nha_xuat_ban_id") })
-	@JsonManagedReference
-	private List<NhaXuatBan> nhaXuatBans;
+//	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL, CascadeType.MERGE })
+//	@JoinTable(name = "truyen_nha_xuat_ban", joinColumns = { @JoinColumn(name = "truyen_id") }, inverseJoinColumns = {
+//			@JoinColumn(name = "nha_xuat_ban_id") })
+//	@JsonManagedReference
+	@ManyToOne
+	@JoinColumn(name = "nha_xuat_ban_id", nullable = false)
+	private NhaXuatBan nhaXuatBan;
 
 }

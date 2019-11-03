@@ -64,11 +64,6 @@ function getFormData($form) {
           var tblRow = "<option value=\"" + f.nhaXuatBanId + "\">" + f.ten + "</option>";
           $(tblRow).appendTo("#nha-xuat-ban select");
         });
-        $('#select-nha-xuat-ban').multiselect({
-          includeSelectAllOption: true,
-          selectAllValue: 'select-all-value'
-        });
-    
       });
     });
     

@@ -58,4 +58,5 @@ public class TruyenService {
 			truyenRepository.inactiveTruyen(id);
 		}
 	}
+	
 }

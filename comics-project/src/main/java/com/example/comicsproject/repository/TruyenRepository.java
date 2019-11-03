@@ -14,7 +14,10 @@ import com.example.comicsproject.entity.Truyen;
 
 @Repository
 public interface TruyenRepository extends JpaRepository<Truyen, Integer> {
-
+	
+	@Query(value = "SELECT nextval('truyen_sequence');", nativeQuery = true)
+	public int getNextId();
+	
 	@Query(value = "select * from truyen where trang_thai = true;", nativeQuery = true)
 	public List<Truyen> findAll();
 
