@@ -20,11 +20,19 @@ public class TheLoai {
 
 	@Column(name = "ten")
 	private String ten;
-	
+
 	@Column(name = "trang_thai")
 	private boolean trangThai;
-	
+
 	@Column(name = "ma_the_loai")
 	private String maTheLoai;
+
+	public TheLoai() {
+
+	}
+
+	public TheLoai(int theLoaiId) {
+		this.theLoaiId = theLoaiId;
+	}
 
 }

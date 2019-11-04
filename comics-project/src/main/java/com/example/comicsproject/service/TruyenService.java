@@ -8,10 +8,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.comicsproject.dto.DichGiaCreateDTO;
+import com.example.comicsproject.dto.TacGiaCreateDTO;
 import com.example.comicsproject.dto.TruyenCRUDDTO;
-import com.example.comicsproject.entity.DichGia;
 import com.example.comicsproject.entity.ListObject;
-import com.example.comicsproject.entity.TacGia;
+import com.example.comicsproject.entity.NhaXuatBan;
+import com.example.comicsproject.entity.TheLoai;
 import com.example.comicsproject.entity.Truyen;
 import com.example.comicsproject.repository.TruyenRepository;
 
@@ -63,29 +65,31 @@ public class TruyenService {
 			truyenRepository.inactiveTruyen(id);
 		}
 	}
-
+	
+	@Transactional
 	public void createTruyen(TruyenCRUDDTO truyenCRUDDTO) {
 
 		int truyenId = this.truyenRepository.getNextId();
 
 		Truyen truyen = new Truyen();
 		truyen.setTruyenId(truyenId);
+		truyen.setTen(truyenCRUDDTO.getTen());
 		truyen.setMaTruyen(truyenCRUDDTO.getMaTruyen());
+		truyen.setDonGiaNhap(truyenCRUDDTO.getDonGiaNhap());
 		truyen.setDonGiaBan(truyenCRUDDTO.getDonGiaBan());
-		truyen.setDonGiaBan(truyenCRUDDTO.getDonGiaBan());
-		truyen.setTheLoai(truyenCRUDDTO.getTheLoai());
+		truyen.setTheLoai(new TheLoai(truyenCRUDDTO.getTheLoai().getTheLoaiId()));
 		truyen.setSoLuongCon(truyenCRUDDTO.getSoLuongBan());
 		truyen.setSoLuongBan(truyenCRUDDTO.getSoLuongBan());
 		truyen.setDenTrang(truyenCRUDDTO.isDenTrang());
-		truyen.setNhaXuatBan(truyenCRUDDTO.getNhaXuatBan());
+		truyen.setNhaXuatBan(new NhaXuatBan(truyenCRUDDTO.getNhaXuatBan().getNhaXuatBanId()));
 		truyen.setTrangThai(true);
 
 		this.truyenRepository.save(truyen);
 
-		for (DichGia dichGia : truyenCRUDDTO.getDichGias()) {
+		for (DichGiaCreateDTO dichGia : truyenCRUDDTO.getDichGias()) {
 			this.truyenRepository.addToTruyenDichGia(truyenId, dichGia.getDichGiaId());
 		}
-		for (TacGia tacGia : truyenCRUDDTO.getTacGias()) {
+		for (TacGiaCreateDTO tacGia : truyenCRUDDTO.getTacGias()) {
 			this.truyenRepository.addToTruyenTacGia(truyenId, tacGia.getTacGiaId());
 		}
 

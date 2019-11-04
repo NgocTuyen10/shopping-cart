@@ -31,4 +31,11 @@ public class NhaXuatBan {
 //	@JsonBackReference
 //	private List<Truyen> truyens;
 
+	public NhaXuatBan() {
+
+	}
+
+	public NhaXuatBan(int nhaXuatBanId) {
+		this.nhaXuatBanId = nhaXuatBanId;
+	}
 }

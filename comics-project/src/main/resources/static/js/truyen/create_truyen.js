@@ -87,7 +87,7 @@ $(document).ready(function () {
 
       if (!($(this).hasClass('skip-validate'))) {
         formIsValid = formIsValid &&
-        $(this).hasClass('has-success');
+          $(this).hasClass('has-success');
       }
     }); if (formIsValid) {
       $('#submit',
@@ -192,14 +192,14 @@ $(document).ready(function () {
           }
         }
       },
-      tacGia: {
+      tacGias: {
         validators: {
           notEmpty: {
             message: 'Trường này bắt buộc.'
           }
         }
       },
-      dichGia: {
+      dichGias: {
         validators: {
           notEmpty: {
             message: 'Trường này bắt buộc.'
@@ -220,25 +220,48 @@ $(document).ready(function () {
       // e.preventDefault();
       // send ajax
       var data = getFormData($("form"));
-      // data.boPhan = { boPhanId: data.boPhan,
-      //                   trangThai: true	};
-      // data.trangThai = true;
-      var truyens = [];
 
-      var i = 0;
-      for (i; i < cart.length; i++) {
-        var item = {
-          truyenId: cart[i].truyenid,
-          soLuong: cart[i].count
+      // var i = 0;
+      // for (i; i < data.tacGias; i++) {
+      //   var item = {
+      //     truyenId: cart[i].truyenid,
+      //     soLuong: cart[i].count
+      //   };
+      //   truyens.push(item);
+      // }
+      // var total = shoppingCart.totalCart();
+      // var cartData = {
+      //   "truyens": truyens,
+      //   "khachHang": khachHang,
+      //   "total": total
+      // }
+
+  
+      var dichGias = [];
+      
+      $("#select-dich-gia :selected").each(function () {
+        var dichGiaId = Number($(this).val());
+        var dichGia = {
+          "dichGiaId": dichGiaId
         };
-        truyens.push(item);
-      }
-      var total = shoppingCart.totalCart();
-      var cartData = {
-        "truyens": truyens,
-        "khachHang": khachHang,
-        "total": total
-      }
+        dichGias.push(dichGia);
+      });
+      
+      var tacGias = [];
+      $("#select-tac-gia :selected").each(function () {
+        var tacGiaId = Number($(this).val());
+        var tacGia = {
+          "tacGiaId": tacGiaId
+        };
+        tacGias.push(tacGia);
+      });
+
+
+      data.dichGias = dichGias;
+      data.tacGias = tacGias;
+      data.theLoai = Number(data.theLoai);
+      data.nhaXuatBan = Number(data.nhaXuatBan);
+      // console.log(selectedValues);
       console.log(data);
       /*data.grade = { id: data.grade };*/
       $.ajax({
@@ -260,11 +283,11 @@ $(document).ready(function () {
 function closeModalSuccess() {
   $('#create-truyen-success').modal('hide');
   $(".modal-backdrop").remove();
-  openPage('hr/employee.html');
+  openPage('truyen/truyen.html');
 }
 
 function closeModalError() {
   $('#create-truyen-error').modal('hide');
   $(".modal-backdrop").remove();
-  openPage('hr/create_employee.html');
+  openPage('truyen/create_truyen.html');
 }

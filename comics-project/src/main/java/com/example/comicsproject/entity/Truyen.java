@@ -24,7 +24,6 @@ import lombok.Data;
 @Data
 public class Truyen {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int truyenId;
 
 	@Column(name = "ten")
@@ -79,7 +78,7 @@ public class Truyen {
 //			@JoinColumn(name = "nha_xuat_ban_id") })
 //	@JsonManagedReference
 	@ManyToOne
-	@JsonManagedReference
+	@JoinColumn(name = "nha_xuat_ban_id", nullable = false)
 	private NhaXuatBan nhaXuatBan;
 
 }
