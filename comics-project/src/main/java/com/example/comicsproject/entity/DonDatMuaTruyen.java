@@ -16,22 +16,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Entity
-@Table(name = "hoa_don_xuat")
+@Table(name = "don_dat_mua_truyen")
 @Data
-public class HoaDonXuat {
-
+public class DonDatMuaTruyen {
 	@Id
-	private int hoaDonXuatId;
+	private int donDatMuaTruyenId;
 
 	@JsonFormat(pattern = "yyyy-MM-dd")
-	@Column(name = "ngay_ghi")
-	private Date ngayGhi;
+	@Column(name = "ngay_dat")
+	private Date ngayDat;
 
 	@Column(name = "tong_tien")
 	private float tongTien;
 
 	@Column(name = "trang_thai")
-	private boolean trangThai = true;
+	private int trangThai = 1;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
