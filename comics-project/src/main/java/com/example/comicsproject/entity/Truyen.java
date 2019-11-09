@@ -6,8 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -29,20 +27,11 @@ public class Truyen {
 	@Column(name = "ten")
 	private String ten;
 
-	@Column(name = "don_gia_nhap")
-	private float donGiaNhap;
-
 	@Column(name = "don_gia_ban")
 	private float donGiaBan;
 
 	@Column(name = "ghi_chu")
 	private String ghiChu;
-
-	@Column(name = "so_luong_ban")
-	private int soLuongBan;
-
-	@Column(name = "so_luong_con")
-	private int soLuongCon;
 
 	@Column(name = "trang_thai")
 	private boolean trangThai;

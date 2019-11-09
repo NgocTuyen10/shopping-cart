@@ -65,7 +65,7 @@ public class TruyenService {
 			truyenRepository.inactiveTruyen(id);
 		}
 	}
-	
+
 	@Transactional
 	public void createTruyen(TruyenCRUDDTO truyenCRUDDTO) {
 
@@ -75,11 +75,8 @@ public class TruyenService {
 		truyen.setTruyenId(truyenId);
 		truyen.setTen(truyenCRUDDTO.getTen());
 		truyen.setMaTruyen(truyenCRUDDTO.getMaTruyen());
-		truyen.setDonGiaNhap(truyenCRUDDTO.getDonGiaNhap());
 		truyen.setDonGiaBan(truyenCRUDDTO.getDonGiaBan());
 		truyen.setTheLoai(new TheLoai(truyenCRUDDTO.getTheLoai().getTheLoaiId()));
-		truyen.setSoLuongCon(truyenCRUDDTO.getSoLuongBan());
-		truyen.setSoLuongBan(truyenCRUDDTO.getSoLuongBan());
 		truyen.setDenTrang(truyenCRUDDTO.isDenTrang());
 		truyen.setNhaXuatBan(new NhaXuatBan(truyenCRUDDTO.getNhaXuatBan().getNhaXuatBanId()));
 		truyen.setTrangThai(true);

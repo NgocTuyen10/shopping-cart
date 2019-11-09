@@ -15,11 +15,11 @@ public class ChiTietHoaDonXuat {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "truyen_id")
 	private Truyen truyen;
-
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "hoa_don_xuat_id")
 	private HoaDonXuat hoaDonXuat;
-
 	@Column(name = "so_luong")
 	private int soLuong;
+	@Column(name = "don_gia_ban")
+	private float donGiaBan;
 }

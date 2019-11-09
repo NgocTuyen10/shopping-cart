@@ -20,8 +20,8 @@ public class HomeController extends BaseController {
 	@GetMapping()
 	public String home(Model model) {
 		model.addAttribute("theloais", theLoaiService.findAll());
-		model.addAttribute("topSale", truyenService.getTopSaleProduct());
-		model.addAttribute("topLast", truyenService.getTopLastProduct());
+//		model.addAttribute("topSale", truyenService.getTopSaleProduct());
+//		model.addAttribute("topLast", truyenService.getTopLastProduct());
 		return "index";
 	}
 
