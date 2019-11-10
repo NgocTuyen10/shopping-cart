@@ -23,4 +23,12 @@ public class DauTruyen {
 	@Column(name = "trang_thai")
 	private boolean trangThai;
 
+	public DauTruyen() {
+
+	}
+
+	public DauTruyen(int dauTruyenId) {
+		this.dauTruyenId = dauTruyenId;
+	}
+
 }

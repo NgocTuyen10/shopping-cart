@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.comicsproject.dto.DichGiaCreateDTO;
 import com.example.comicsproject.dto.TacGiaCreateDTO;
 import com.example.comicsproject.dto.TruyenCRUDDTO;
+import com.example.comicsproject.entity.DauTruyen;
 import com.example.comicsproject.entity.ListObject;
 import com.example.comicsproject.entity.NhaXuatBan;
 import com.example.comicsproject.entity.TheLoai;
@@ -80,6 +81,7 @@ public class TruyenService {
 		truyen.setDenTrang(truyenCRUDDTO.isDenTrang());
 		truyen.setNhaXuatBan(new NhaXuatBan(truyenCRUDDTO.getNhaXuatBan().getNhaXuatBanId()));
 		truyen.setTrangThai(true);
+		truyen.setDauTruyen(new DauTruyen(truyenCRUDDTO.getDauTruyen().getDauTruyenId()));
 
 		this.truyenRepository.save(truyen);
 

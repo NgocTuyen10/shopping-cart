@@ -2,6 +2,8 @@ package com.example.comicsproject.dto;
 
 import java.util.List;
 
+import com.example.comicsproject.entity.DauTruyen;
+
 import lombok.Data;
 
 @Data
@@ -15,4 +17,5 @@ public class TruyenCRUDDTO {
 	private List<TacGiaCreateDTO> tacGias;
 	private List<DichGiaCreateDTO> dichGias;
 	private NhaXuatBanCreateDTO nhaXuatBan;
+	private DauTruyen dauTruyen;
 }
