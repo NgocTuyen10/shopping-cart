@@ -25,6 +25,10 @@ public class DonDatMuaTruyenService {
 	@Autowired
 	private KhachHangRepository khachHangRepository;
 
+	public List<DonDatMuaTruyen> findAll() {
+		return this.donDatMuaTruyenRepository.findAll();
+	}
+
 	public void create(DonDatMuaTruyen donDatMuaTruyen) {
 		this.donDatMuaTruyenRepository.save(donDatMuaTruyen);
 	}
