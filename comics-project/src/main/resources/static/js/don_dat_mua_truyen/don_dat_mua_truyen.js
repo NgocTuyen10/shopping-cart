@@ -68,7 +68,7 @@ function renderData(data) {
             orderable: false,
             className: 'dt-body-center',
             render: function (data, type, row) {
-                return '<button type="button" id="detail" class="btn btn-success" onClick="showDetail(' + row.donDatMuaTruyenId + ')">Xem chi tiết</button>';
+                return '<button type="button" id="detail" data-toggle="modal" class="btn btn-success" onClick="showDetail(' + row.donDatMuaTruyenId + ')">Xem chi tiết</button>';
             }
         },
         {
@@ -89,6 +89,23 @@ function renderData(data) {
     });
 }
 var message = "This is Tuyen";
-function showDetail(message) {
-    alert(message);
+function showDetail(donDatMuaTruyenId) {
+    var url = "/comics/don-dat-mua-truyen-view/" + donDatMuaTruyenId;
+    $.getJSON(url, function (data) {
+        //show detail data here
+        // console.log(data.khachHang);
+        data.item
+        var i = 0;
+        var truyenHoaDonDTOs = data.truyenHoaDonDTOs;
+        console.log(truyenHoaDonDTOs);
+        var itemsData = [];
+        for (i; i < truyenHoaDonDTOs.length; i++)
+            itemsData.push("<tr><td>" + truyenHoaDonDTOs[i].ten + "</td ><td>" + truyenHoaDonDTOs[i].donGiaBan + "</td> <td>" + truyenHoaDonDTOs[i].soLuong + "</td><td>" + Number((truyenHoaDonDTOs[i].soLuong * truyenHoaDonDTOs[i].donGiaBan).toFixed(1)).toLocaleString() + "</td></tr >");
+        $("#table-body").append(itemsData);
+        $('#myModal').modal({ backdrop: 'static', keyboard: false })
+    });
+}
+function closeModal() {
+    $("#table-body").empty();
+    $('#myModal').modal('toggle');
 }
