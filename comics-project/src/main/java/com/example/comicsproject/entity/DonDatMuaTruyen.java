@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Data;
 
 @Entity
@@ -33,7 +31,6 @@ public class DonDatMuaTruyen {
 	private int trangThai = 1;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
-	@JoinColumn(name = "khach_hang_id")
+	@JoinColumn(name = "khach_hang_id", nullable = false)
 	private KhachHang khachHang;
 }

@@ -77,7 +77,7 @@ function renderData(data) {
             orderable: false,
             className: 'dt-body-center',
             render: function (data, type, row) {
-                return '<button type="button" id="update" class="btn btn-success" onClick="updateState(' + row.donDatMuaTruyenId + ')">Xem chi tiết</button>';
+                return '<button type="button" id="update" class="btn btn-success" onClick="updateState(' + row.donDatMuaTruyenId + ')">Cập nhật trạng thái</button>';
             }
         }
         ],

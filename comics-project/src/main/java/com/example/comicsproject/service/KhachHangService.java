@@ -18,4 +18,8 @@ public class KhachHangService {
 	public int getNextKhachHangId() {
 		return this.khachHangRepository.getNextKhachHangId();
 	}
+
+	public KhachHang getKhachHangFromDonMua(int donDatMuaHangId) {
+		return this.khachHangRepository.getKhachHangFromDonMua(donDatMuaHangId);
+	}
 }

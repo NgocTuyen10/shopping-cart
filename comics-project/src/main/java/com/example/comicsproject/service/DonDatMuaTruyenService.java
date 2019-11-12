@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.comicsproject.dto.DonDatMuaTruyenDTO;
+import com.example.comicsproject.dto.DonDatMuaTruyenViewDTO;
 import com.example.comicsproject.dto.TruyenDTO;
+import com.example.comicsproject.dto.TruyenHoaDonDTO;
 import com.example.comicsproject.entity.DonDatMuaTruyen;
 import com.example.comicsproject.entity.KhachHang;
 import com.example.comicsproject.repository.DonDatMuaTruyenRepository;
@@ -76,4 +78,19 @@ public class DonDatMuaTruyenService {
 					truyen.getSoLuong());
 		}
 	}
+
+	public DonDatMuaTruyen getDonDatMuaTruyen(int donDatMuaTruyen) {
+		return this.donDatMuaTruyenRepository.getDonDatMuaTruyen(donDatMuaTruyen);
+	}
+
+	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(int donDatMuaTruyenId) {
+		KhachHang khachHang = this.khachHangRepository.getKhachHangFromDonMua(donDatMuaTruyenId);
+		List<TruyenHoaDonDTO> truyenHoaDonDTOs = this.donDatMuaTruyenRepository
+				.getListTruyenHoaDonDTO(donDatMuaTruyenId);
+		DonDatMuaTruyenViewDTO donDatMuaTruyenViewDTO = new DonDatMuaTruyenViewDTO();
+		donDatMuaTruyenViewDTO.setKhachHang(khachHang);
+		donDatMuaTruyenViewDTO.setTruyenHoaDonDTOs(truyenHoaDonDTOs);
+		return donDatMuaTruyenViewDTO;
+	}
+
 }

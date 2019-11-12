@@ -1,6 +1,7 @@
 package com.example.comicsproject.repository;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.example.comicsproject.dto.TruyenHoaDonDTO;
 import com.example.comicsproject.entity.DonDatMuaTruyen;
 
 @Repository
@@ -27,4 +29,11 @@ public interface DonDatMuaTruyenRepository extends JpaRepository<DonDatMuaTruyen
 	@Transactional
 	public void addDonDatMuaTruyen(@Param("p1") int donDatMuaTruyenId, @Param("p2") Date ngayGhi,
 			@Param("p3") float tongTien, @Param("p4") boolean trangThai);
+
+	@Query(value = "select * from chi_tiet_don_dat_mua_truyen where don_dat_mua_truyen_id =:q;", nativeQuery = true)
+	public DonDatMuaTruyen getDonDatMuaTruyen(@Param("q") int donDatMuaTruyen);
+
+	@Query(value = "SELECT NEW com.example.comicsproject.dto.TruyenHoaDonDTO(t.ten,t.donGiaBan,c.soLuong) from Truyen t join ChiTietDonDatMuaTruyen c \r\n"
+			+ "on t.truyenId = c.truyenId and c.donDatMuaTruyenId=:q", nativeQuery = false)
+	public List<TruyenHoaDonDTO> getListTruyenHoaDonDTO(@Param("q") int donDatMuaTruyenId);
 }
