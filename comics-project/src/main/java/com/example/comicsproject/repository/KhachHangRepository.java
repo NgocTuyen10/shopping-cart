@@ -12,6 +12,7 @@ public interface KhachHangRepository extends JpaRepository<KhachHang, Integer> {
 	@Query(value = "SELECT nextval('khach_hang_sequence');", nativeQuery = true)
 	public int getNextKhachHangId();
 
-	@Query(value = "select * from khach_hang k join don_dat_mua_truyen d on k.khach_hang_id = d.khach_hang_id and d.khach_hang_id =:q", nativeQuery = true)
+	@Query(value = "select * from khach_hang k\r\n"
+			+ "where k.khach_hang_id in ( select d.khach_hang_id from don_dat_mua_truyen d where d.don_dat_mua_truyen_id=:q )", nativeQuery = true)
 	public KhachHang getKhachHangFromDonMua(@Param("q") int donDatMuaTruyenId);
 }

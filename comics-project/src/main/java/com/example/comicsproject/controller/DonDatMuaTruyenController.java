@@ -41,8 +41,8 @@ public class DonDatMuaTruyenController extends BaseController {
 
 	@GetMapping(value = "/don-dat-mua-truyen-view/{donDatMuaTruyenId}")
 	@ResponseBody
-	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyen) {
-		return this.donDatMuaTruyenService.getDonDatMuaTruyenView(donDatMuaTruyen);
+	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId) {
+		return this.donDatMuaTruyenService.getDonDatMuaTruyenView(donDatMuaTruyenId);
 	}
 
 }

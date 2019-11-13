@@ -93,19 +93,34 @@ function showDetail(donDatMuaTruyenId) {
     var url = "/comics/don-dat-mua-truyen-view/" + donDatMuaTruyenId;
     $.getJSON(url, function (data) {
         //show detail data here
-        // console.log(data.khachHang);
+        console.log(data);
         data.item
         var i = 0;
+        var tongTien = 0;
         var truyenHoaDonDTOs = data.truyenHoaDonDTOs;
         console.log(truyenHoaDonDTOs);
         var itemsData = [];
-        for (i; i < truyenHoaDonDTOs.length; i++)
-            itemsData.push("<tr><td>" + truyenHoaDonDTOs[i].ten + "</td ><td>" + truyenHoaDonDTOs[i].donGiaBan + "</td> <td>" + truyenHoaDonDTOs[i].soLuong + "</td><td>" + Number((truyenHoaDonDTOs[i].soLuong * truyenHoaDonDTOs[i].donGiaBan).toFixed(1)).toLocaleString() + "</td></tr >");
+        for (i; i < truyenHoaDonDTOs.length; i++) {
+            itemsData.push("<tr><td>" + truyenHoaDonDTOs[i].ten + "</td ><td>" + Number(truyenHoaDonDTOs[i].donGiaBan.toFixed(1)).toLocaleString() + " đ" + "</td> <td>" + truyenHoaDonDTOs[i].soLuong + "</td><td>" + Number((truyenHoaDonDTOs[i].soLuong * truyenHoaDonDTOs[i].donGiaBan).toFixed(1)).toLocaleString() + " đ" + "</td></tr >");
+            tongTien += truyenHoaDonDTOs[i].soLuong * truyenHoaDonDTOs[i].donGiaBan;
+        }
+        tongTien = Number(tongTien.toFixed(1)).toLocaleString() + " đ";
         $("#table-body").append(itemsData);
-        $('#myModal').modal({ backdrop: 'static', keyboard: false })
+        $('#myModal').modal({ backdrop: 'static', keyboard: false });
+        $('#ten_khach_hang').text(data.khachHang.ten);
+        $('#so_dien_thoai').text(data.khachHang.soDienThoai);
+        $('#dia_chi').text(data.khachHang.diaChi);
+        $('#tong_tien').text(tongTien);
     });
 }
 function closeModal() {
     $("#table-body").empty();
+    clearText();
     $('#myModal').modal('toggle');
+}
+function clearText() {
+    $('#ten_khach_hang').text("");
+    $('#so_dien_thoai').text("");
+    $('#dia_chi').text("");
+    $('#tong_tien').text("");
 }
