@@ -26,9 +26,9 @@ public class CuonTruyen {
 	private float donGiaNhap;
 	@Column(name = "ngay_nhap")
 	private Date ngayNhap;
-	@Column(name = "trang_thai")
-	private boolean trangThai;
-	@Column(name = "truyen_id")
+	@Column(name = "trang_thai_ban")
+	private boolean trangThaiBan;
+	@Column(name = "truyen_id", nullable = false)
 	private int truyenId;
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "truyen_id", insertable = false, updatable = false)
