@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.comicsproject.dto.TruyenHoaDonDTO;
+import com.example.comicsproject.dto.TruyenDonDatMuaDTO;
 import com.example.comicsproject.entity.DonDatMuaTruyen;
 
 @Repository
@@ -33,7 +33,7 @@ public interface DonDatMuaTruyenRepository extends JpaRepository<DonDatMuaTruyen
 	@Query(value = "select * from chi_tiet_don_dat_mua_truyen where don_dat_mua_truyen_id =:q;", nativeQuery = true)
 	public DonDatMuaTruyen getDonDatMuaTruyen(@Param("q") int donDatMuaTruyen);
 
-	@Query(value = "SELECT NEW com.example.comicsproject.dto.TruyenHoaDonDTO(t.ten,t.donGiaBan,c.soLuong) from Truyen t join ChiTietDonDatMuaTruyen c \r\n"
+	@Query(value = "SELECT NEW com.example.comicsproject.dto.TruyenDonDatMuaDTO(t.ten,t.donGiaBan,c.soLuong) from Truyen t join ChiTietDonDatMuaTruyen c \r\n"
 			+ "on t.truyenId = c.truyenId and c.donDatMuaTruyenId=:q", nativeQuery = false)
-	public List<TruyenHoaDonDTO> getListTruyenHoaDonDTO(@Param("q") int donDatMuaTruyenId);
+	public List<TruyenDonDatMuaDTO> getListTruyenHoaDonDTO(@Param("q") int donDatMuaTruyenId);
 }

@@ -52,6 +52,9 @@ public interface TruyenRepository extends JpaRepository<Truyen, Integer> {
 	@Query(value = "insert into truyen_dich_gia(truyen_id,dich_gia_id) values (:q1,:q2)", nativeQuery = true)
 	public void addToTruyenDichGia(@Param("q1") int truyenId, @Param("q2") int dichGiaId);
 
+	@Query(value = "select * from truyen where truyen_id =:q and trang_thai=true", nativeQuery = true)
+	public Truyen getTruyenById(@Param("q") int truyenId);
+
 	@Modifying
 	@Transactional
 	@Query(value = "insert into truyen_tac_gia(truyen_id,tac_gia_id) values (:q1,:q2)", nativeQuery = true)

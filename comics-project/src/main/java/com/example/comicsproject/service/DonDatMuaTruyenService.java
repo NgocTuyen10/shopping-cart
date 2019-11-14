@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.example.comicsproject.dto.DonDatMuaTruyenDTO;
 import com.example.comicsproject.dto.DonDatMuaTruyenViewDTO;
 import com.example.comicsproject.dto.TruyenDTO;
-import com.example.comicsproject.dto.TruyenHoaDonDTO;
+import com.example.comicsproject.dto.TruyenDonDatMuaDTO;
 import com.example.comicsproject.entity.DonDatMuaTruyen;
 import com.example.comicsproject.entity.KhachHang;
 import com.example.comicsproject.repository.DonDatMuaTruyenRepository;
@@ -85,7 +85,7 @@ public class DonDatMuaTruyenService {
 
 	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(int donDatMuaTruyenId) {
 		KhachHang khachHang = this.khachHangRepository.getKhachHangFromDonMua(donDatMuaTruyenId);
-		List<TruyenHoaDonDTO> truyenHoaDonDTOs = this.donDatMuaTruyenRepository
+		List<TruyenDonDatMuaDTO> truyenHoaDonDTOs = this.donDatMuaTruyenRepository
 				.getListTruyenHoaDonDTO(donDatMuaTruyenId);
 		DonDatMuaTruyenViewDTO donDatMuaTruyenViewDTO = new DonDatMuaTruyenViewDTO();
 		donDatMuaTruyenViewDTO.setKhachHang(khachHang);

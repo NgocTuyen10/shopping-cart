@@ -57,6 +57,7 @@ public class TruyenController extends BaseController {
 		return "products";
 	}
 
+	// Get all truyen
 	@GetMapping("/truyens")
 	public String showAllTruyen() {
 		this.truyenService.findAll();
@@ -64,6 +65,7 @@ public class TruyenController extends BaseController {
 
 	}
 
+	// Get all truyen but not return view
 	@GetMapping("/truyen")
 	@ResponseBody
 	public List<Truyen> getAll() {
@@ -76,6 +78,7 @@ public class TruyenController extends BaseController {
 		return this.truyenService.findByMaTheLoai(maTheLoai);
 	}
 
+	// Get truyen by id and return view
 	@GetMapping("/truyen/{maTruyen}")
 //	@ResponseBody
 	public String showTruyenByMaTruyen(@PathVariable("maTruyen") String maTruyen, Model model) {
@@ -90,6 +93,13 @@ public class TruyenController extends BaseController {
 		return "product-page";
 	}
 
+	// Get truyen by id and json data type
+	@GetMapping("/truyen-hoa-don-xuat/{truyenId}")
+	@ResponseBody
+	public Truyen getTruyenById(@PathVariable("truyenId") int truyenId) {
+		return this.truyenService.getTruyenById(truyenId);
+	}
+
 	@RequestMapping(value = "/truyen/paging", params = { "maTheLoai", "page", "size" }, method = RequestMethod.GET)
 	@ResponseBody
 	public Page<Truyen> findPaginated(@RequestParam("maTheLoai") String maTheLoai, @RequestParam("page") int page,
@@ -101,7 +111,7 @@ public class TruyenController extends BaseController {
 
 		return resultPage;
 	}
-	
+
 	@Transactional
 	@RequestMapping(value = "/truyen/delete", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -109,7 +119,7 @@ public class TruyenController extends BaseController {
 		truyenService.deleteByIds(listRequest);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/truyen", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> create(@RequestBody TruyenCRUDDTO truyenCRUDDTO) {
 		this.truyenService.createTruyen(truyenCRUDDTO);

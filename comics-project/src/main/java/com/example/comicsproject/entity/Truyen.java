@@ -70,8 +70,11 @@ public class Truyen {
 	@JoinColumn(name = "nha_xuat_ban_id", nullable = false)
 	private NhaXuatBan nhaXuatBan;
 
-	@ManyToOne
-	@JoinColumn(name = "dau_truyen_id", nullable = false)
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "dau_truyen_id", insertable = false, updatable = false)
 	private DauTruyen dauTruyen;
+
+	@Column(name = "dau_truyen_id", nullable = false)
+	private int dauTruyenId;
 
 }

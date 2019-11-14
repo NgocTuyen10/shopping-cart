@@ -9,5 +9,5 @@ import lombok.Data;
 @Data
 public class DonDatMuaTruyenViewDTO {
 	private KhachHang khachHang;
-	private List<TruyenHoaDonDTO> truyenHoaDonDTOs;
+	private List<TruyenDonDatMuaDTO> truyenHoaDonDTOs;
 }

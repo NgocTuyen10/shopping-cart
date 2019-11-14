@@ -21,23 +21,15 @@ $(document).ready(function () {
     });
     loadDataTable();
     function loadDataTable() {
-        var url = "/comics/don-dat-mua-truyen";
+        var url = "/comics/truyen-hoa-don-xuat";
         $.getJSON(url, function (data) {
             for (x of data) {
-                x.tongTien = Number(x.tongTien.toFixed(1)).toLocaleString();
-                if (x.trangThai == 1)
-                    x.trangThai = "Chưa giao hàng";
-                else if (x.trangThai == 2)
-                    x.trangThai = "Đang giao hàng";
-                else if (trangThai == 3)
-                    x.trangThai = "Đã nhận hàng"
+                x.donGiaBan = Number(x.donGiaBan.toFixed(1)).toLocaleString() + " đ";
                 x.index = 0;
             }
             renderData(data);
         });
     };
-
-
 
 });
 
@@ -54,31 +46,30 @@ function renderData(data) {
             // { searchable: false, title: "<input type='checkbox' class='checkbox' name='select_all' id='checkbox-select-all' onClick='checkAll()'>", data: 'truyenId' },
 
             { title: "Số thứ tự", data: 'index' },
-            { title: "Mã hóa đơn", data: 'donDatMuaTruyenId' },
-            { title: "Tổng tiền", data: 'tongTien' },
-            { title: "Ngày đặt truyện", data: 'ngayDat' },
-            { searchable: false, title: "Xem chi tiết", data: 'donDatMuaTruyenId' },
-            { searchable: false, title: "Cập nhật trạng thái", data: 'donDatMuaTruyenId' }
+            { title: "Mã truyện", data: 'maTruyen' },
+            { title: "Tên truyện", data: 'tenTruyen' },
+            { title: "Số lượng còn", data: 'soLuongCon' },
+            { title: "Đơn giá bán", data: 'donGiaBan' },
+            { title: "Đầu truyện", data: 'tuaTruyen' },
+            { searchable: false, title: "", data: 'truyenId' }
 
         ],
-        columnDefs: [{
-            targets: 4,
-            searchable: false,
-            orderable: false,
-            className: 'dt-body-center',
-            render: function (data, type, row) {
-                return '<button type="button" id="detail" data-toggle="modal" class="btn btn-success" onClick="showDetail(' + row.donDatMuaTruyenId + ')">Xem chi tiết</button>';
+        columnDefs: [
+            {
+                searchable: false,
+                orderable: false,
+                targets: 0
+            },
+            {
+                targets: 6,
+                searchable: false,
+                orderable: false,
+                className: 'dt-body-center',
+                render: function (data, type, row) {
+                    return '<button type="button" id="them-vao-hoa-don" class="btn btn-success" onClick="themVaoHoaDon(' + row.truyenId + ')">Thêm vào hóa đơn</button>';
+                }
             }
-        },
-        {
-            targets: 5,
-            searchable: false,
-            orderable: false,
-            className: 'dt-body-center',
-            render: function (data, type, row) {
-                return '<button type="button" id="update" class="btn btn-success" onClick="updateState(' + row.donDatMuaTruyenId + ')">Cập nhật trạng thái</button>';
-            }
-        }
+
         ],
         order: [[1, 'asc']]
     });
@@ -86,13 +77,14 @@ function renderData(data) {
     $('#mySearchButton').on('keyup click', function () {
         table.search($('#mySearchText').val(), true, false).draw();
     });
+
     table.on('order.dt search.dt', function () {
         table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
             cell.innerHTML = i + 1;
         });
     }).draw();
+
 }
-var message = "This is Tuyen";
 function showDetail(donDatMuaTruyenId) {
     var url = "/comics/don-dat-mua-truyen-view/" + donDatMuaTruyenId;
     $.getJSON(url, function (data) {
@@ -127,4 +119,7 @@ function clearText() {
     $('#so_dien_thoai').text("");
     $('#dia_chi').text("");
     $('#tong_tien').text("");
+}
+function themVaoHoaDon(truyenId) {
+    alert(truyenId);
 }

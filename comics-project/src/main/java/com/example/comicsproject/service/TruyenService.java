@@ -93,4 +93,8 @@ public class TruyenService {
 		}
 
 	}
+
+	public Truyen getTruyenById(int truyenId) {
+		return this.truyenRepository.getTruyenById(truyenId);
+	}
 }

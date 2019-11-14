@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.comicsproject.dto.HoaDonXuatDTO;
 import com.example.comicsproject.dto.TruyenDTO;
+import com.example.comicsproject.dto.TruyenHoaDonXuatDTO;
 import com.example.comicsproject.entity.HoaDonXuat;
 import com.example.comicsproject.entity.KhachHang;
 import com.example.comicsproject.repository.HoaDonXuatRepository;
@@ -21,7 +22,7 @@ import com.example.comicsproject.repository.KhachHangRepository;
 public class HoaDonXuatService {
 	@Autowired
 	private HoaDonXuatRepository hoaDonXuatRepository;
-	
+
 	@Autowired
 	private KhachHangRepository khachHangRepository;
 
@@ -40,27 +41,29 @@ public class HoaDonXuatService {
 	public void addHoaDonXuat(int hoaDonXuatId, Date ngayGhi, float tongTien, boolean trangThai) {
 		this.hoaDonXuatRepository.addHoaDonXuat(hoaDonXuatId, ngayGhi, tongTien, trangThai);
 	}
-	
+
 	public void AddCartDataToDatabase(HoaDonXuatDTO hoaDonXuatDTO) throws ParseException {
-		
+
 		int khachHangId = khachHangRepository.getNextKhachHangId();
 		int hoaDonXuatId = hoaDonXuatRepository.getNextId();
-		
-		KhachHang khachHang =  hoaDonXuatDTO.getKhachHang();
+
+		KhachHang khachHang = hoaDonXuatDTO.getKhachHang();
 		khachHang.setKhachHangId(khachHangId);
 		this.khachHangRepository.save(khachHang);
-		
+
 		HoaDonXuat hoaDonXuat = new HoaDonXuat();
 		hoaDonXuat.setTongTien(hoaDonXuatDTO.getTotal());
 
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dt = sf.parse(sf.format(new Date()));
-		
+
 		hoaDonXuat.setKhachHang(khachHang);
 		hoaDonXuat.setNgayGhi(dt);
 		hoaDonXuat.setHoaDonXuatId(hoaDonXuatId);
-		/*this.hoaDonXuatService.addHoaDonXuat(hoaDonXuat.getHoaDonXuatId(), hoaDonXuat.getNgayGhi(),
-				hoaDonXuat.getTongTien(), true);*/
+		/*
+		 * this.hoaDonXuatService.addHoaDonXuat(hoaDonXuat.getHoaDonXuatId(),
+		 * hoaDonXuat.getNgayGhi(), hoaDonXuat.getTongTien(), true);
+		 */
 		this.hoaDonXuatRepository.save(hoaDonXuat);
 
 		List<TruyenDTO> truyenDTO = hoaDonXuatDTO.getTruyens();
@@ -68,5 +71,9 @@ public class HoaDonXuatService {
 		for (TruyenDTO truyen : truyenDTO) {
 			this.hoaDonXuatRepository.addToChiTietHoaDonXuat(hoaDonXuatId, truyen.getTruyenId(), truyen.getSoLuong());
 		}
+	}
+
+	public List<TruyenHoaDonXuatDTO> getTruyenToXuat() {
+		return this.hoaDonXuatRepository.getTruyenToXuat();
 	}
 }

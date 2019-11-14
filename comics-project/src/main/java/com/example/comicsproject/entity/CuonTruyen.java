@@ -28,16 +28,17 @@ public class CuonTruyen {
 	private Date ngayNhap;
 	@Column(name = "trang_thai")
 	private boolean trangThai;
-	@ManyToOne
-	@JoinColumn(name = "truyen_id", nullable = false)
+	@Column(name = "truyen_id")
+	private int truyenId;
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "truyen_id", insertable = false, updatable = false)
 	private Truyen truyen;
-	
 	@ManyToOne
 	@JoinColumn(name = "nha_cung_cap_id", nullable = false)
 	private NhaCungCap nhaCungCap;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "nhan_vien_id", nullable = false)
 	private NhanVien nhanVien;
-	
+
 }
