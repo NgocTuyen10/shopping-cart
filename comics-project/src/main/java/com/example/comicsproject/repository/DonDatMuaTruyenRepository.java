@@ -30,10 +30,16 @@ public interface DonDatMuaTruyenRepository extends JpaRepository<DonDatMuaTruyen
 	public void addDonDatMuaTruyen(@Param("p1") int donDatMuaTruyenId, @Param("p2") Date ngayGhi,
 			@Param("p3") float tongTien, @Param("p4") boolean trangThai);
 
-	@Query(value = "select * from chi_tiet_don_dat_mua_truyen where don_dat_mua_truyen_id =:q;", nativeQuery = true)
-	public DonDatMuaTruyen getDonDatMuaTruyen(@Param("q") int donDatMuaTruyen);
+	@Query(value = "select * from don_dat_mua_truyen where don_dat_mua_truyen_id =:q", nativeQuery = true)
+	public DonDatMuaTruyen getDonDatMuaTruyen(@Param("q") int donDatMuaTruyenId);
 
-	@Query(value = "SELECT NEW com.example.comicsproject.dto.TruyenDonDatMuaDTO(t.ten,t.donGiaBan,c.soLuong) from Truyen t join ChiTietDonDatMuaTruyen c \r\n"
+	@Query(value = "SELECT NEW com.example.comicsproject.dto.TruyenDonDatMuaDTO(t.truyenId,t.ten,t.donGiaBan,c.soLuong) from Truyen t join ChiTietDonDatMuaTruyen c \r\n"
 			+ "on t.truyenId = c.truyenId and c.donDatMuaTruyenId=:q", nativeQuery = false)
 	public List<TruyenDonDatMuaDTO> getListTruyenHoaDonDTO(@Param("q") int donDatMuaTruyenId);
+
+	@Modifying
+	@Transactional
+	@Query(value = "update don_dat_mua_truyen set trang_thai=:q1 where don_dat_mua_truyen_id=:q2", nativeQuery = true)
+	public void updatedonDatMuaTruyen(@Param("q1") int trangThai, @Param("q2") int donDatMuaTruyenId);
+
 }

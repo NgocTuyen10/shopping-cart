@@ -15,4 +15,7 @@ import com.example.comicsproject.entity.CuonTruyen;
 public interface CuonTruyenRepository extends JpaRepository<CuonTruyen, Integer> {
 	@Query(value = "select * from cuon_truyen where trang_thai_ban=false", nativeQuery = true)
 	public List<CuonTruyen> getAll();
+
+	@Query(value = "select count(*) from cuon_truyen where truyen_id=:q", nativeQuery = true)
+	public int counCuonTruyenByMaTruyen();
 }

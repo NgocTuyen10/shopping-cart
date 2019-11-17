@@ -1,5 +1,6 @@
 window.truyen = null;
 var idList = [];
+var truyen;
 $(document).ready(function () {
 
     $.ajaxSetup({
@@ -20,27 +21,32 @@ $(document).ready(function () {
         }
     });
     loadDataTable();
-    function loadDataTable() {
-        var url = "/comics/don-dat-mua-truyen";
-        $.getJSON(url, function (data) {
-            for (x of data) {
-                x.tongTien = Number(x.tongTien.toFixed(1)).toLocaleString();
-                if (x.trangThai == 1)
-                    x.trangThai = "Chưa giao hàng";
-                else if (x.trangThai == 2)
-                    x.trangThai = "Đang giao hàng";
-                else if (trangThai == 3)
-                    x.trangThai = "Đã nhận hàng"
-                x.index = 0;
-            }
-            renderData(data);
-        });
-    };
+
+    $(document).on('change', '#select_trang_thai_don', function (event) {
+        event.preventDefault();
+        $('#updateModal').prop("disabled", false);
+    });
 
 
 
 });
 
+function loadDataTable() {
+    var url = "/comics/don-dat-mua-truyen";
+    $.getJSON(url, function (data) {
+        for (x of data) {
+            x.tongTien = Number(x.tongTien.toFixed(1)).toLocaleString();
+            if (x.trangThai == 1)
+                x.trangThai = "Đã xác nhận";
+            else if (x.trangThai == 2)
+                x.trangThai = "Đang giao hàng";
+            else if (x.trangThai == 3)
+                x.trangThai = "Đã nhận"
+            x.index = 0;
+        }
+        renderData(data);
+    });
+};
 function renderData(data) {
     var table = $('#datatable').DataTable({
         "dom": '<"top"l>rt<"bottom"p><"clear">',
@@ -57,12 +63,13 @@ function renderData(data) {
             { title: "Mã hóa đơn", data: 'donDatMuaTruyenId' },
             { title: "Tổng tiền", data: 'tongTien' },
             { title: "Ngày đặt truyện", data: 'ngayDat' },
+            { title: "Trạng thái", data: 'trangThai' },
             { searchable: false, title: "Xem chi tiết", data: 'donDatMuaTruyenId' },
             { searchable: false, title: "Cập nhật trạng thái", data: 'donDatMuaTruyenId' }
 
         ],
         columnDefs: [{
-            targets: 4,
+            targets: 5,
             searchable: false,
             orderable: false,
             className: 'dt-body-center',
@@ -71,7 +78,7 @@ function renderData(data) {
             }
         },
         {
-            targets: 5,
+            targets: 6,
             searchable: false,
             orderable: false,
             className: 'dt-body-center',
@@ -92,17 +99,13 @@ function renderData(data) {
         });
     }).draw();
 }
-var message = "This is Tuyen";
 function showDetail(donDatMuaTruyenId) {
     var url = "/comics/don-dat-mua-truyen-view/" + donDatMuaTruyenId;
     $.getJSON(url, function (data) {
         //show detail data here
-        console.log(data);
-        data.item
         var i = 0;
         var tongTien = 0;
         var truyenHoaDonDTOs = data.truyenHoaDonDTOs;
-        console.log(truyenHoaDonDTOs);
         var itemsData = [];
         for (i; i < truyenHoaDonDTOs.length; i++) {
             itemsData.push("<tr><td>" + truyenHoaDonDTOs[i].ten + "</td ><td>" + Number(truyenHoaDonDTOs[i].donGiaBan.toFixed(1)).toLocaleString() + " đ" + "</td> <td>" + truyenHoaDonDTOs[i].soLuong + "</td><td>" + Number((truyenHoaDonDTOs[i].soLuong * truyenHoaDonDTOs[i].donGiaBan).toFixed(1)).toLocaleString() + " đ" + "</td></tr >");
@@ -110,17 +113,60 @@ function showDetail(donDatMuaTruyenId) {
         }
         tongTien = Number(tongTien.toFixed(1)).toLocaleString() + " đ";
         $("#table-body").append(itemsData);
-        $('#myModal').modal({ backdrop: 'static', keyboard: false });
+        $('#detailModal').modal({ backdrop: 'static', keyboard: false });
         $('#ten_khach_hang').text(data.khachHang.ten);
         $('#so_dien_thoai').text(data.khachHang.soDienThoai);
         $('#dia_chi').text(data.khachHang.diaChi);
         $('#tong_tien').text(tongTien);
     });
 }
-function closeModal() {
+
+function updateState(donDatMuaTruyenId) {
+    var url = "/comics/don-dat-mua-truyen/" + donDatMuaTruyenId;
+    $.getJSON(url, function (data) {
+
+        var tongTien = Number(data.tongTien.toFixed(1)).toLocaleString() + " đ";
+        $('#don_dat_truyen_update').text(data.donDatMuaTruyenId);
+        $('#tong_tien_update_modal').text(tongTien);
+        $('#ngay_dat').text(data.ngayDat);
+        $("#select_trang_thai_don").val(data.trangThai);
+    });
+    $('#updateModal').modal({ backdrop: 'static', keyboard: false });
+}
+function print() {
+
+}
+function update() {
+    var data = {
+        "donDatMuaTruyenId": $('#don_dat_truyen_update').text(),
+        "trangThai": $("#select_trang_thai_don").val()
+    };
+    $.ajax({
+        url: '/comics/don-dat-mua-truyen/update-state', // url where to submit the request
+        type: "POST", // type of action POST || GET
+        contentType: "application/json", // data type
+        data: JSON.stringify(data), // post data || get data
+        success: function (result) {
+            loadDataTable();
+            console.log("Done");
+            closeUpdateModal();
+        },
+        error: function (xhr, resp, text) {
+            console.log(xhr, resp, text);
+            $('#create-tac-gia-error').modal('show');
+        }
+    });
+
+}
+
+function closeDetailModal() {
     $("#table-body").empty();
     clearText();
-    $('#myModal').modal('toggle');
+    $('#detailModal').modal('toggle');
+}
+function closeUpdateModal() {
+    // $("#table-body").empty();
+    $('#updateModal').modal('toggle');
 }
 function clearText() {
     $('#ten_khach_hang').text("");

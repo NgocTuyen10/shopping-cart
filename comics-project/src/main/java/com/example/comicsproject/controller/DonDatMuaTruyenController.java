@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.comicsproject.dto.DonDatMuaTruyenDTO;
 import com.example.comicsproject.dto.DonDatMuaTruyenViewDTO;
+import com.example.comicsproject.dto.HoaDonXuatTruyenUpdateDTO;
 import com.example.comicsproject.entity.DonDatMuaTruyen;
 import com.example.comicsproject.service.DonDatMuaTruyenService;
 
@@ -39,10 +40,23 @@ public class DonDatMuaTruyenController extends BaseController {
 		return this.donDatMuaTruyenService.findAll();
 	}
 
+	@GetMapping(value = "/don-dat-mua-truyen/{donDatMuaTruyenId}")
+	@ResponseBody
+	public DonDatMuaTruyen getDonDatMuaTruyenViewById(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId) {
+		return this.donDatMuaTruyenService.getDonDatMuaTruyen(donDatMuaTruyenId);
+	}
+
 	@GetMapping(value = "/don-dat-mua-truyen-view/{donDatMuaTruyenId}")
 	@ResponseBody
 	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId) {
 		return this.donDatMuaTruyenService.getDonDatMuaTruyenView(donDatMuaTruyenId);
 	}
 
+	@RequestMapping(value = "/don-dat-mua-truyen/update-state", method = RequestMethod.POST)
+	@ResponseBody
+	public void updateDonDatMuaTruyen(@RequestBody HoaDonXuatTruyenUpdateDTO hoaDonXuatTruyenUpdateDTO)
+			throws Exception {
+		this.donDatMuaTruyenService.updateDonDatTruyenId(hoaDonXuatTruyenUpdateDTO.getTrangThai(),
+				hoaDonXuatTruyenUpdateDTO.getDonDatMuaTruyenId());
+	}
 }

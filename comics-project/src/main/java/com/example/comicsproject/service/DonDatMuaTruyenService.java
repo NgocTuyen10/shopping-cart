@@ -16,6 +16,7 @@ import com.example.comicsproject.dto.TruyenDTO;
 import com.example.comicsproject.dto.TruyenDonDatMuaDTO;
 import com.example.comicsproject.entity.DonDatMuaTruyen;
 import com.example.comicsproject.entity.KhachHang;
+import com.example.comicsproject.repository.CuonTruyenRepository;
 import com.example.comicsproject.repository.DonDatMuaTruyenRepository;
 import com.example.comicsproject.repository.KhachHangRepository;
 
@@ -26,6 +27,8 @@ public class DonDatMuaTruyenService {
 	private DonDatMuaTruyenRepository donDatMuaTruyenRepository;
 	@Autowired
 	private KhachHangRepository khachHangRepository;
+	@Autowired
+	private CuonTruyenRepository cuonTruyenRepository;
 
 	public List<DonDatMuaTruyen> findAll() {
 		return this.donDatMuaTruyenRepository.findAll();
@@ -79,8 +82,8 @@ public class DonDatMuaTruyenService {
 		}
 	}
 
-	public DonDatMuaTruyen getDonDatMuaTruyen(int donDatMuaTruyen) {
-		return this.donDatMuaTruyenRepository.getDonDatMuaTruyen(donDatMuaTruyen);
+	public DonDatMuaTruyen getDonDatMuaTruyen(int donDatMuaTruyenId) {
+		return this.donDatMuaTruyenRepository.getDonDatMuaTruyen(donDatMuaTruyenId);
 	}
 
 	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(int donDatMuaTruyenId) {
@@ -91,6 +94,10 @@ public class DonDatMuaTruyenService {
 		donDatMuaTruyenViewDTO.setKhachHang(khachHang);
 		donDatMuaTruyenViewDTO.setTruyenHoaDonDTOs(truyenHoaDonDTOs);
 		return donDatMuaTruyenViewDTO;
+	}
+
+	public void updateDonDatTruyenId(int trangThai, int donDatTruyenId) {
+		this.donDatMuaTruyenRepository.updatedonDatMuaTruyen(trangThai, donDatTruyenId);
 	}
 
 }
