@@ -1,15 +1,24 @@
 package com.example.comicsproject.controller;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.List;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,6 +59,21 @@ public class DonDatMuaTruyenController extends BaseController {
 	@ResponseBody
 	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId) {
 		return this.donDatMuaTruyenService.getDonDatMuaTruyenView(donDatMuaTruyenId);
+	}
+
+	@GetMapping(value = "/don-dat-mua-truyen-view/export/{donDatMuaTruyenId}")
+	@ResponseBody
+	public ResponseEntity<Resource> exportDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId)
+			throws EncryptedDocumentException, IOException, InvalidFormatException {
+		Path path = Paths.get("E:\\shopping-cart\\shopping-cart\\ExcelInvoiceTemplate.xls");
+		Resource resource = new UrlResource(path.toUri());
+
+		this.donDatMuaTruyenService
+				.exportToExcel(this.donDatMuaTruyenService.getDonDatMuaTruyenView(donDatMuaTruyenId));
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/octet-stream"))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+				.body(resource);
+
 	}
 
 	@RequestMapping(value = "/don-dat-mua-truyen/update-state", method = RequestMethod.POST)

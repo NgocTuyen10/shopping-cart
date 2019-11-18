@@ -1,5 +1,9 @@
 package com.example.comicsproject.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,6 +11,14 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,6 +110,56 @@ public class DonDatMuaTruyenService {
 
 	public void updateDonDatTruyenId(int trangThai, int donDatTruyenId) {
 		this.donDatMuaTruyenRepository.updatedonDatMuaTruyen(trangThai, donDatTruyenId);
+	}
+
+	public void exportToExcel(DonDatMuaTruyenViewDTO donDatMuaTruyenViewDTO)
+			throws EncryptedDocumentException, IOException {
+		FileInputStream file = new FileInputStream(
+				new File("E:\\shopping-cart\\shopping-cart\\ExcelInvoiceTemplate.xls"));
+		HSSFWorkbook workbook = new HSSFWorkbook(file);
+		HSSFSheet sheet = workbook.getSheetAt(0);
+
+		KhachHang khachHang = donDatMuaTruyenViewDTO.getKhachHang();
+		//get cell and then set valuse for cell
+		Row rowTen = sheet.createRow(11);
+		Cell cell = rowTen.createCell(2);
+		cell.setCellValue(khachHang.getTen());
+		
+
+		Row rowEmail = sheet.createRow(13);
+		cell = rowEmail.createCell(2);
+		cell.setCellValue(khachHang.getEmail());
+
+		Row rowSoDienThoai = sheet.createRow(12);
+		cell = rowSoDienThoai.createCell(2);
+		cell.setCellValue(khachHang.getEmail());
+
+		Row rowDiaChi = sheet.createRow(14);
+		cell = rowDiaChi.createCell(2);
+		cell.setCellValue(khachHang.getEmail());
+
+		List<TruyenDonDatMuaDTO> truyenHoaDonXuatDTOs = donDatMuaTruyenViewDTO.getTruyenHoaDonDTOs();
+		for (TruyenDonDatMuaDTO truyen : truyenHoaDonXuatDTOs) {
+			int rowNumber = 17;
+			Row row = sheet.createRow(rowNumber++);
+			for (int i = 0; i < 3; i++) {
+				int col = 1;
+				Cell cellT = row.createCell(col++);
+				cellT.setCellValue(truyen.getTen());
+
+				cellT = row.createCell(col++);
+				cellT.setCellValue(truyen.getSoLuong());
+
+				cellT = row.createCell(col++);
+				cellT.setCellValue(truyen.getDonGiaBan());
+			}
+
+		}
+		file.close();
+		FileOutputStream out = new FileOutputStream(
+				new File("E:\\shopping-cart\\shopping-cart\\copy_ExcelInvoiceTemplate.xls"));
+		workbook.write(out);
+		out.close();
 	}
 
 }
