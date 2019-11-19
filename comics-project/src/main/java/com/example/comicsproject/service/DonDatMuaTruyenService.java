@@ -102,9 +102,11 @@ public class DonDatMuaTruyenService {
 		KhachHang khachHang = this.khachHangRepository.getKhachHangFromDonMua(donDatMuaTruyenId);
 		List<TruyenDonDatMuaDTO> truyenHoaDonDTOs = this.donDatMuaTruyenRepository
 				.getListTruyenHoaDonDTO(donDatMuaTruyenId);
+		Date ngayDat = this.donDatMuaTruyenRepository.getDateDonDatTruyen(donDatMuaTruyenId);
 		DonDatMuaTruyenViewDTO donDatMuaTruyenViewDTO = new DonDatMuaTruyenViewDTO();
 		donDatMuaTruyenViewDTO.setKhachHang(khachHang);
 		donDatMuaTruyenViewDTO.setTruyenHoaDonDTOs(truyenHoaDonDTOs);
+		donDatMuaTruyenViewDTO.setNgayDat(ngayDat);
 		return donDatMuaTruyenViewDTO;
 	}
 
@@ -112,52 +114,55 @@ public class DonDatMuaTruyenService {
 		this.donDatMuaTruyenRepository.updatedonDatMuaTruyen(trangThai, donDatTruyenId);
 	}
 
+	public Date getDate(int donDatTruyenId) {
+		return this.donDatMuaTruyenRepository.getDateDonDatTruyen(donDatTruyenId);
+	}
+
 	public void exportToExcel(DonDatMuaTruyenViewDTO donDatMuaTruyenViewDTO)
 			throws EncryptedDocumentException, IOException {
 		FileInputStream file = new FileInputStream(
-				new File("E:\\shopping-cart\\shopping-cart\\ExcelInvoiceTemplate.xls"));
+				new File("E:\\shopping-cart\\shopping-cart\\187A4E10.xls"));
 		HSSFWorkbook workbook = new HSSFWorkbook(file);
 		HSSFSheet sheet = workbook.getSheetAt(0);
 
 		KhachHang khachHang = donDatMuaTruyenViewDTO.getKhachHang();
-		//get cell and then set valuse for cell
-		Row rowTen = sheet.createRow(11);
-		Cell cell = rowTen.createCell(2);
+		// get cell and then set valuse for cell
+
+		Cell cell = sheet.getRow(11).getCell(2);
 		cell.setCellValue(khachHang.getTen());
-		
 
-		Row rowEmail = sheet.createRow(13);
-		cell = rowEmail.createCell(2);
+		cell = sheet.getRow(12).getCell(2);
+		cell.setCellValue(khachHang.getSoDienThoai());
+
+		cell = sheet.getRow(13).getCell(2);
 		cell.setCellValue(khachHang.getEmail());
 
-		Row rowSoDienThoai = sheet.createRow(12);
-		cell = rowSoDienThoai.createCell(2);
-		cell.setCellValue(khachHang.getEmail());
-
-		Row rowDiaChi = sheet.createRow(14);
-		cell = rowDiaChi.createCell(2);
-		cell.setCellValue(khachHang.getEmail());
+		cell = sheet.getRow(14).getCell(2);
+		cell.setCellValue(khachHang.getDiaChi());
 
 		List<TruyenDonDatMuaDTO> truyenHoaDonXuatDTOs = donDatMuaTruyenViewDTO.getTruyenHoaDonDTOs();
 		for (TruyenDonDatMuaDTO truyen : truyenHoaDonXuatDTOs) {
-			int rowNumber = 17;
-			Row row = sheet.createRow(rowNumber++);
+			int rowNumber = 18;
 			for (int i = 0; i < 3; i++) {
-				int col = 1;
-				Cell cellT = row.createCell(col++);
-				cellT.setCellValue(truyen.getTen());
 
-				cellT = row.createCell(col++);
-				cellT.setCellValue(truyen.getSoLuong());
+				cell = sheet.getRow(rowNumber).getCell(1);
+				cell.setCellValue(truyen.getTen());
 
-				cellT = row.createCell(col++);
-				cellT.setCellValue(truyen.getDonGiaBan());
+				cell = sheet.getRow(rowNumber).getCell(4);
+				cell.setCellValue(truyen.getSoLuong());
+
+				cell = sheet.getRow(rowNumber).getCell(5);
+				cell.setCellValue(truyen.getDonGiaBan());
+				rowNumber++;
 			}
-
 		}
+
+		cell = sheet.getRow(40).getCell(6);
+		cell.setCellValue(donDatMuaTruyenViewDTO.getNgayDat().toString());
+
 		file.close();
 		FileOutputStream out = new FileOutputStream(
-				new File("E:\\shopping-cart\\shopping-cart\\copy_ExcelInvoiceTemplate.xls"));
+				new File("E:\\shopping-cart\\shopping-cart\\copy_187A4E10.xls"));
 		workbook.write(out);
 		out.close();
 	}

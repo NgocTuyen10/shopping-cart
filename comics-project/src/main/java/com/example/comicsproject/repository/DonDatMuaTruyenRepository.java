@@ -42,4 +42,7 @@ public interface DonDatMuaTruyenRepository extends JpaRepository<DonDatMuaTruyen
 	@Query(value = "update don_dat_mua_truyen set trang_thai=:q1 where don_dat_mua_truyen_id=:q2", nativeQuery = true)
 	public void updatedonDatMuaTruyen(@Param("q1") int trangThai, @Param("q2") int donDatMuaTruyenId);
 
+	@Query(value = "select ngay_dat from don_dat_mua_truyen where don_dat_mua_truyen_id =:q", nativeQuery = true)
+	public Date getDateDonDatTruyen(@Param("q") int donDatMuaTruyenId);
+
 }

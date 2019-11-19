@@ -65,7 +65,7 @@ public class DonDatMuaTruyenController extends BaseController {
 	@ResponseBody
 	public ResponseEntity<Resource> exportDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId)
 			throws EncryptedDocumentException, IOException, InvalidFormatException {
-		Path path = Paths.get("E:\\shopping-cart\\shopping-cart\\ExcelInvoiceTemplate.xls");
+		Path path = Paths.get("E:\\shopping-cart\\shopping-cart\\copy_187A4E10.xls");
 		Resource resource = new UrlResource(path.toUri());
 
 		this.donDatMuaTruyenService
