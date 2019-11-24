@@ -14,11 +14,7 @@ import javax.transaction.Transactional;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,7 +94,7 @@ public class DonDatMuaTruyenService {
 		return this.donDatMuaTruyenRepository.getDonDatMuaTruyen(donDatMuaTruyenId);
 	}
 
-	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(int donDatMuaTruyenId) {
+	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(int donDatMuaTruyenId) throws ParseException {
 		KhachHang khachHang = this.khachHangRepository.getKhachHangFromDonMua(donDatMuaTruyenId);
 		List<TruyenDonDatMuaDTO> truyenHoaDonDTOs = this.donDatMuaTruyenRepository
 				.getListTruyenHoaDonDTO(donDatMuaTruyenId);
@@ -107,6 +103,7 @@ public class DonDatMuaTruyenService {
 		donDatMuaTruyenViewDTO.setKhachHang(khachHang);
 		donDatMuaTruyenViewDTO.setTruyenHoaDonDTOs(truyenHoaDonDTOs);
 		donDatMuaTruyenViewDTO.setNgayDat(ngayDat);
+		donDatMuaTruyenViewDTO.setDonDatTruyenId(donDatMuaTruyenId);
 		return donDatMuaTruyenViewDTO;
 	}
 
@@ -119,9 +116,8 @@ public class DonDatMuaTruyenService {
 	}
 
 	public void exportToExcel(DonDatMuaTruyenViewDTO donDatMuaTruyenViewDTO)
-			throws EncryptedDocumentException, IOException {
-		FileInputStream file = new FileInputStream(
-				new File("E:\\shopping-cart\\shopping-cart\\187A4E10.xls"));
+			throws EncryptedDocumentException, IOException, ParseException {
+		FileInputStream file = new FileInputStream(new File("E:\\shopping-cart\\shopping-cart\\187A4E10.xls"));
 		HSSFWorkbook workbook = new HSSFWorkbook(file);
 		HSSFSheet sheet = workbook.getSheetAt(0);
 
@@ -130,6 +126,9 @@ public class DonDatMuaTruyenService {
 
 		Cell cell = sheet.getRow(11).getCell(2);
 		cell.setCellValue(khachHang.getTen());
+
+		cell = sheet.getRow(2).getCell(6);
+		cell.setCellValue("#" + donDatMuaTruyenViewDTO.getDonDatTruyenId());
 
 		cell = sheet.getRow(12).getCell(2);
 		cell.setCellValue(khachHang.getSoDienThoai());
@@ -141,28 +140,38 @@ public class DonDatMuaTruyenService {
 		cell.setCellValue(khachHang.getDiaChi());
 
 		List<TruyenDonDatMuaDTO> truyenHoaDonXuatDTOs = donDatMuaTruyenViewDTO.getTruyenHoaDonDTOs();
+		int rowNumber = 18;
+		float tongTien = 0;
 		for (TruyenDonDatMuaDTO truyen : truyenHoaDonXuatDTOs) {
-			int rowNumber = 18;
-			for (int i = 0; i < 3; i++) {
 
-				cell = sheet.getRow(rowNumber).getCell(1);
-				cell.setCellValue(truyen.getTen());
+			cell = sheet.getRow(rowNumber).getCell(1);
+			cell.setCellValue(truyen.getTen());
 
-				cell = sheet.getRow(rowNumber).getCell(4);
-				cell.setCellValue(truyen.getSoLuong());
+			cell = sheet.getRow(rowNumber).getCell(4);
+			cell.setCellValue(truyen.getSoLuong());
 
-				cell = sheet.getRow(rowNumber).getCell(5);
-				cell.setCellValue(truyen.getDonGiaBan());
-				rowNumber++;
-			}
+			cell = sheet.getRow(rowNumber).getCell(5);
+			cell.setCellValue(truyen.getDonGiaBan());
+
+			float tongTienTruyen = truyen.getDonGiaBan() * truyen.getSoLuong();
+			cell = sheet.getRow(rowNumber).getCell(6);
+			cell.setCellValue(tongTienTruyen);
+
+			tongTien += tongTienTruyen;
+
+			rowNumber++;
 		}
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+		String ngayDat = sf.format(donDatMuaTruyenViewDTO.getNgayDat());
 
-		cell = sheet.getRow(40).getCell(6);
-		cell.setCellValue(donDatMuaTruyenViewDTO.getNgayDat().toString());
+		cell = sheet.getRow(35).getCell(6);
+		cell.setCellValue(tongTien);
+
+		cell = sheet.getRow(41).getCell(6);
+		cell.setCellValue(ngayDat);
 
 		file.close();
-		FileOutputStream out = new FileOutputStream(
-				new File("E:\\shopping-cart\\shopping-cart\\copy_187A4E10.xls"));
+		FileOutputStream out = new FileOutputStream(new File("E:\\shopping-cart\\shopping-cart\\copy_187A4E10.xls"));
 		workbook.write(out);
 		out.close();
 	}

@@ -18,7 +18,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,21 +56,22 @@ public class DonDatMuaTruyenController extends BaseController {
 
 	@GetMapping(value = "/don-dat-mua-truyen-view/{donDatMuaTruyenId}")
 	@ResponseBody
-	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId) {
+	public DonDatMuaTruyenViewDTO getDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId)
+			throws ParseException {
 		return this.donDatMuaTruyenService.getDonDatMuaTruyenView(donDatMuaTruyenId);
 	}
 
 	@GetMapping(value = "/don-dat-mua-truyen-view/export/{donDatMuaTruyenId}")
 	@ResponseBody
 	public ResponseEntity<Resource> exportDonDatMuaTruyenView(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId)
-			throws EncryptedDocumentException, IOException, InvalidFormatException {
+			throws EncryptedDocumentException, IOException, InvalidFormatException, ParseException {
 		Path path = Paths.get("E:\\shopping-cart\\shopping-cart\\copy_187A4E10.xls");
 		Resource resource = new UrlResource(path.toUri());
 
 		this.donDatMuaTruyenService
 				.exportToExcel(this.donDatMuaTruyenService.getDonDatMuaTruyenView(donDatMuaTruyenId));
-		return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/octet-stream"))
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType("application/vnd.ms-excel"))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + resource.getFilename() + "\"")
 				.body(resource);
 
 	}

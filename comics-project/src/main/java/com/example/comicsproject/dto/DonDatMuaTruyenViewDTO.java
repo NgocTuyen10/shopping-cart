@@ -10,6 +10,7 @@ import lombok.Data;
 
 @Data
 public class DonDatMuaTruyenViewDTO {
+	private int donDatTruyenId;
 	private KhachHang khachHang;
 	private List<TruyenDonDatMuaDTO> truyenHoaDonDTOs;
 	@JsonFormat(pattern = "yyyy-MM-dd")
