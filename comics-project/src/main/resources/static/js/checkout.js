@@ -134,7 +134,7 @@ $(document)
 								displayCart();
 							},
 							error: function (xhr, resp, text) {
-
+								
 							}
 						});
 					})
