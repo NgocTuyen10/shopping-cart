@@ -1,41 +1,37 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>Comics store</title>
+	<title>Comics store</title>
 
 
-<!-- Google font -->
-<link href="https://fonts.googleapis.com/css?family=Hind:400,700"
-	rel="stylesheet">
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Hind:400,700" rel="stylesheet">
 
-<!-- Bootstrap -->
-<link type="text/css" rel="stylesheet"
-	th:href="@{/css/bootstrap.min.css}" />
+	<!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 
-<!-- Slick -->
-<link type="text/css" rel="stylesheet" th:href="@{/css/slick.css}" />
-<link type="text/css" rel="stylesheet" th:href="@{/css/slick-theme.css}" />
+	<!-- Slick -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/slick.css}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/slick-theme.css}" />
 
-<!-- nouislider -->
-<link type="text/css" rel="stylesheet"
-	th:href="@{/css/nouislider.min.css}" />
+	<!-- nouislider -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/nouislider.min.css}" />
 
-<!-- Font Awesome Icon -->
-<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
+	<!-- Font Awesome Icon -->
+	<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}">
 
-<!-- Custom stlylesheet -->
-<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
-<link type="text/css" rel="stylesheet" th:href="@{/css/plugin/jquery.toast.css}" />
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+	<link type="text/css" rel="stylesheet" th:href="@{/css/plugin/jquery.toast.css}" />
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 
 </head>
 
@@ -46,7 +42,7 @@
 	<div id="breadcrumb">
 		<div class="container">
 			<ul class="breadcrumb">
-				<li><a href="/comics">Home</a></li>
+				<li><a href="/comics">Trang chủ</a></li>
 				<li><a href="#">Products</a></li>
 				<li class="active">Product Name Goes Here</li>
 			</ul>
@@ -91,17 +87,13 @@
 							</h3>
 							<div>
 								<div class="product-rating">
-									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-										class="fa fa-star-o empty"></i>
+									<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+										class="fa fa-star"></i> <i class="fa fa-star-o empty"></i>
 								</div>
 								<a href="#">3 Review(s) / Add Review</a>
 							</div>
-							<p th:text="${truyen.soLuongCon}> 0 ? ${truyen.soLuongCon}">
-								<strong th:if="${truyen.soLuongCon > 0}">Còn hàng:</strong>
-							</p>
 							<p>
-								<strong>Brand:</strong> E-SHOP
+								<strong>Cửa hàng:</strong> E-SHOP
 							</p>
 							<p th:text="${truyen.ghiChu}"></p>
 							<div class="product-options">
@@ -113,8 +105,7 @@
 								</ul>
 								<ul class="color-option">
 									<li><span class="text-uppercase">Color:</span></li>
-									<li class="active"><a href="#"
-										style="background-color: #475984;"></a></li>
+									<li class="active"><a href="#" style="background-color: #475984;"></a></li>
 									<li><a href="#" style="background-color: #8A2454;"></a></li>
 									<li><a href="#" style="background-color: #BF6989;"></a></li>
 									<li><a href="#" style="background-color: #9A54D8;"></a></li>
@@ -123,12 +114,11 @@
 
 							<div class="product-btns">
 								<div class="qty-input">
-									<span class="text-uppercase">QTY: </span> <input class="input"
-										type="number">
+									<span class="text-uppercase">QTY: </span> <input class="input" type="number">
 								</div>
 								<button class="primary-btn add-to-cart"
-								data-th-attr="data-truyenid=${truyen.truyenId},data-name=${truyen.ten},data-price=${truyen.donGiaBan}">
-									 Add to Cart
+									data-th-attr="data-truyenid=${truyen.truyenId},data-name=${truyen.ten},data-price=${truyen.donGiaBan}">
+									Add to Cart
 								</button>
 								<div class="pull-right">
 									<button class="main-btn icon-btn">
@@ -147,8 +137,8 @@
 					<div class="col-md-12">
 						<div class="product-tab">
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-								<li><a data-toggle="tab" href="#tab1">Details</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab1">Mô tả</a></li>
+								<li><a data-toggle="tab" href="#tab1">Chi tiết</a></li>
 							</ul>
 							<div class="tab-content">
 								<div id="tab1" class="tab-pane fade in active">
@@ -184,7 +174,7 @@
 				<!-- section title -->
 				<div class="col-md-12">
 					<div class="section-title">
-						<h2 class="title">Picked For You</h2>
+						<h2 class="title">Truyện liên quan</h2>
 					</div>
 				</div>
 				<!-- section title -->
@@ -201,9 +191,8 @@
 						<div class="product-body">
 							<h3 class="product-price">$32.50</h3>
 							<div class="product-rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star-o empty"></i>
+								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
+									class="fa fa-star"></i> <i class="fa fa-star-o empty"></i>
 							</div>
 							<h2 class="product-name">
 								<a href="#">Product Name Goes Here</a>
@@ -232,7 +221,7 @@
 
 
 	<div th:insert="common/footer.html :: footer"></div>
-	
+
 	<!-- jQuery Plugins -->
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>

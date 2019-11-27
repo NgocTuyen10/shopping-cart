@@ -14,10 +14,4 @@ $(document).ready(function () {
             reader.readAsDataURL(this.files[0]);
         }
     });
-
-    
-
-    function imageIsLoaded(e) {
-        $('#myImg').attr('src', e.target.result);
-    };
 });

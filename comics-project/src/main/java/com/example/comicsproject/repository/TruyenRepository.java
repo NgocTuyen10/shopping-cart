@@ -40,7 +40,7 @@ public interface TruyenRepository extends JpaRepository<Truyen, Integer> {
 	@Query(value = "select * from truyen order by truyen.so_luong_ban desc limit 4;", nativeQuery = true)
 	public List<Truyen> getTopSaleProduct();
 
-	@Query(value = "select * from truyen order by truyen.ngay_nhap desc limit 4;", nativeQuery = true)
+	@Query(value = "select * from truyen where truyen_id in (select truyen_id from cuon_truyen order by cuon_truyen.ngay_nhap desc limit 4);", nativeQuery = true)
 	public List<Truyen> getTopLastProduct();
 
 	@Modifying
