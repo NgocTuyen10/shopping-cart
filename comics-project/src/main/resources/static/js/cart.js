@@ -1,4 +1,4 @@
-// ************************************************
+d// ************************************************
 // Shopping Cart API
 // ************************************************
 
@@ -106,7 +106,8 @@ var shoppingCart = (function () {
 			totalCart += cart[item].price * cart[item].count;
 		}
 		// return Number(totalCart.toFixed(2));
-		return Number(totalCart.toFixed(1)).toLocaleString() + " đ";
+		//return Number(totalCart.toFixed(1)).toLocaleString() + " đ";
+		return totalCart;
 	}
 
 	// List cart
@@ -200,7 +201,8 @@ function displayCart() {
 			+ "'><i class='fa fa-close'></i></button></td>" + "</tr>";
 	}
 	$('.show-cart').html(output);
-	$('.total-cart').html(shoppingCart.totalCart());
+	//$('.total-cart').html(shoppingCart.totalCart());
+	$('.total-cart').html(Number(shoppingCart.totalCart().toFixed(1)).toLocaleString() + " đ");
 	$('.total-count').html(shoppingCart.totalCount());
 }
 
