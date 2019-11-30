@@ -81,7 +81,7 @@ public class TruyenService {
 		truyen.setDenTrang(truyenCRUDDTO.isDenTrang());
 		truyen.setNhaXuatBan(new NhaXuatBan(truyenCRUDDTO.getNhaXuatBan().getNhaXuatBanId()));
 		truyen.setTrangThai(true);
-		truyen.setDauTruyen(new DauTruyen(truyenCRUDDTO.getDauTruyen().getDauTruyenId()));
+		truyen.setDauTruyenId(truyenCRUDDTO.getDauTruyenId());
 
 		this.truyenRepository.save(truyen);
 
@@ -92,6 +92,30 @@ public class TruyenService {
 			this.truyenRepository.addToTruyenTacGia(truyenId, tacGia.getTacGiaId());
 		}
 
+	}
+
+	@Transactional
+	public void editTruyen(int truyenId, TruyenCRUDDTO truyenCRUDDTO) {
+
+		Truyen truyen = new Truyen();
+		truyen.setTen(truyenCRUDDTO.getTen());
+		truyen.setTruyenId(truyenId);
+		truyen.setMaTruyen(truyenCRUDDTO.getMaTruyen());
+		truyen.setDonGiaBan(truyenCRUDDTO.getDonGiaBan());
+		truyen.setTheLoai(new TheLoai(truyenCRUDDTO.getTheLoai().getTheLoaiId()));
+		truyen.setDenTrang(truyenCRUDDTO.isDenTrang());
+		truyen.setNhaXuatBan(new NhaXuatBan(truyenCRUDDTO.getNhaXuatBan().getNhaXuatBanId()));
+		truyen.setTrangThai(true);
+		truyen.setDauTruyenId(truyenCRUDDTO.getDauTruyenId());
+
+		this.truyenRepository.save(truyen);
+
+		for (DichGiaCreateDTO dichGia : truyenCRUDDTO.getDichGias()) {
+			this.truyenRepository.addToTruyenDichGia(truyenId, dichGia.getDichGiaId());
+		}
+		for (TacGiaCreateDTO tacGia : truyenCRUDDTO.getTacGias()) {
+			this.truyenRepository.addToTruyenTacGia(truyenId, tacGia.getTacGiaId());
+		}
 	}
 
 	public Truyen getTruyenById(int truyenId) {

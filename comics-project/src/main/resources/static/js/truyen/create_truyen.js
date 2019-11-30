@@ -59,10 +59,19 @@ $(document).ready(function () {
   $(function () {
     var url = "/comics/management/nha-xuat-ban";
     $.getJSON(url, function (data) {
-      console.log("AAAA");
       data.forEach(function (f) {
         var tblRow = "<option value=\"" + f.nhaXuatBanId + "\">" + f.ten + "</option>";
         $(tblRow).appendTo("#nha-xuat-ban select");
+      });
+    });
+  });
+
+  $(function () {
+    var url = "/comics/management/dau-truyen";
+    $.getJSON(url, function (data) {
+      data.forEach(function (f) {
+        var tblRow = "<option value=\"" + f.dauTruyenId + "\">" + f.tuaTruyen + "</option>";
+        $(tblRow).appendTo("#dau-truyen select");
       });
     });
   });
@@ -107,39 +116,6 @@ $(document).ready(function () {
     },
     fields: {
       donGiaBan: {
-        validators: {
-          regexp: {
-            regexp: /^[0-9]+$/i,
-            message: 'Trường này chỉ gồm chữ số.'
-          },
-          notEmpty: {
-            message: 'Trường này bắt buộc.'
-          }
-        }
-      },
-      donGiaNhap: {
-        validators: {
-          regexp: {
-            regexp: /^[0-9]+$/i,
-            message: 'Trường này chỉ gồm chữ số.'
-          },
-          notEmpty: {
-            message: 'Trường này bắt buộc.'
-          }
-        }
-      },
-      soLuongCon: {
-        validators: {
-          regexp: {
-            regexp: /^[0-9]+$/i,
-            message: 'Trường này chỉ gồm chữ số.'
-          },
-          notEmpty: {
-            message: 'Trường này bắt buộc.'
-          }
-        }
-      },
-      soLuongBan: {
         validators: {
           regexp: {
             regexp: /^[0-9]+$/i,
@@ -212,6 +188,13 @@ $(document).ready(function () {
             message: 'Trường này bắt buộc.'
           }
         }
+      },
+      dauTruyenId: {
+        validators: {
+          notEmpty: {
+            message: 'Trường này bắt buộc.'
+          }
+        }
       }
     }
   })
@@ -236,9 +219,9 @@ $(document).ready(function () {
       //   "total": total
       // }
 
-  
+
       var dichGias = [];
-      
+
       $("#select-dich-gia :selected").each(function () {
         var dichGiaId = Number($(this).val());
         var dichGia = {
@@ -246,7 +229,7 @@ $(document).ready(function () {
         };
         dichGias.push(dichGia);
       });
-      
+
       var tacGias = [];
       $("#select-tac-gia :selected").each(function () {
         var tacGiaId = Number($(this).val());

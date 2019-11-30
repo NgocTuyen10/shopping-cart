@@ -1,60 +1,85 @@
 <div class="container text-center">
-    <h3>Edit Employee</h3>
+    <h3>Cập nhật</h3>
     <hr>
     <form id="form" class="form-horizontal">
         <div class="form-group">
-            <label class="control-label col-md-3">Họ tên</label>
+            <label class="control-label col-md-3">Tên truyện</label>
             <div class="col-md-7">
                 <input type="text" maxlength="1000" class="form-control" name="ten" value="" />
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3">Số điện thoại</label>
+            <label class="control-label col-md-3">Mã truyện</label>
             <div class="col-md-7">
-                <input type="text" maxlength="10" class="form-control" name="soDienThoai" id="soDienThoai" value="" />
+                <input type="text" maxlength="10" class="form-control" name="maTruyen" id="maTruyen" value="" />
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-md-3">Ngày sinh</label>
+            <label class="control-label col-md-3">Đơn giá bán</label>
             <div class="col-md-7">
-                <input type="date" class="form-control" name="ngaySinh" value="" />
+                <input type="text" maxlength="1000" class="form-control" name="donGiaBan" id="donGiaBan" value="" />
             </div>
         </div>
+
         <div class="form-group">
-            <label class="control-label col-md-3">Lương tháng</label>
-            <div class="col-md-7">
-                <input type="text" maxlength="1000" class="form-control" name="luongThang" id="lÆ°Æ¡ng" value="" />
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="control-label col-md-3">Giới tính</label>
-            <div class="col-md-7" id="gioi-tinh">
-                <select class="form-control input-sm" name="gioiTinh">
-                    <option value="">Chọn ...</option>
-                    <option value="1">Nam</option>
-                    <option value="0">Nữ¯</option>
-                </select>
-            </div>
-        </div>
-       
-       <div class="form-group">
-            <label class="control-label col-md-3">Bộ phận</label>
-            <div class="col-md-7"  id="bo-phan">
-                <select class="form-control input-sm" name="boPhan">
+            <label class="control-label col-md-3">Thể loại</label>
+            <div class="col-md-7" id="the-loai">
+                <select class="form-control input-sm" name="theLoai">
                     <option value="">Chọn ...</option>
                 </select>
             </div>
         </div>
-        
+        <div class="form-group">
+            <label class="control-label col-md-3">Loại màu</label>
+            <div class="col-md-7" id="den-trang">
+                <select class="form-control input-sm" name="denTrang">
+                    <option value="">Chọn ...</option>
+                    <option value="true">Truyện màu</option>
+                    <option value="false">Truyện đen trắng</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Tác giả</label>
+            <div class="col-md-7" id="tac-gia">
+                <select class="form-control input-sm" name="tacGias" id="select-tac-gia" multiple="multiple">
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Dịch giả</label>
+            <div class="col-md-7" id="dich-gia">
+                <select class="form-control input-sm" name="dichGias" id="select-dich-gia" multiple="multiple">
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Nhà xuất bản</label>
+            <div class="col-md-7" id="nha-xuat-ban">
+                <select class="form-control input-sm" name="nhaXuatBan">
+                    <option value="">Chọn ...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-3">Đầu truyện</label>
+            <div class="col-md-7" id="dau-truyen">
+                <select class="form-control input-sm" name="dauTruyenId">
+                    <option value="">Chọn ...</option>
+                </select>
+            </div>
+        </div>
+
         <div>
-            <input id="submit" type="submit" class="btn btn-primary" value="Save" disabled />
-            <input id="cancel" type="button" class="btn btn-default" value="Cancel" />
+            <input id="submit" type="submit" class="btn btn-primary" value="Đồng ý" disabled />
+            <input id="cancel" type="button" class="btn btn-default" value="Hủy bỏ" />
         </div>
     </form>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="edit-employee-success" role="dialog">
+<div class="modal fade" id="edit-truyen-success" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -66,13 +91,14 @@
                 <p>Thực hiện thành công.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalSuccess()">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                    onclick="closeModalSuccess()">OK</button>
             </div>
         </div>
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="edit-employee-error" role="dialog">
+<div class="modal fade" id="edit-truyen-error" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -84,9 +110,10 @@
                 <p>Đã xảy ra lỗi.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="closeModalError()">OK</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                    onclick="closeModalError()">OK</button>
             </div>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/js/hr/edit-employee.js"></script>
+<script type="text/javascript" src="/js/truyen/edit_truyen.js"></script>

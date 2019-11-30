@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.comicsproject.dto.DichGiaDTO;
 import com.example.comicsproject.dto.TacGiaDTO;
 import com.example.comicsproject.dto.TruyenCRUDDTO;
 import com.example.comicsproject.entity.ListObject;
@@ -93,6 +94,13 @@ public class TruyenController extends BaseController {
 		return "product-page";
 	}
 
+	// Get truyen by id
+	@GetMapping("/truyens/{truyenId}")
+	@ResponseBody
+	public Truyen getTruyenDetailById(@PathVariable("truyenId") int truyenId) {
+		return this.truyenService.getTruyenById(truyenId);
+	}
+
 	// Get truyen by id and json data type
 	@GetMapping("/truyen-hoa-don-xuat/{truyenId}")
 	@ResponseBody
@@ -124,6 +132,12 @@ public class TruyenController extends BaseController {
 	public ResponseEntity<?> create(@RequestBody TruyenCRUDDTO truyenCRUDDTO) {
 		this.truyenService.createTruyen(truyenCRUDDTO);
 		return new ResponseEntity<>(truyenCRUDDTO, HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/truyen/edit/{truyenId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> update(@PathVariable("id") int truyenId, @RequestBody TruyenCRUDDTO truyenCRUDDTO) {
+		this.truyenService.editTruyen(truyenId, truyenCRUDDTO);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

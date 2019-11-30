@@ -45,10 +45,10 @@ $(document).ready(function () {
     openPage('truyen/edit_truyen.html');
     var id = idList[0];
     // Load employee information
-    var projectUrl = "/comics/truyen/" + id;
+    var projectUrl = "/comics/truyens/" + id;
     $.getJSON(projectUrl, function (data) {
-      window.nhanVien = data;
-      console.log(window.nhanVien);
+      window.truyen = data;
+      console.log(data);
     });
   });
   $("#delete").on('click', function () {
