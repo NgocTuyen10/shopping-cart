@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class DonDatMuaTruyenController extends BaseController {
 	private DonDatMuaTruyenService donDatMuaTruyenService;
 
 	@RequestMapping(value = "/don-dat-mua-truyen", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> createCart(@RequestBody(required = true) DonDatMuaTruyenDTO donDatMuaTruyenDTO)
 			throws ParseException {
 		this.donDatMuaTruyenService.AddCartDataToDatabase(donDatMuaTruyenDTO);
@@ -44,12 +46,14 @@ public class DonDatMuaTruyenController extends BaseController {
 
 	@GetMapping(value = "/don-dat-mua-truyen")
 	@ResponseBody
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public List<DonDatMuaTruyen> findAll() {
 		return this.donDatMuaTruyenService.findAll();
 	}
 
 	@GetMapping(value = "/don-dat-mua-truyen/{donDatMuaTruyenId}")
 	@ResponseBody
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public DonDatMuaTruyen getDonDatMuaTruyenViewById(@PathVariable("donDatMuaTruyenId") int donDatMuaTruyenId) {
 		return this.donDatMuaTruyenService.getDonDatMuaTruyen(donDatMuaTruyenId);
 	}

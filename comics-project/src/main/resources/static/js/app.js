@@ -4,13 +4,13 @@ function openPage(pageName) {
 
 function downloadFileExcel(url) {
 	$.ajax({
-		url : url,
-		type : 'GET',
-		contentType : 'application/octet-stream',
-		xhrFields : {
-			responseType : 'blob'
+		url: url,
+		type: 'GET',
+		contentType: 'application/octet-stream',
+		xhrFields: {
+			responseType: 'blob'
 		},
-		success : function(response, status, xhr) {
+		success: function (response, status, xhr) {
 			var filename = "";
 			var disposition = xhr.getResponseHeader('Content-Disposition');
 			console.log(disposition);
@@ -22,8 +22,8 @@ function downloadFileExcel(url) {
 			}
 			var linkelem = document.createElement('a');
 			try {
-				var blob = new Blob([ response ], {
-					type : 'application/octet-stream'
+				var blob = new Blob([response], {
+					type: 'application/octet-stream'
 				});
 				if (typeof window.navigator.msSaveBlob !== 'undefined') {
 					// IE workaround for "HTML7007: One or more blob URLs were
@@ -61,13 +61,13 @@ function downloadFileExcel(url) {
 
 function openFilePDF(url) {
 	$.ajax({
-		url : url,
-		type : 'GET',
-		contentType : 'application/pdf',
-		xhrFields : {
-			responseType : 'blob'
+		url: url,
+		type: 'GET',
+		contentType: 'application/pdf',
+		xhrFields: {
+			responseType: 'blob'
 		},
-		success : function(response, status, xhr) {
+		success: function (response, status, xhr) {
 			var filename = "arrangement_resource";
 			var disposition = xhr.getResponseHeader('Content-Disposition');
 			console.log(disposition);
@@ -79,8 +79,8 @@ function openFilePDF(url) {
 			}
 			var linkelem = document.createElement('a');
 			try {
-				var blob = new Blob([ response ], {
-					type : 'application/pdf'
+				var blob = new Blob([response], {
+					type: 'application/pdf'
 				});
 				if (typeof window.navigator.msSaveBlob !== 'undefined') {
 					// IE workaround for "HTML7007: One or more blob URLs were
@@ -117,25 +117,25 @@ function openFilePDF(url) {
 
 function postJson(url, postData, callBackFunction) {
 	$.ajax({
-		type : 'POST',
-		url : url,
-		data : JSON.stringify(postData),
-		success : callBackFunction,
-		contentType : "application/json",
-		dataType : 'json'
+		type: 'POST',
+		url: url,
+		data: JSON.stringify(postData),
+		success: callBackFunction,
+		contentType: "application/json",
+		dataType: 'json'
 	});
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
 	// 1. check local storage storage have token have token? if not load login
 	// 2. if have token -> redirect to dashboard
 	// Filter client side
-//	var token = window.localStorage.getItem('token');
-//	if (token) {
-//		openPage("dashboard.html");
-//	} else {
-//		$("body").load("views/auth/login.html")
-//	}
+	//	var token = window.localStorage.getItem('token');
+	//	if (token) {
+	//		openPage("dashboard.html");
+	//	} else {
+	//		$("body").load("views/auth/login.html")
+	//	}
 
 	/*
 	 * $.ajaxSetup({ // Handle authorization global beforeSend : function(xhr) {
@@ -145,4 +145,27 @@ $(document).ready(function() {
 	 * $("body").load("views/auth/login.html") } else if (status == 401)
 	 * openPage("dashboard.html"); } });
 	 */
+	var token = window.localStorage.getItem('token');
+	if (token) {
+		// openPage("truyen/truyen.html");
+		$("#content").load("/views/truyen/truyen.html");
+	} else {
+		$("body").load("/views/auth/login.html")
+	}
+
+	$.ajaxSetup({
+		// Handle authorization global
+		beforeSend: function (xhr) {
+			xhr.setRequestHeader('X-Auth-Token', token);
+		},
+		// Handle error global
+		complete: function (xhr) {
+			var status = xhr.status;
+			if (status == 401) {
+				xhr.setRequestHeader("X-Auth-Token", "");
+				$("body").load("/views/auth/login.html")
+			} else if (status == 403)
+				openPage("views/auth/login.html");
+		}
+	});
 });

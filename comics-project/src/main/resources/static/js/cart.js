@@ -212,8 +212,21 @@ $(document).on('click', '.delete-item', function (e) {
 	/* $('.show-cart').on("click", ".delete-item", function(event) { */
 	var truyenid = $(this).data('name')
 	shoppingCart.removeItemFromCartAll(truyenid);
+	showCheckoutButton();
 	displayCart();
 })
+function showCheckoutButton() {
+	var cartArray = [];
+	cartArray = JSON.parse(localStorage.getItem('shoppingCart'));
+	if (cartArray.length == 0) {
+		$('#submit').attr("disabled", true);
+		$('#ten-kh').attr("disabled", true);
+		$('#sodt-kh').attr("disabled", true);
+		$('#email-kh').attr("disabled", true);
+		$('#diachi-kh').attr("disabled", true);
+		$('#date').attr("disabled", true);
+	}
+}
 
 /*// -1
 $('.show-cart').on("click", ".minus-item", function(event) {

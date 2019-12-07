@@ -69,6 +69,7 @@ public class TruyenController extends BaseController {
 	// Get all truyen but not return view
 	@GetMapping("/truyen")
 	@ResponseBody
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public List<Truyen> getAll() {
 		return this.truyenService.findAll();
 	}

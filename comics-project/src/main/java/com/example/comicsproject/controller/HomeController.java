@@ -52,7 +52,7 @@ public class HomeController extends BaseController {
 	}
 
 	@GetMapping(value = "/management")
-	public String showManagementPage(Model model) {
+	public String showManagementPage() {
 		return "management";
 	}
 

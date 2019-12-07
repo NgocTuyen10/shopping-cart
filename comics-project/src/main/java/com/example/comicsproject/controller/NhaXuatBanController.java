@@ -25,16 +25,20 @@ public class NhaXuatBanController extends BaseManagementController {
 	private NhaXuatBanService nhaXuatBanService;
 
 	@GetMapping(value = "nha-xuat-ban")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> getAllDTO() {
 		return ResponseEntity.ok(this.nhaXuatBanService.getAllDTO());
 	}
+
 	@RequestMapping(value = "/nha-xuat-ban", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> create(@RequestBody NhaXuatBanDTO nhaXuatBanDTO) {
 		this.nhaXuatBanService.create(nhaXuatBanDTO);
 		return new ResponseEntity<>(nhaXuatBanDTO, HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/list-nha-xuat-ban")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> getAll() {
 		return ResponseEntity.ok(this.nhaXuatBanService.findAll());
 	}
@@ -58,6 +62,5 @@ public class NhaXuatBanController extends BaseManagementController {
 		NhaXuatBan nhaXuatBan = this.nhaXuatBanService.findById(nhaXuatBanId);
 		return new ResponseEntity<>(nhaXuatBan, HttpStatus.OK);
 	}
-	
 
 }

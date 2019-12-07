@@ -73,7 +73,7 @@
 	<div class="border-type-4" style=""></div>
 	<div class="content" id="content">
 		<script>
-			$("#content").load("/views/common/dashboard.html");
+			//$("#content").load("/views/truyen/truyen.html");
 		</script>
 	</div>
 	<!-- <footer id="footer" class="footer">
@@ -92,8 +92,8 @@
 					<h4 class="modal-title">Tô màu truyện</h4>
 				</div>
 				<div class="modal-body" style="min-height: 330px;">
-					<div class="upload-btn-wrapper">
-						<div class="row">
+					<!-- <div class="upload-btn-wrapper"> -->
+					<!-- <div class="row">
 							<div class="col-md-6 col-sm-6">
 								<button class="btn-upload">Chọn ảnh</button>
 								<input type="file" name="myfile" />
@@ -101,8 +101,10 @@
 							<div class="col-md-6 col-sm-6">
 								<label id="file-name" style="margin-top: 25px;"></label>
 							</div>
-						</div>
-					</div>
+						</div> -->
+					<input type="file" class="form-control" id="file-name" multiple="multiple" required="required"
+						name="myfile" accept="image/*" />
+					<!-- </div> -->
 					</br>
 					<div>
 						<img id="myImg" src="#" alt=""

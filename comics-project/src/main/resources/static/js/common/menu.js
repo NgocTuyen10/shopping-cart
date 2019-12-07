@@ -1,7 +1,8 @@
 function logout() {
 	localStorage.clear();
 	location.reload();
-	$("body").load("/views/auth/login.html");
+	//$("body").load("/views/auth/login.html");
+	window.location= "/comics/management-login"
 }
 
 $(document).ready(function() {

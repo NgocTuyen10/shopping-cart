@@ -16,7 +16,19 @@ $(document)
 			$("#form").submit(function (event) {
 				return false;
 			});
-
+			showCheckoutButton();
+			function showCheckoutButton() {
+				var cartArray = [];
+				cartArray = JSON.parse(localStorage.getItem('shoppingCart'));
+				if (cartArray.length == 0) {
+					$('#submit').attr("disabled", true);
+					$('#ten-kh').attr("disabled", true);
+					$('#sodt-kh').attr("disabled", true);
+					$('#email-kh').attr("disabled", true);
+					$('#diachi-kh').attr("disabled", true);
+					$('#date').attr("disabled", true);
+				}
+			}
 			$('#form')
 				.bootstrapValidator(
 					{
@@ -134,7 +146,7 @@ $(document)
 								displayCart();
 							},
 							error: function (xhr, resp, text) {
-								
+
 							}
 						});
 					})

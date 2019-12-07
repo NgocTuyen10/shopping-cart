@@ -100,7 +100,7 @@ $(document)
                             + "<div class='product-thumb'>"
                             + "<button class='show-detail main-btn quick-view' value="
                             + items[i].maTruyen
-                            + "><i class='fa fa-search-plus'></i>Quick view</button>"
+                            + "><i class='fa fa-search-plus'></i>CHI TIẾT</button>"
 
 							/*
 							 * + "<a class='main-btn
@@ -108,7 +108,7 @@ $(document)
 							 * th:href='@{/comics/truyen(maTruyen =" +
 							 * items[i].maTruyen + ")}'>"
 							 */
-                            + "<i class='fa fa-search-plus'></i>Quick view"
+                            + "<i class='fa fa-search-plus'></i>CHI TIẾT"
                             + "</a>"
                             + "<img "
                             + "src="
@@ -132,7 +132,7 @@ $(document)
                             + "<button class='btn primary-btn add-to-cart'"
                             + "data-truyenid='" + items[i].truyenId + "' data-name='" + items[i].ten + "'"
                             + "data-price='" + items[i].donGiaBan + "'>"
-                            + "Add to Cart</button>"
+                            + "THÊM VÀO GIỎ</button>"
                             + "</div> </div>	</div>	</div>");
                 }
                 $('#page-index-search').append(products);
@@ -154,7 +154,7 @@ $(document)
                 clearSearchingPage();
                 initSearchingPage(seachingText, num - 1, size);
             });
-            
+
             $(document).on('click', '.add-to-cart', function (e) {
                 event.preventDefault();
                 var truyenid = $(this).data('truyenid');

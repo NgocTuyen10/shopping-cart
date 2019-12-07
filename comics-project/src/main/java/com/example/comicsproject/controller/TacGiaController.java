@@ -25,22 +25,26 @@ public class TacGiaController extends BaseManagementController {
 	private TacGiaService tacGiaService;
 
 	@GetMapping(value = "/tac-gia")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> getAllDTO() {
 		return ResponseEntity.ok(this.tacGiaService.getListDTO());
 	}
 
 	@RequestMapping(value = "/tac-gia", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> create(@RequestBody TacGiaDTO tacGiaDTO) {
 		this.tacGiaService.create(tacGiaDTO);
 		return new ResponseEntity<>(tacGiaDTO, HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/list-tac-gia")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> getAll() {
 		return ResponseEntity.ok(this.tacGiaService.findAll());
 	}
 
 	@RequestMapping(value = "/tac-gia/edit/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody TacGiaDTO tacGiaDTO) {
 		tacGiaService.update(id, tacGiaDTO);
 		return new ResponseEntity<>(HttpStatus.OK);

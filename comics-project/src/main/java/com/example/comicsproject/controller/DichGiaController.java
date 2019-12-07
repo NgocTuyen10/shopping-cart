@@ -25,22 +25,26 @@ public class DichGiaController extends BaseManagementController {
 	private DichGiaService dichGiaService;
 
 	@GetMapping(value = "dich-gia")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> getAllDTO() {
 		return ResponseEntity.ok(this.dichGiaService.getAllDTO());
 	}
 
 	@RequestMapping(value = "/dich-gia", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> create(@RequestBody DichGiaDTO dichGiaDTO) {
 		this.dichGiaService.create(dichGiaDTO);
 		return new ResponseEntity<>(dichGiaDTO, HttpStatus.CREATED);
 	}
 
 	@GetMapping(value = "/list-dich-gia")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> getAll() {
 		return ResponseEntity.ok(this.dichGiaService.findAll());
 	}
 
 	@RequestMapping(value = "/dich-gia/edit/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody DichGiaDTO dichGiaDTO) {
 		dichGiaService.update(id, dichGiaDTO);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -55,6 +59,7 @@ public class DichGiaController extends BaseManagementController {
 	}
 
 	@RequestMapping(value = "/dich-gia/{dichGiaId}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> findById(@PathVariable("dichGiaId") int dichGiaId) {
 		DichGia dichGia = this.dichGiaService.findById(dichGiaId);
 		return new ResponseEntity<>(dichGia, HttpStatus.OK);

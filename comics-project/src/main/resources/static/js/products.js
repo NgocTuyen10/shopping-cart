@@ -80,7 +80,7 @@ $(document)
 							+ "<div class='product-thumb'>"
 							+ "<button class='show-detail main-btn quick-view' value="
 							+ items[i].maTruyen
-							+ "><i class='fa fa-search-plus'></i>Quick view</button>"
+							+ "><i class='fa fa-search-plus'></i>CHI TIẾT</button>"
 
 							/*
 							 * + "<a class='main-btn

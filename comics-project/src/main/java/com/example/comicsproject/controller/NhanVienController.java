@@ -24,17 +24,20 @@ public class NhanVienController extends BaseManagementController {
 	private NhanVienService nhanVienService;
 
 	@GetMapping(value = "/nhanvien")
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> findAll() {
 		return ResponseEntity.ok(nhanVienService.findAll());
 	}
 
 	@RequestMapping(value = "/nhanvien", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> create(@RequestBody NhanVien nhanVien) {
 		this.nhanVienService.create(nhanVien);
 		return new ResponseEntity<>(nhanVien, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/nhanvien/edit/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody NhanVien nhanVien) {
 		nhanVienService.update(id, nhanVien);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -49,6 +52,7 @@ public class NhanVienController extends BaseManagementController {
 	}
 
 	@RequestMapping(value = "/nhanvien/{nhanVienId}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> findById(@PathVariable("nhanVienId") int nhanVienId) {
 		NhanVien nhanVien = this.nhanVienService.findByID(nhanVienId);
 		return new ResponseEntity<>(nhanVien, HttpStatus.OK);
