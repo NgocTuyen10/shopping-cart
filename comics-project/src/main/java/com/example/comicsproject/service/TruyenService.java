@@ -49,6 +49,10 @@ public class TruyenService {
 		return truyenRepository.findByMaTheLoaiPaging(maTheLoai, PageRequest.of(page, size));
 	}
 
+	public Page<Truyen> search(String text, int page, int size) {
+		return truyenRepository.search(text, PageRequest.of(page, size));
+	}
+
 	public List<Truyen> getTopSaleProduct() {
 		return truyenRepository.getTopSaleProduct();
 	}

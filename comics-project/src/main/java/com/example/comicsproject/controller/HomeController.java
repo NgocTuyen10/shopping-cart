@@ -55,4 +55,11 @@ public class HomeController extends BaseController {
 	public String showManagementPage(Model model) {
 		return "management";
 	}
+
+	// Result of searching
+	@GetMapping(value = "/products-search")
+	public String redirectToResultOfSearching(Model model) {
+		model.addAttribute("theloais", theLoaiService.findAll());
+		return "products-search";
+	}
 }

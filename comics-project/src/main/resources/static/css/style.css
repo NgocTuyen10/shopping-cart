@@ -60,7 +60,7 @@ Table OF Contents
 	Typography
 \*----------------------------*/
 body {
-	font-family: 'Hind', sans-serif;
+	/* font-family: 'Hind', sans-serif; */
 	color: #4A4E5A;
 	overflow-x: hidden;
 }

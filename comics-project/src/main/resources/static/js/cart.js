@@ -264,3 +264,4 @@ $('.add-to-cart').click(function (event) {
 	displayCart();
 });
 
+

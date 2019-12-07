@@ -108,11 +108,25 @@ public class TruyenController extends BaseController {
 		return this.truyenService.getTruyenById(truyenId);
 	}
 
+	// Paging corresponding wit maTheLoai
 	@RequestMapping(value = "/truyen/paging", params = { "maTheLoai", "page", "size" }, method = RequestMethod.GET)
 	@ResponseBody
 	public Page<Truyen> findPaginated(@RequestParam("maTheLoai") String maTheLoai, @RequestParam("page") int page,
 			@RequestParam("size") int size) throws Exception {
 		Page<Truyen> resultPage = truyenService.findPaginatedByMaTheLoai(maTheLoai, page, size);
+		if (page > resultPage.getTotalPages()) {
+			System.out.println("Page is not existed");
+		}
+
+		return resultPage;
+	}
+
+	// Paging when seaching
+	@RequestMapping(value = "/truyen/searching", params = { "text", "page", "size" }, method = RequestMethod.GET)
+	@ResponseBody
+	public Page<Truyen> search(@RequestParam("text") String text, @RequestParam("page") int page,
+			@RequestParam("size") int size) throws Exception {
+		Page<Truyen> resultPage = truyenService.search(text, page, size);
 		if (page > resultPage.getTotalPages()) {
 			System.out.println("Page is not existed");
 		}
