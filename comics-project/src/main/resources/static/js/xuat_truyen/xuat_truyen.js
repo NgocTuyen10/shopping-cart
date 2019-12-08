@@ -1,24 +1,24 @@
-window.truyen = null;
+window.truyenId = null;
 var idList = [];
 $(document).ready(function () {
 
-    $.ajaxSetup({
-        // Handle authorization global
-        beforeSend: function (xhr) {
-            var token = localStorage.getItem('token');
-            console.log(token);
-            xhr.setRequestHeader('X-Auth-Token', token);
-        },
-        // Handle error global
-        complete: function (xhr) {
-            var status = xhr.status;
-            if (status == 403) {
-                xhr.setRequestHeader("X-Auth-Token", "");
-                $("body").load("/views/auth/login.html")
-            } else if (status == 401)
-                openPage("dashboard.html");
-        }
-    });
+    // $.ajaxSetup({
+    //     // Handle authorization global
+    //     beforeSend: function (xhr) {
+    //         var token = localStorage.getItem('token');
+    //         console.log(token);
+    //         xhr.setRequestHeader('X-Auth-Token', token);
+    //     },
+    //     // Handle error global
+    //     complete: function (xhr) {
+    //         var status = xhr.status;
+    //         if (status == 403) {
+    //             xhr.setRequestHeader("X-Auth-Token", "");
+    //             $("body").load("/views/auth/login.html")
+    //         } else if (status == 401)
+    //             openPage("dashboard.html");
+    //     }
+    // });
     loadDataTable();
     function loadDataTable() {
         var url = "/comics/truyen-hoa-don-xuat";
@@ -30,8 +30,58 @@ $(document).ready(function () {
             renderData(data);
         });
     };
+    $(function () {
+        var url = "/comics/nha-cung-cap";
+        $.getJSON(url, function (data) {
+            data.forEach(function (f) {
+                var tblRow = "<option value=\"" + f.nhaCungCapId + "\">" + f.ten + "</option>";
+                $(tblRow).appendTo("#nha-cung-cap select");
+            });
+        });
+    });
+    $("#create").on('click', function () {
+        // window.open("/employee/create", "_self");
+        openPage("hr/create_employee.html");
+    });
+    // click on button edit
+    $("#edit").on('click', function () {
+        // window.open("/employee/edit?id=" + idList[0], "_self");
+        openPage('hr/edit_employee.html');
+        var id = idList[0];
+        // Load employee information
+        var projectUrl = "/comics/management/nhanvien/" + id;
+        $.getJSON(projectUrl, function (data) {
+            window.nhanVien = data;
+            console.log(window.nhanVien);
+        });
+    });
 
 });
+function checkAll() {
+    $('input:checkbox').prop('checked', $('#checkbox-select-all').prop('checked'));
+    idList = [];
+    if ($('#checkbox-select-all').prop('checked')) {
+        for (var i = 1; i < $('input:checkbox').length; i++) {
+            idList.push($('input:checkbox')[i].value);
+        }
+    }
+    disableButton();
+}
+function checkRow(value) {
+    if (idList.indexOf(value) > -1) {
+        idList.splice(idList.indexOf(value), 1);
+    } else {
+        idList.push(value);
+    }
+    disableButton();
+}
+function disableButton() {
+    if (idList.length != 1) {
+        document.getElementById("edit").disabled = true;
+    } else {
+        document.getElementById("edit").disabled = false;
+    }
+};
 
 function renderData(data) {
     var table = $('#datatable').DataTable({
@@ -43,7 +93,7 @@ function renderData(data) {
         // show
         "pageLength ": 10,
         columns: [
-            // { searchable: false, title: "<input type='checkbox' class='checkbox' name='select_all' id='checkbox-select-all' onClick='checkAll()'>", data: 'truyenId' },
+            { searchable: false, title: "<input type='checkbox' class='checkbox' name='select_all' id='checkbox-select-all' onClick='checkAll()'>", data: 'truyenId' },
 
             { title: "Số thứ tự", data: 'index' },
             { title: "Mã truyện", data: 'maTruyen' },
@@ -56,17 +106,26 @@ function renderData(data) {
         ],
         columnDefs: [
             {
+                targets: 0,
                 searchable: false,
                 orderable: false,
-                targets: 0
+                className: 'dt-body-center',
+                render: function (data, type, full, meta) {
+                    return '<input type="checkbox" class="checkbox" name="checkbox-item" onClick="checkRow(this.value)" value="' + $('<div/>').text(data).html() + '">';
+                }
             },
             {
-                targets: 6,
+                searchable: false,
+                orderable: false,
+                targets: 1
+            },
+            {
+                targets: 7,
                 searchable: false,
                 orderable: false,
                 className: 'dt-body-center',
                 render: function (data, type, row) {
-                    return '<button type="button" id="them-vao-hoa-don" class="btn btn-success" onClick="themVaoHoaDon(' + row.truyenId + ')">Thêm vào hóa đơn</button>';
+                    return '<button type="button" id="them-vao-hoa-don" class="btn btn-success" onClick="nhapHang(' + row.truyenId + ')">Nhập hàng</button>';
                 }
             }
 
@@ -79,7 +138,7 @@ function renderData(data) {
     });
 
     table.on('order.dt search.dt', function () {
-        table.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+        table.column(1, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
             cell.innerHTML = i + 1;
         });
     }).draw();
@@ -120,6 +179,49 @@ function clearText() {
     $('#dia_chi').text("");
     $('#tong_tien').text("");
 }
-function themVaoHoaDon(truyenId) {
-    alert(truyenId);
+function nhapHang(truyenId) {
+    var url = "/comics/truyen-hoa-don-xuat-view/" + truyenId;
+    $.getJSON(url, function (data) {
+        console.log(data);
+
+        var donGiaBan = Number(data.donGiaBan.toFixed(1)).toLocaleString() + " đ";
+        $('#ma-truyen').text(data.maTruyen);
+        $('#ten-truyen').text(data.tenTruyen);
+        $('#so-luong-con').text(data.soLuongCon);
+        $('#don-gia-ban').text(donGiaBan);
+        $('#dau-truyen').text(data.tuaTruyen);
+        window.truyenId = truyenId;
+    });
+    // alert(truyenId);
+    $('#nhapHangModal').modal({ backdrop: 'static', keyboard: false });
+}
+
+function closeNhapHangModal() {
+    $(".modal-backdrop").remove();
+    $('#nhapHangModal').modal('toggle');
+}
+
+function themMoi() {
+    var data = {
+        "truyenId": window.truyenId,
+        "soLuong": $("#so-luong-nhap-value").val(),
+        "donGiaNhap": $("#don-gia-nhap-value").val(),
+        "nhaCungCapId": $("#nha-cung-cap-value").val()
+    };
+    console.log(data);
+    $.ajax({
+        url: '/comics/truyen-hoa-don-xuat', // url where to submit the request
+        type: "POST", // type of action POST || GET
+        contentType: "application/json", // data type
+        data: JSON.stringify(data), // post data || get data
+        success: function (result) {
+            closeNhapHangModal();
+            openPage('xuat_truyen/xuat_truyen.html');
+        },
+        error: function (xhr, resp, text) {
+            console.log(xhr, resp, text);
+            $('#create-tac-gia-error').modal('show');
+        }
+    });
+
 }

@@ -12,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.comicsproject.dto.HoaDonXuatDTO;
 import com.example.comicsproject.dto.TruyenDTO;
 import com.example.comicsproject.dto.TruyenHoaDonXuatDTO;
+import com.example.comicsproject.dto.TruyenNhapDTO;
+import com.example.comicsproject.entity.CuonTruyen;
 import com.example.comicsproject.entity.HoaDonXuat;
 import com.example.comicsproject.entity.KhachHang;
+import com.example.comicsproject.repository.CuonTruyenRepository;
 import com.example.comicsproject.repository.HoaDonXuatRepository;
 import com.example.comicsproject.repository.KhachHangRepository;
 
@@ -25,6 +28,8 @@ public class HoaDonXuatService {
 
 	@Autowired
 	private KhachHangRepository khachHangRepository;
+	@Autowired
+	private CuonTruyenRepository cuonTruyenRepository;
 
 	public void create(HoaDonXuat hoaDonXuat) {
 		this.hoaDonXuatRepository.save(hoaDonXuat);
@@ -75,5 +80,22 @@ public class HoaDonXuatService {
 
 	public List<TruyenHoaDonXuatDTO> getTruyenToXuat() {
 		return this.hoaDonXuatRepository.getTruyenToXuat();
+	}
+
+	public TruyenHoaDonXuatDTO getTruyenToXuatById(int truyenId) {
+		return this.hoaDonXuatRepository.getTruyenToXuatById(truyenId);
+	}
+
+	public void nhapTruyen(TruyenNhapDTO truyenNhapDTO) {
+		for (int i = 0; i < truyenNhapDTO.getSoLuong(); i++) {
+			CuonTruyen cuonTruyen = new CuonTruyen();
+			cuonTruyen.setTruyenId(truyenNhapDTO.getTruyenId());
+			cuonTruyen.setDonGiaNhap(truyenNhapDTO.getDonGiaNhap());
+			cuonTruyen.setNhaCungCapId(truyenNhapDTO.getNhaCungCapId());
+			cuonTruyen.setTrangThaiBan(true);
+			cuonTruyen.setNgayNhap(new Date());
+			this.cuonTruyenRepository.save(cuonTruyen);
+			// Lack of nhaCungCap, trangThai
+		}
 	}
 }

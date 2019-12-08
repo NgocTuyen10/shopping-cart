@@ -148,7 +148,7 @@ $(document).ready(function () {
 	var token = window.localStorage.getItem('token');
 	if (token) {
 		// openPage("truyen/truyen.html");
-		$("#content").load("/views/truyen/truyen.html");
+		$("#content").load("/views/xuat_truyen/xuat_truyen.html");
 	} else {
 		$("body").load("/views/auth/login.html")
 	}

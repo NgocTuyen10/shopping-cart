@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 public class CuonTruyen {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cuonTruyenId;
 	@Column(name = "don_gia_nhap")
 	private float donGiaNhap;
@@ -33,12 +33,15 @@ public class CuonTruyen {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "truyen_id", insertable = false, updatable = false)
 	private Truyen truyen;
-	@ManyToOne
-	@JoinColumn(name = "nha_cung_cap_id", nullable = false)
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "nha_cung_cap_id", insertable = false, updatable = false)
 	private NhaCungCap nhaCungCap;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "nhan_vien_id", nullable = false)
 	private NhanVien nhanVien;
+
+	@Column(name = "nha_cung_cap_id", nullable = false)
+	private int nhaCungCapId;
 
 }

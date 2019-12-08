@@ -35,4 +35,9 @@ public interface HoaDonXuatRepository extends JpaRepository<HoaDonXuat, Integer>
 			+ "join DauTruyen d on t.dauTruyenId = d.dauTruyenId and t.trangThai =true", nativeQuery = false)
 	public List<TruyenHoaDonXuatDTO> getTruyenToXuat();
 
+	@Query(value = "select new com.example.comicsproject.dto.TruyenHoaDonXuatDTO( t.truyenId as truyenId,t.maTruyen as maTruyen,t.ten as tenTruyen,(select count(*) from CuonTruyen c where c.truyenId = t.truyenId ) \r\n"
+			+ "as soLuongCon,t.donGiaBan as donGiaBan,d.tuaTruyen as tuaTruyen) from Truyen t\r\n"
+			+ "join DauTruyen d on t.dauTruyenId = d.dauTruyenId and t.trangThai =true and t.truyenId = :q", nativeQuery = false)
+	public TruyenHoaDonXuatDTO getTruyenToXuatById(@Param("q") int truyenId);
+
 }

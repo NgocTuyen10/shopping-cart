@@ -1,9 +1,10 @@
 <div class="container">
     <div class="button" style="float: left;">
         <div class="form-group">
-            <input id="xem-hoa-don" type="button" class="btn btn-primary" value="Xem và in hóa đơn" />
+            <input id="create" type="button" class="btn btn-primary" value="Thêm mới" /> <input id="edit" type="button"
+                class="btn btn-primary" value="Cập nhật" /> <input id="importEmpl" type="button" class="btn btn-primary"
+                value="Import Data" />
         </div>
-
     </div>
     <div style="float: right;">
         <p>
@@ -82,6 +83,114 @@
         </div>
     </div>
 
+    <div class="modal fade" id="nhapHangModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #337ab7;color: white;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">THÊM TRUYỆN MỚI</h4>
+                </div>
+                <div class="modal-body">
+
+                    </br>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Mã truyện:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="ma-truyen"></label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Tên truyện:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="ten-truyen"></label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Số lượng còn:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="so-luong-con"></label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Đơn giá bán:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="don-gia-ban"></label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Đầu truyện:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="dau-truyen"></label>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Đơn giá nhập:</label>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <input type="text" class="form-control" value="" id="don-gia-nhap-value" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Số lượng nhập:</label>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <input class="input number-input" type="number" min="1" value="1" id="so-luong-nhap-value">
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Nhà cung cấp:</label>
+                        </div>
+                        <div class="col-md- col-sm-7" id="nha-cung-cap">
+                            <select class="form-control input-sm" id="nha-cung-cap-value">
+                                <option value="">Chọn ...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="updateModal" class="btn btn-primary" onclick="themMoi()">Thêm mới</button>
+                    <button type="button" class="btn btn-danger" onclick="closeNhapHangModal()">Đóng</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="/js/xuat_truyen/xuat_truyen.js"></script>

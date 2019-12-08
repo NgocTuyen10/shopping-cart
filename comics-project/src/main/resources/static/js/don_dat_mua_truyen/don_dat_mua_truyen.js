@@ -3,23 +3,23 @@ var idList = [];
 var truyen;
 $(document).ready(function () {
 
-    $.ajaxSetup({
-        // Handle authorization global
-        beforeSend: function (xhr) {
-            var token = localStorage.getItem('token');
-            console.log(token);
-            xhr.setRequestHeader('X-Auth-Token', token);
-        },
-        // Handle error global
-        complete: function (xhr) {
-            var status = xhr.status;
-            if (status == 403) {
-                xhr.setRequestHeader("X-Auth-Token", "");
-                $("body").load("/views/auth/login.html")
-            } else if (status == 401)
-                openPage("dashboard.html");
-        }
-    });
+    // $.ajaxSetup({
+    //     // Handle authorization global
+    //     beforeSend: function (xhr) {
+    //         var token = localStorage.getItem('token');
+    //         console.log(token);
+    //         xhr.setRequestHeader('X-Auth-Token', token);
+    //     },
+    //     // Handle error global
+    //     complete: function (xhr) {
+    //         var status = xhr.status;
+    //         if (status == 403) {
+    //             xhr.setRequestHeader("X-Auth-Token", "");
+    //             $("body").load("/views/auth/login.html")
+    //         } else if (status == 401)
+    //             openPage("dashboard.html");
+    //     }
+    // });
     loadDataTable();
 
     $(document).on('change', '#select_trang_thai_don', function (event) {

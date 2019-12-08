@@ -13,7 +13,7 @@ function login() {
 			withCredentials : true
 		},
 		success : function(data, statusText, request) {
-			console.log(data);
+			
 			var token = request.getResponseHeader('X-Auth-Token');
 			window.localStorage.setItem('token', token);
 			var json = JSON.parse(data);
