@@ -16,4 +16,12 @@ public class CuonTruyenService {
 	public List<CuonTruyen> getAll() {
 		return this.cuonTruyenRepository.getAll();
 	}
+
+	public CuonTruyen getCuonTruyenByCuonTruyenId(int cuonTruyenId) {
+		return this.cuonTruyenRepository.getCuonTruyenByCuonTruyenId(cuonTruyenId);
+	}
+	public void updateTrangThai(int trangThaiBan,int cuonTruyenId) {
+		this.cuonTruyenRepository.updatedonDatMuaTruyen(trangThaiBan, cuonTruyenId);
+	}
+
 }

@@ -70,11 +70,11 @@ public class DonDatMuaTruyenService {
 		DonDatMuaTruyen donDatMuaTruyen = new DonDatMuaTruyen();
 		donDatMuaTruyen.setTongTien(donDatMuaTruyenDTO.getTotal());
 
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-		Date dt = sf.parse(sf.format(new Date()));
+//		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+//		Date dt = sf.parse(sf.format(new Date()));
 
 		donDatMuaTruyen.setKhachHang(khachHang);
-		donDatMuaTruyen.setNgayDat(dt);
+		donDatMuaTruyen.setNgayDat(new Date());
 		donDatMuaTruyen.setDonDatMuaTruyenId(donDatMuaTruyenId);
 		/*
 		 * this.hoaDonXuatService.addHoaDonXuat(hoaDonXuat.getHoaDonXuatId(),
@@ -98,11 +98,11 @@ public class DonDatMuaTruyenService {
 		KhachHang khachHang = this.khachHangRepository.getKhachHangFromDonMua(donDatMuaTruyenId);
 		List<TruyenDonDatMuaDTO> truyenHoaDonDTOs = this.donDatMuaTruyenRepository
 				.getListTruyenHoaDonDTO(donDatMuaTruyenId);
-		Date ngayDat = this.donDatMuaTruyenRepository.getDateDonDatTruyen(donDatMuaTruyenId);
+//		Date ngayDat = this.donDatMuaTruyenRepository.getDateDonDatTruyen(donDatMuaTruyenId);
 		DonDatMuaTruyenViewDTO donDatMuaTruyenViewDTO = new DonDatMuaTruyenViewDTO();
 		donDatMuaTruyenViewDTO.setKhachHang(khachHang);
 		donDatMuaTruyenViewDTO.setTruyenHoaDonDTOs(truyenHoaDonDTOs);
-		donDatMuaTruyenViewDTO.setNgayDat(ngayDat);
+		donDatMuaTruyenViewDTO.setNgayDat(new Date());
 		donDatMuaTruyenViewDTO.setDonDatTruyenId(donDatMuaTruyenId);
 		return donDatMuaTruyenViewDTO;
 	}

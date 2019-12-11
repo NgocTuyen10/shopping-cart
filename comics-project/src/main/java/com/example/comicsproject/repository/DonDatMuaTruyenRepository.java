@@ -19,6 +19,9 @@ public interface DonDatMuaTruyenRepository extends JpaRepository<DonDatMuaTruyen
 	@Query(value = "SELECT nextval('don_dat_mua_truyen_sequence');", nativeQuery = true)
 	public int getNextId();
 
+	@Query(value = "SELECT * FROM don_dat_mua_truyen ORDER BY ngay_dat DESC", nativeQuery = true)
+	public List<DonDatMuaTruyen> findAll();
+
 	@Transactional
 	@Modifying
 	@Query(value = "insert into chi_tiet_don_dat_mua_truyen(don_dat_mua_truyen_id,truyen_id,so_luong) values(:p1,:p2,:p3);", nativeQuery = true)

@@ -106,6 +106,7 @@ function loadDataTable() {
     });
 };
 function renderData(data) {
+    console.log(data);
     var table = $('#datatable').DataTable({
         "dom": '<"top"l>rt<"bottom"p><"clear">',
         // "bInfo": false,
@@ -145,7 +146,7 @@ function renderData(data) {
             }
         }
         ],
-        order: [[1, 'asc']]
+        order: [[1, 'desc']]
     });
     // Search button click
     $('#mySearchButton').on('keyup click', function () {
@@ -175,6 +176,7 @@ function showDetail(donDatMuaTruyenId) {
         $('#ten_khach_hang').text(data.khachHang.ten);
         $('#so_dien_thoai').text(data.khachHang.soDienThoai);
         $('#dia_chi').text(data.khachHang.diaChi);
+        $('#email').text(data.khachHang.email);
         $('#tong_tien').text(tongTien);
         window.donDatMuaTruyenId = donDatMuaTruyenId;
     });

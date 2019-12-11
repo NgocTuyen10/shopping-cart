@@ -37,7 +37,7 @@ public class DonDatMuaTruyenController extends BaseController {
 	private DonDatMuaTruyenService donDatMuaTruyenService;
 
 	@RequestMapping(value = "/don-dat-mua-truyen", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MEMBER')")
 	public ResponseEntity<?> createCart(@RequestBody(required = true) DonDatMuaTruyenDTO donDatMuaTruyenDTO)
 			throws ParseException {
 		this.donDatMuaTruyenService.AddCartDataToDatabase(donDatMuaTruyenDTO);

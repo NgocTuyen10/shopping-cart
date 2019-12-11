@@ -92,7 +92,7 @@ public class HoaDonXuatService {
 			cuonTruyen.setTruyenId(truyenNhapDTO.getTruyenId());
 			cuonTruyen.setDonGiaNhap(truyenNhapDTO.getDonGiaNhap());
 			cuonTruyen.setNhaCungCapId(truyenNhapDTO.getNhaCungCapId());
-			cuonTruyen.setTrangThaiBan(true);
+			cuonTruyen.setTrangThaiBan(1);
 			cuonTruyen.setNgayNhap(new Date());
 			this.cuonTruyenRepository.save(cuonTruyen);
 			// Lack of nhaCungCap, trangThai

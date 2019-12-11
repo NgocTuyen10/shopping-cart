@@ -188,12 +188,22 @@
 				.pipe(input).then(function (output) {
 					console.log(output);
 					$("#wait").css("display", "none");
+					//clearImageInformation();
+					//closeToMauModal();
 					window.open(outputImageUrl);
+
 				});
 
 		};
+
 		function closeToMauModal() {
-			$('#toMauModal').modal('toggle');
+			//$('#toMauModal').modal('toggle');
+			$('#toMauModal').modal('hide');
+			$(".modal-backdrop").remove();
+		}
+
+		function clearImageInformation() {
+			$('#file-name').text() = "";
 		}
 	</script>
 </body>

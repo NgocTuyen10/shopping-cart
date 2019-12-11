@@ -144,11 +144,23 @@ $(document)
 							success: function (result) {
 								shoppingCart.clearCart();
 								displayCart();
+								$('#show-success-message').modal('show');
 							},
 							error: function (xhr, resp, text) {
-
+								$('#show-error-message').modal('show');
 							}
 						});
 					})
 
 		});
+function closeModalSuccess() {
+	$('#show-success-message').modal('hide');
+	$(".modal-backdrop").remove();
+	window.location= "/comics"
+}
+
+function closeModalError() {
+	$('#show-error-message').modal('hide');
+	$(".modal-backdrop").remove();
+	// openPage('tac_gia/create_tac_gia.html');
+}

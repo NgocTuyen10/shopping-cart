@@ -1,0 +1,110 @@
+<div class="container">
+    <div class="button" style="float: left;">
+        <div class="form-group">
+
+        </div>
+    </div>
+    <div style="float: right;">
+        <p>
+            <input type="text" id="mySearchText" placeholder="Tìm kiếm...">
+            <button id="mySearchButton" class="btn btn-primary">Tìm kiếm</button>
+        </p>
+    </div>
+    <div class="profile">
+        <!-- <table id="datatable" class="table table-bordered" style="width: 100%"></table> -->
+        <table id="datatable" class="display"></table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="updateCuonTruyenModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background: #337ab7;color: white;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Cập nhật trạng thái cuốn truyện</h4>
+                </div>
+                <div class="modal-body">
+
+                    </br>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Mã cuốn truyện:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="cuon_truyen_id_update"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Tên truyện:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="ten_cuon_truyen_modal"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Đơn giá nhập:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="don_gia_nhap_update"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Ngày nhập:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="ngay_nhap_update"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Nhà cung cấp:</label>
+                        </div>
+                        <div class="col-md-7 col-sm-7">
+                            <label id="nha_cung_cap_update"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-sm-1">
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <label>Trạng thái:</label>
+                        </div>
+                        <div class="col-md- col-sm-7">
+                            <select id="select_trang_thai_cuon_truyen">
+                                <option value="1">Chưa bán</option>
+                                <option value="2">Đang giao hàng</option>
+                                <option value="3">Đã bán</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="updateModal" class="btn btn-primary" onclick="updateCuonTruyen()">Cập nhật</button>
+                    <button type="button" class="btn btn-danger" onclick="closeUpdateCuonTruyenModal()">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="/js/cuon_truyen/cuon_truyen.js"></script>
+<script type="text/javascript" src="/js/change/importEmployee.js"></script>
